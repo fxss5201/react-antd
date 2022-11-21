@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import './index.css';
+import 'antd/dist/reset.css';
+import 'tailwindcss/tailwind.css';
 import { ConfigProvider } from 'antd';
 import 'dayjs/locale/zh-cn';
 import zhCN from 'antd/locale/zh_CN';

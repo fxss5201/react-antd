@@ -1,7 +1,6 @@
 import React from 'react';
 import { MenuUnfoldOutlined, MenuFoldOutlined, LaptopOutlined, NotificationOutlined, UserOutlined } from '@ant-design/icons';
 import { Breadcrumb, Layout, Menu } from 'antd';
-import './HomeLayout.css';
 
 const { Header, Content, Sider } = Layout;
 const items1 = ['1', '2', '3'].map((key) => ({
@@ -26,10 +25,13 @@ const items2 = [UserOutlined, LaptopOutlined, NotificationOutlined].map((icon, i
 
 const HomeLayout = () => (
   <Layout>
-    <Header className='flex'>
-      <div className="logo" />
-      <div className='menu-show-btn'>
-        <MenuFoldOutlined />
+    <Header className="flex">
+      <div className="flex-shrink-0 w-32 h-8 m-4 ml-0 bg-gray-500" />
+      <div className="flex items-center content-center">
+        <div className="text-gray-200 text-16 hover:text-white cursor-pointer">
+          <MenuFoldOutlined />
+          <MenuUnfoldOutlined />
+        </div>
       </div>
       <Menu theme="dark" mode="horizontal" defaultSelectedKeys={['2']} items={items1} />
     </Header>
