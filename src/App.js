@@ -1,10 +1,13 @@
-import './App.css';
-import { Button } from 'antd';
+import { RouterProvider } from "react-router-dom";
+import router from './router/index';
+import 'antd/dist/reset.css';
+
+console.log(router)
 
 function App() {
   return (
-    <div className="App">
-      <Button type="primary">Button</Button>
+    <div className="App flex h-screen">
+      <RouterProvider router={router} />
     </div>
   );
 }
