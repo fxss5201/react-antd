@@ -1,12 +1,14 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { MenuUnfoldOutlined, MenuFoldOutlined, LaptopOutlined, NotificationOutlined, UserOutlined } from '@ant-design/icons';
 import { Breadcrumb, Layout, Menu } from 'antd';
 
 const { Header, Content, Sider } = Layout;
-const items1 = ['1', '2', '3'].map((key) => ({
-  key,
-  label: `nav ${key}`,
-}));
+const items1 = [
+  {
+    key: 'locale',
+    label: `语言`,
+  }
+];
 const items2 = [UserOutlined, LaptopOutlined, NotificationOutlined].map((icon, index) => {
   const key = String(index + 1);
   return {
@@ -23,27 +25,34 @@ const items2 = [UserOutlined, LaptopOutlined, NotificationOutlined].map((icon, i
   };
 });
 
-const HomeLayout = () => (
+const HomeLayout = () => {
+  const [collapsed, setCollapsed] = useState(false);
+  return (
   <Layout>
     <Header className="flex">
       <div className="flex-shrink-0 w-32 h-8 m-4 ml-0 bg-gray-500" />
-      <div className="flex items-center content-center">
-        <div className="text-gray-200 text-16 hover:text-white cursor-pointer">
-          <MenuFoldOutlined />
-          <MenuUnfoldOutlined />
+      <div className="flex items-center justify-center">
+        <div className="text-gray-200 px-3 text-16 hover:text-white cursor-pointer">
+          {React.createElement(collapsed ? MenuUnfoldOutlined : MenuFoldOutlined, {
+            onClick: () => setCollapsed(!collapsed),
+          })}
         </div>
       </div>
-      <Menu theme="dark" mode="horizontal" defaultSelectedKeys={['2']} items={items1} />
+      <div className='flex-auto flex items-center justify-end'>
+        <Menu theme="dark" mode="horizontal" defaultSelectedKeys={['2']} items={items1} />
+      </div>
     </Header>
     <Layout>
-      <Sider width={200} className="site-layout-background">
+      <Sider width={200} collapsible collapsed={collapsed} onCollapse={(value) => setCollapsed(value)}>
         <Menu
+          theme="dark"
           mode="inline"
           defaultSelectedKeys={['1']}
           defaultOpenKeys={['sub1']}
           style={{
             height: '100%',
             borderRight: 0,
+            overflowY: 'auto',
           }}
           items={items2}
         />
@@ -75,6 +84,7 @@ const HomeLayout = () => (
       </Layout>
     </Layout>
   </Layout>
-);
+  )
+};
 
 export default HomeLayout;
