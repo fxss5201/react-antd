@@ -1,13 +1,16 @@
 import React, { useState } from 'react';
 import { MenuUnfoldOutlined, MenuFoldOutlined, LaptopOutlined, NotificationOutlined, UserOutlined } from '@ant-design/icons';
 import { Breadcrumb, Layout, Menu } from 'antd';
+import { Outlet } from 'react-router-dom';
+import MyIcon from './../components/MyIcon';
+import { connect } from 'react-redux';
 
 const { Header, Content, Sider } = Layout;
 const items1 = [
-  {
-    key: 'locale',
-    label: `语言`,
-  }
+  // {
+  //   key: 'locale',
+  //   label: `语言`,
+  // }
 ];
 const items2 = [UserOutlined, LaptopOutlined, NotificationOutlined].map((icon, index) => {
   const key = String(index + 1);
@@ -25,7 +28,17 @@ const items2 = [UserOutlined, LaptopOutlined, NotificationOutlined].map((icon, i
   };
 });
 
-const HomeLayout = () => {
+const mapStateToProps = state => ({
+  locale: state.locale
+})
+const mapDispatchToProps = dispatch => ({
+  changeLocal: value => dispatch({
+		type: 'CHANGE_LOCALE',
+		value
+	})
+})
+
+const HomeLayout = ({locale, changeLocal}) => {
   const [collapsed, setCollapsed] = useState(false);
   return (
   <Layout>
@@ -39,6 +52,10 @@ const HomeLayout = () => {
         </div>
       </div>
       <div className='flex-auto flex items-center justify-end'>
+				<div className='flex items-center cursor-pointer text-gray-400 hover:text-white' onClick={() => changeLocal(locale === 'zhCN' ? 'enGb' : 'zhCN')}>
+					<MyIcon type={locale === 'zhCN' ? 'icon-zhongyingwenqiehuan-zhongwen' : 'icon-zhongyingwenqiehuan-yingwen' } className=' text-24' />
+					<span className='ml-1'>{locale === 'zhCN' ? '中文' : '英文' }</span>
+				</div>
         <Menu theme="dark" mode="horizontal" defaultSelectedKeys={['2']} items={items1} />
       </div>
     </Header>
@@ -72,14 +89,12 @@ const HomeLayout = () => {
           <Breadcrumb.Item>App</Breadcrumb.Item>
         </Breadcrumb>
         <Content
-          className="site-layout-background"
+          className=" p-6 m-0"
           style={{
-            padding: 24,
-            margin: 0,
             minHeight: 280,
           }}
         >
-          Content
+          <Outlet />
         </Content>
       </Layout>
     </Layout>
@@ -87,4 +102,7 @@ const HomeLayout = () => {
   )
 };
 
-export default HomeLayout;
+export default connect(
+	mapStateToProps,
+	mapDispatchToProps
+)(HomeLayout);

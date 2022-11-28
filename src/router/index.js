@@ -2,6 +2,7 @@ import {
   createHashRouter
 } from "react-router-dom";
 import HomeLayout from './../layout/HomeLayout'
+import PageIndex from './../page/PageIndex'
 
 const router = createHashRouter([
   {
@@ -9,8 +10,8 @@ const router = createHashRouter([
     element: <HomeLayout />,
     children: [
       {
-        path: "team",
-        // element: <Team />,
+        path: "index",
+        element: <PageIndex />,
       },
     ],
   },
