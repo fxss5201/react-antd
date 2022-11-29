@@ -5,18 +5,16 @@ import enGb from 'antd/locale/en_GB';
 import { ConfigProvider } from 'antd';
 import { RouterProvider } from "react-router-dom";
 import router from './router/index';
-import { connect } from 'react-redux';
+import { useSelector } from 'react-redux';
 
 const localeObj = {
   zhCN,
   enGb
 }
 
-const mapStateToProps = state => ({
-  locale: state.locale
-})
+const App = () => {
+  const locale = useSelector(state => state.locale.value);
 
-const App = ({locale}) => {
   return (
     <div className="App flex h-screen">
       <ConfigProvider
@@ -29,6 +27,4 @@ const App = ({locale}) => {
   );
 }
 
-export default connect(
-  mapStateToProps
-)(App);
+export default App;
