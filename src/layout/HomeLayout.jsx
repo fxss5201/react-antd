@@ -2,9 +2,9 @@ import React, { useState } from 'react';
 import { MenuUnfoldOutlined, MenuFoldOutlined, LaptopOutlined, NotificationOutlined, UserOutlined } from '@ant-design/icons';
 import { Breadcrumb, Layout, Menu } from 'antd';
 import { Outlet } from 'react-router-dom';
-import MyIcon from './../components/MyIcon';
+import MyIcon from '../components/MyIcon';
 import { useSelector, useDispatch } from 'react-redux';
-import { changeLocale } from './../store/locale';
+import { changeLocale } from '../store/locale';
 
 const { Header, Content, Sider } = Layout;
 const items1 = [

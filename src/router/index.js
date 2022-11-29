@@ -1,16 +1,18 @@
 import {
   createHashRouter
 } from "react-router-dom";
-import HomeLayout from './../layout/HomeLayout'
-import PageIndex from './../page/PageIndex'
+import ErrorPage from './../error-page';
+import HomeLayout from './../layout/HomeLayout';
+import PageIndex from './../page/PageIndex';
 
 const router = createHashRouter([
   {
     path: "/",
     element: <HomeLayout />,
+    errorElement: <ErrorPage />,
     children: [
       {
-        path: "index",
+        index: true,
         element: <PageIndex />,
       },
     ],
