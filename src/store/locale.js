@@ -1,9 +1,13 @@
 import { createSlice } from '@reduxjs/toolkit';
+import { addPrefixName } from './../utils/index';
+
+let localeStorage = window.localStorage.getItem(addPrefixName('locale')) || '';
+if (localeStorage) localeStorage = JSON.parse(localeStorage)
 
 export const localeSlice = createSlice({
   name: 'locale',
   initialState: {
-    value: 'zhCN',
+    value: localeStorage || 'zhCN',
   },
   reducers: {
     changeLocale: (state, action) => {

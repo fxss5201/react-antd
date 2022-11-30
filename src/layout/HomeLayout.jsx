@@ -4,7 +4,9 @@ import { Breadcrumb, Layout, Menu } from 'antd';
 import { Outlet } from 'react-router-dom';
 import MyIcon from '../components/MyIcon';
 import { useSelector, useDispatch } from 'react-redux';
+import { useLocalStorageState } from 'ahooks';
 import { changeLocale } from '../store/locale';
+import { addPrefixName } from './../utils/index';
 
 const { Header, Content, Sider } = Layout;
 const items1 = [
@@ -31,8 +33,13 @@ const items2 = [UserOutlined, LaptopOutlined, NotificationOutlined].map((icon, i
 
 const HomeLayout = () => {
   const [collapsed, setCollapsed] = useState(false);
+	const [, setLocaleStorage] = useLocalStorageState(addPrefixName('locale'));
 	const locale = useSelector(state => state.locale.value);
-	const dispatch = useDispatch()
+	const dispatch = useDispatch();
+	const changeLocaleEvent = (val) =>  {
+		dispatch(changeLocale(val));
+		setLocaleStorage(val);
+	};
 
   return (
 		<Layout>
@@ -46,7 +53,7 @@ const HomeLayout = () => {
 					</div>
 				</div>
 				<div className='flex-auto flex items-center justify-end'>
-					<div className='flex items-center cursor-pointer text-gray-400 hover:text-white' onClick={() => dispatch(changeLocale(locale === 'zhCN' ? 'enGb' : 'zhCN'))}>
+					<div className='flex items-center cursor-pointer text-gray-400 hover:text-white' onClick={() => changeLocaleEvent(locale === 'zhCN' ? 'enGb' : 'zhCN')}>
 						<MyIcon type={locale === 'zhCN' ? 'icon-zhongyingwenqiehuan-zhongwen' : 'icon-zhongyingwenqiehuan-yingwen' } className=' text-24' />
 						<span className='ml-1'>{locale === 'zhCN' ? '中文' : '英文' }</span>
 					</div>
