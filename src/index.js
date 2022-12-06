@@ -5,6 +5,7 @@ import 'tailwindcss/tailwind.css';
 import App from './App';
 import store from './store/index';
 import { Provider } from 'react-redux';
+import './i18n';
 // import reportWebVitals from './reportWebVitals';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
