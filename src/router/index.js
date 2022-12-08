@@ -1,9 +1,12 @@
+import React, { lazy } from 'react';
 import {
   createHashRouter
 } from "react-router-dom";
-import ErrorPage from './../error-page';
-import HomeLayout from './../layout/HomeLayout';
-import PageIndex from './../page/PageIndex';
+import LoginRoutes from './login';
+
+const ErrorPage = lazy(() => import('./../error-page'));
+const HomeLayout = lazy(() => import('./../layout/HomeLayout'));
+const PageIndex = lazy(() => import('./../page/PageIndex'));
 
 const router = createHashRouter([
   {
@@ -17,6 +20,7 @@ const router = createHashRouter([
       },
     ],
   },
+  ...LoginRoutes
 ]);
 
 export default router;

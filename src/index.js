@@ -1,7 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
+import './style/tailwind.css';
 import 'antd/dist/reset.css';
-import 'tailwindcss/tailwind.css';
+import './style/index.css';
 import App from './App';
 import store from './store/index';
 import { Provider } from 'react-redux';

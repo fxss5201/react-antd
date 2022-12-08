@@ -2,20 +2,16 @@ import React, { useState } from 'react';
 import { MenuUnfoldOutlined, MenuFoldOutlined, LaptopOutlined, NotificationOutlined, UserOutlined } from '@ant-design/icons';
 import { Breadcrumb, Layout, Menu } from 'antd';
 import { Outlet } from 'react-router-dom';
-import MyIcon from '../components/MyIcon';
-import { useSelector, useDispatch } from 'react-redux';
-import { useLocalStorageState } from 'ahooks';
-import { changeLocale } from '../store/locale';
-import { addPrefixName } from './../utils/index';
+import ToggleLang from '../components/ToggleLang';
 
 const { Header, Content, Sider } = Layout;
-const items1 = [
+const topMenuItems = [
   // {
   //   key: 'locale',
   //   label: `语言`,
   // }
 ];
-const items2 = [UserOutlined, LaptopOutlined, NotificationOutlined].map((icon, index) => {
+const sideMenuItems = [UserOutlined, LaptopOutlined, NotificationOutlined].map((icon, index) => {
   const key = String(index + 1);
   return {
     key: `sub${key}`,
@@ -33,13 +29,6 @@ const items2 = [UserOutlined, LaptopOutlined, NotificationOutlined].map((icon, i
 
 const HomeLayout = () => {
   const [collapsed, setCollapsed] = useState(false);
-	const [, setLocaleStorage] = useLocalStorageState(addPrefixName('locale'));
-	const locale = useSelector(state => state.locale.value);
-	const dispatch = useDispatch();
-	const changeLocaleEvent = (val) =>  {
-		dispatch(changeLocale(val));
-		setLocaleStorage(val);
-	};
 
   return (
 		<Layout>
@@ -53,11 +42,8 @@ const HomeLayout = () => {
 					</div>
 				</div>
 				<div className='flex-auto flex items-center justify-end'>
-					<div className='flex items-center cursor-pointer text-gray-400 hover:text-white' onClick={() => changeLocaleEvent(locale === 'zhCN' ? 'enGb' : 'zhCN')}>
-						<MyIcon type={locale === 'zhCN' ? 'icon-zhongyingwenqiehuan-zhongwen' : 'icon-zhongyingwenqiehuan-yingwen' } className=' text-24' />
-						<span className='ml-1'>{locale === 'zhCN' ? '中文' : '英文' }</span>
-					</div>
-					<Menu theme="dark" mode="horizontal" defaultSelectedKeys={['2']} items={items1} />
+					<ToggleLang addClass="text-gray-400 hover:text-white" />
+					<Menu theme="dark" mode="horizontal" defaultSelectedKeys={['2']} items={topMenuItems} />
 				</div>
 			</Header>
 			<Layout>
@@ -72,7 +58,7 @@ const HomeLayout = () => {
 							borderRight: 0,
 							overflowY: 'auto',
 						}}
-						items={items2}
+						items={sideMenuItems}
 					/>
 				</Sider>
 				<Layout
