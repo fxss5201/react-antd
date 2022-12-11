@@ -16,6 +16,13 @@ const enGb = {
   'Log in': 'Log in',
   'Or': 'Or',
   'register now!': 'register now!',
+  'Password Login': 'Password Login',
+  'Verification login': 'Verification login',
+  'Phone': 'Phone',
+  'Please input your Phone!': 'Please input your Phone!',
+  'Verification': 'Verification',
+  'Please input your Verification!': 'Please input your Verification!',
+  'Get verification code': 'Get verification code',
 }
 
 export default enGb

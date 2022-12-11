@@ -16,6 +16,13 @@ const zhCN = {
   'Log in': '登录',
   'Or': '或',
   'register now!': '注册！',
+  'Password Login': '密码登录',
+  'Verification login': '验证码登录',
+  'Phone': '手机号',
+  'Please input your Phone!': '请输入您的手机号！',
+  'Verification': '验证码',
+  'Please input your Verification!': '请输入您的验证码！',
+  'Get verification code': '获取验证码',
 }
 
 export default zhCN
