@@ -4,6 +4,7 @@ import { Button, Form, Input } from 'antd';
 import { useTranslation } from 'react-i18next';
 import { Link } from "react-router-dom";
 import { useCountDown } from 'ahooks';
+import config from '../../config';
 
 const VerificationLogin = ({ activeKey }) => {
   const [isValidate, setIsValidate] = useState(false)
@@ -57,9 +58,13 @@ const VerificationLogin = ({ activeKey }) => {
             required: true,
             message: t('Please input your Phone!'),
           },
+          {
+            pattern: config.phonePattern,
+            message: t('Incorrect mobile number format!'),
+          },
         ]}
       >
-        <Input prefix={<MobileOutlined className="text-gray-400" />} placeholder={t('Phone')} />
+        <Input prefix={<MobileOutlined className="text-gray-400" />} placeholder={t('Phone')} allowClear />
       </Form.Item>
 
       <Form.Item
@@ -69,12 +74,16 @@ const VerificationLogin = ({ activeKey }) => {
             required: true,
             message: t('Please input your Verification!'),
           },
+          {
+            pattern: config.verificationPattern,
+            message: t('Incorrect format of verification number!')
+          },
         ]}
         className='flex-auto'
       >
         <Input prefix={<SafetyCertificateOutlined className="text-gray-400" />} placeholder={t('Verification')} addonAfter={
           isGetVerificationLoading ? `${Math.round(countdown / 1000)}s` : <div className='cursor-pointer' onClick={getVerification}>{t('Get verification code')}</div>
-        } />
+        } allowClear />
       </Form.Item>
 
       <Form.Item>

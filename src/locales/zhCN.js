@@ -20,8 +20,10 @@ const zhCN = {
   'Verification login': '验证码登录',
   'Phone': '手机号',
   'Please input your Phone!': '请输入您的手机号！',
+  'Incorrect mobile number format!': '手机号格式有误！',
   'Verification': '验证码',
   'Please input your Verification!': '请输入您的验证码！',
+  'Incorrect format of verification number!': '验证码格式有误！',
   'Get verification code': '获取验证码',
 }
 

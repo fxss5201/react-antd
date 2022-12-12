@@ -58,7 +58,7 @@ const PasswordLogin = ({ activeKey }) => {
           },
         ]}
       >
-        <Input prefix={<UserOutlined className="text-gray-400" />} placeholder={t('Username')} />
+        <Input prefix={<UserOutlined className="text-gray-400" />} placeholder={t('Username')} allowClear />
       </Form.Item>
       <Form.Item
         name="password"
@@ -69,7 +69,7 @@ const PasswordLogin = ({ activeKey }) => {
           },
         ]}
       >
-        <Input.Password prefix={<LockOutlined className="text-gray-400" />} placeholder={t('Password')} />
+        <Input.Password prefix={<LockOutlined className="text-gray-400" />} placeholder={t('Password')} allowClear />
       </Form.Item>
       <Form.Item>
         <Form.Item name="remember" valuePropName="checked" noStyle>

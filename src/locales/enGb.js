@@ -20,8 +20,10 @@ const enGb = {
   'Verification login': 'Verification login',
   'Phone': 'Phone',
   'Please input your Phone!': 'Please input your Phone!',
+  'Incorrect mobile number format!': 'Incorrect mobile number format!',
   'Verification': 'Verification',
   'Please input your Verification!': 'Please input your Verification!',
+  'Incorrect format of verification number!': 'Incorrect format of verification number!',
   'Get verification code': 'Get verification code',
 }
 
