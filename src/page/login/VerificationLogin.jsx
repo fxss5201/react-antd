@@ -61,7 +61,7 @@ const VerificationLogin = ({ activeKey }) => {
       >
         <Input prefix={<MobileOutlined className="text-gray-400" />} placeholder={t('Phone')} />
       </Form.Item>
-      <Form.Item>
+      <Form.Item className='mb-0'>
         <div className='flex items-center justify-center'>
           <Form.Item
             name="Verification"
@@ -75,8 +75,8 @@ const VerificationLogin = ({ activeKey }) => {
           >
             <Input prefix={<SafetyCertificateOutlined className="text-gray-400" />} placeholder={t('Verification')} />
           </Form.Item>
-          <Form.Item className='flex-auto ml-2 flex-grow-0'>
-            <Button onClick={getVerification}>{isGetVerificationLoading ? `${Math.round(countdown / 1000)}s` : t('Get verification code')}</Button>
+          <Form.Item className='flex-auto ml-3 flex-grow-0'>
+            <Button disabled={isGetVerificationLoading} onClick={getVerification}>{isGetVerificationLoading ? `${Math.round(countdown / 1000)}s` : t('Get verification code')}</Button>
           </Form.Item>
         </div>
       </Form.Item>

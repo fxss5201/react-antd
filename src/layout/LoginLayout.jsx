@@ -8,8 +8,8 @@ const LoginLayout = () => {
       <div className='absolute top-4 right-8 z-10'>
         <ToggleLang addClass='text-gray-900 hover:text-blue-400' />
       </div>
-      <div className='w-full h-full flex items-center justify-center'>
-        <div>
+      <div className='w-full h-full flex justify-center'>
+        <div className='mt-20'>
           <div className='text-lg font-semibold text-center'>{pkg.name}</div>
           <Outlet />
         </div>
