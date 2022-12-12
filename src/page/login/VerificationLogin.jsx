@@ -61,24 +61,20 @@ const VerificationLogin = ({ activeKey }) => {
       >
         <Input prefix={<MobileOutlined className="text-gray-400" />} placeholder={t('Phone')} />
       </Form.Item>
-      <Form.Item className='mb-0'>
-        <div className='flex items-center justify-center'>
-          <Form.Item
-            name="Verification"
-            rules={[
-              {
-                required: true,
-                message: t('Please input your Verification!'),
-              },
-            ]}
-            className='flex-auto'
-          >
-            <Input prefix={<SafetyCertificateOutlined className="text-gray-400" />} placeholder={t('Verification')} />
-          </Form.Item>
-          <Form.Item className='flex-auto ml-3 flex-grow-0'>
-            <Button disabled={isGetVerificationLoading} onClick={getVerification}>{isGetVerificationLoading ? `${Math.round(countdown / 1000)}s` : t('Get verification code')}</Button>
-          </Form.Item>
-        </div>
+
+      <Form.Item
+        name="Verification"
+        rules={[
+          {
+            required: true,
+            message: t('Please input your Verification!'),
+          },
+        ]}
+        className='flex-auto'
+      >
+        <Input prefix={<SafetyCertificateOutlined className="text-gray-400" />} placeholder={t('Verification')} addonAfter={
+          isGetVerificationLoading ? `${Math.round(countdown / 1000)}s` : <div className='cursor-pointer' onClick={getVerification}>{t('Get verification code')}</div>
+        } />
       </Form.Item>
 
       <Form.Item>
