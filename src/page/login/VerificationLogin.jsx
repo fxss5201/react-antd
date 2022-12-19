@@ -11,7 +11,7 @@ const VerificationLogin = ({ activeKey }) => {
 
   const [form] = Form.useForm()
   useEffect(() => {
-    form.resetFields();
+    // form.resetFields();
     setTargetDate(undefined);
     setIsGetVerificationLoading(false);
   }, [form, activeKey])

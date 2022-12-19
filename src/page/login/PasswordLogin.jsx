@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { LockOutlined, UserOutlined } from '@ant-design/icons';
 import { Button, Checkbox, Form, Input } from 'antd';
 import { useTranslation } from 'react-i18next';
 import { Link } from "react-router-dom";
 import { useLocalStorageState, useMount } from 'ahooks';
-import { addPrefixName } from './../../utils/index';
+import { addPrefixName, encryptFn, decryptFn } from './../../utils/index';
 
 const PasswordLogin = ({ activeKey }) => {
   const [isValidate, setIsValidate] = useState(false)
@@ -15,14 +15,14 @@ const PasswordLogin = ({ activeKey }) => {
     if (localLoginInfo) {
       form.setFieldsValue({
         username: localLoginInfo.username,
-        password: localLoginInfo.password,
+        password: decryptFn(localLoginInfo.password),
         remember: localLoginInfo.remember
       })
     }
   })
-  useEffect(() => {
-    form.resetFields()
-  }, [form, activeKey])
+  // useEffect(() => {
+  //   form.resetFields()
+  // }, [form, activeKey])
 
   const { t, i18n } = useTranslation();
   i18n.on('languageChanged', (lng) => {
@@ -32,7 +32,7 @@ const PasswordLogin = ({ activeKey }) => {
   const onFinish = (values) => {
     setLocalLoginInfo({
       username: values.username,
-      password: values.password,
+      password: encryptFn(values.password),
       remember: values.remember,
     })
     console.log('Received values of form: ', values);
