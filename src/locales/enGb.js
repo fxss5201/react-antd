@@ -35,6 +35,7 @@ const enGb = {
   'I have read the': 'I have read the',
   'agreement': 'agreement',
   'Register': 'Register',
+  '登陆成功': 'Login succeeded',
 }
 
 export default enGb

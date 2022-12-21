@@ -35,6 +35,7 @@ const zhCN = {
   'I have read the': '我已经阅读了',
   'agreement': '协议',
   'Register': '注册',
+  '登陆成功': '登陆成功',
 }
 
 export default zhCN

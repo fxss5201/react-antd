@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
 import { LockOutlined, UserOutlined } from '@ant-design/icons';
-import { Button, Checkbox, Form, Input } from 'antd';
+import { Button, Checkbox, Form, Input, message } from 'antd';
 import { useTranslation } from 'react-i18next';
-import { Link } from "react-router-dom";
-import { useLocalStorageState, useMount } from 'ahooks';
+import { Link, useNavigate } from "react-router-dom";
+import { useLocalStorageState, useMount, useCookieState } from 'ahooks';
 import { addPrefixName, encryptFn, decryptFn } from './../../utils/index';
 
 const PasswordLogin = ({ activeKey }) => {
-  const [isValidate, setIsValidate] = useState(false)
+  const [isValidate, setIsValidate] = useState(false);
   const [localLoginInfo, setLocalLoginInfo] = useLocalStorageState(addPrefixName('loginInfo'));
 
   const [form] = Form.useForm()
@@ -29,12 +29,20 @@ const PasswordLogin = ({ activeKey }) => {
     if (isValidate) form.validateFields();
   })
 
+  const [, setAccessToken] = useCookieState(addPrefixName('accessToken', {
+    defaultValue: '',
+    expires: (() => new Date(+new Date() + 10 * 1000))(),
+  }));
+  const navigate = useNavigate();
   const onFinish = (values) => {
     setLocalLoginInfo({
       username: values.username,
       password: encryptFn(values.password),
       remember: values.remember,
     })
+    setAccessToken('accessToken123');
+    message.success(t('登陆成功'));
+    navigate('/');
     console.log('Received values of form: ', values);
   };
 
