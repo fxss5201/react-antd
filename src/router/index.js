@@ -6,7 +6,7 @@ import LoginRoutes from './login';
 
 const ErrorPage = lazy(() => import('./../error-page'));
 const HomeLayout = lazy(() => import('./../layout/HomeLayout'));
-const PageIndex = lazy(() => import('./../page/PageIndex'));
+const PageIndex = lazy(() => import('./../pages/PageIndex'));
 
 const router = createHashRouter([
   {

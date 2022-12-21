@@ -11,6 +11,9 @@ const enGb = {
   'Username': 'Username',
   'Please input your Password!': 'Please input your Password!',
   'Password': 'Password',
+  'Confirm Password': 'Confirm Password',
+  'Please confirm your password!': 'Please confirm your password!',
+  'The two passwords that you entered do not match!': 'The two passwords that you entered do not match!',
   'Remember me': 'Remember me',
   'Forgot password': 'Forgot password',
   'Log in': 'Log in',
@@ -25,6 +28,13 @@ const enGb = {
   'Please input your Verification!': 'Please input your Verification!',
   'Incorrect format of verification number!': 'Incorrect format of verification number!',
   'Get verification code': 'Get verification code',
+  'E-mail': 'E-mail',
+  'The input is not valid E-mail!': 'The input is not valid E-mail!',
+  'Please input your E-mail!': 'Please input your E-mail!',
+  'Should accept agreement': 'Should accept agreement',
+  'I have read the': 'I have read the',
+  'agreement': 'agreement',
+  'Register': 'Register',
 }
 
 export default enGb

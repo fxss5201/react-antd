@@ -10,7 +10,7 @@ const LoginLayout = () => {
       </div>
       <div className='w-full h-full flex justify-center'>
         <div className='mt-20'>
-          <div className='text-lg font-semibold text-center'>{pkg.name}</div>
+          <div className='text-lg font-semibold text-center mb-5'>{pkg.name}</div>
           <Outlet />
         </div>
       </div>

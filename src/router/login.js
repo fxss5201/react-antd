@@ -1,9 +1,9 @@
 import React, { lazy } from 'react';
 
 const LoginLayout = lazy(() => import('./../layout/LoginLayout'));
-const LoginIndex = lazy(() => import('../page/login/index'));
-const ForgetPassword = lazy(() => import('../page/login/ForgetPassword'));
-const Register = lazy(() => import('../page/login/Register'));
+const LoginIndex = lazy(() => import('../pages/login/index'));
+const ForgetPassword = lazy(() => import('../pages/login/ForgetPassword'));
+const Register = lazy(() => import('../pages/login/Register'));
 
 const LoginRoutes = [
   {

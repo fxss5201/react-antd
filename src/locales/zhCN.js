@@ -11,6 +11,9 @@ const zhCN = {
   'Username': '用户名',
   'Please input your Password!': '请输入您的密码！',
   'Password': '密码',
+  'Confirm Password': '确认密码',
+  'Please confirm your password!': '请再次输入您的密码！',
+  'The two passwords that you entered do not match!': '您输入的两个密码不匹配！',
   'Remember me': '记住密码',
   'Forgot password': '忘记密码',
   'Log in': '登录',
@@ -25,6 +28,13 @@ const zhCN = {
   'Please input your Verification!': '请输入您的验证码！',
   'Incorrect format of verification number!': '验证码格式有误！',
   'Get verification code': '获取验证码',
+  'E-mail': '邮箱',
+  'The input is not valid E-mail!': '输入的邮箱无效！',
+  'Please input your E-mail!': '请输入您的邮箱！',
+  'Should accept agreement': '请阅读并接受协议',
+  'I have read the': '我已经阅读了',
+  'agreement': '协议',
+  'Register': '注册',
 }
 
 export default zhCN
