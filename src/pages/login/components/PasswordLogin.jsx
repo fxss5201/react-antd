@@ -4,7 +4,7 @@ import { Button, Checkbox, Form, Input, message } from 'antd';
 import { useTranslation } from 'react-i18next';
 import { Link, useNavigate } from "react-router-dom";
 import { useLocalStorageState, useMount, useUnmount } from 'ahooks';
-import { addPrefixName, encryptFn, decryptFn } from './../../utils/index';
+import { addPrefixName, encryptFn, decryptFn } from '../../../utils/index';
 import Cookies from 'js-cookie';
 
 const PasswordLogin = ({ activeKey }) => {

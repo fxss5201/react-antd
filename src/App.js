@@ -8,6 +8,8 @@ import { RouterProvider } from "react-router-dom";
 import router from './router/index';
 import { useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
+import { useTitle } from 'ahooks';
+const pkg = require('./../package.json')
 
 const localeObj = {
   zhCN,
@@ -17,6 +19,7 @@ const localeObj = {
 const App = () => {
   const locale = useSelector(state => state.locale.value);
   const { t } = useTranslation();
+  useTitle(pkg.name);
 
   return (
     <div className="App flex h-screen">

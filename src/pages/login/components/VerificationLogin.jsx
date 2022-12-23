@@ -4,7 +4,7 @@ import { Button, Form, Input } from 'antd';
 import { useTranslation } from 'react-i18next';
 import { Link } from "react-router-dom";
 import { useCountDown, useUnmount } from 'ahooks';
-import config from '../../config';
+import config from '../../../config';
 
 const VerificationLogin = ({ activeKey }) => {
   const [isValidate, setIsValidate] = useState(false)
