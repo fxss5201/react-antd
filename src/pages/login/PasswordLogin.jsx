@@ -3,8 +3,9 @@ import { LockOutlined, UserOutlined } from '@ant-design/icons';
 import { Button, Checkbox, Form, Input, message } from 'antd';
 import { useTranslation } from 'react-i18next';
 import { Link, useNavigate } from "react-router-dom";
-import { useLocalStorageState, useMount, useCookieState } from 'ahooks';
+import { useLocalStorageState, useMount, useUnmount } from 'ahooks';
 import { addPrefixName, encryptFn, decryptFn } from './../../utils/index';
+import Cookies from 'js-cookie';
 
 const PasswordLogin = ({ activeKey }) => {
   const [isValidate, setIsValidate] = useState(false);
@@ -28,11 +29,10 @@ const PasswordLogin = ({ activeKey }) => {
   i18n.on('languageChanged', (lng) => {
     if (isValidate) form.validateFields();
   })
+  useUnmount(() => {
+    i18n.off('languageChanged');
+  })
 
-  const [, setAccessToken] = useCookieState(addPrefixName('accessToken', {
-    defaultValue: '',
-    expires: (() => new Date(+new Date() + 10 * 1000))(),
-  }));
   const navigate = useNavigate();
   const onFinish = (values) => {
     setLocalLoginInfo({
@@ -40,7 +40,7 @@ const PasswordLogin = ({ activeKey }) => {
       password: encryptFn(values.password),
       remember: values.remember,
     })
-    setAccessToken('accessToken123');
+    Cookies.set(addPrefixName('accessToken'), 'accessToken123', { expires: 7 })
     message.success(t('登陆成功'));
     navigate('/');
     console.log('Received values of form: ', values);
@@ -84,12 +84,12 @@ const PasswordLogin = ({ activeKey }) => {
           <Checkbox>{t('Remember me')}</Checkbox>
         </Form.Item>
 
-        <Link className="float-right" to="/login/password">{t('Forgot password')}</Link>
+        <Link className="float-right a" to="/login/password">{t('Forgot password')}</Link>
       </Form.Item>
 
       <Form.Item>
         <Button type="primary" htmlType="submit" className="w-full" onClick={() => setIsValidate(true)}>{t('Log in')}</Button>
-        <div className='mt-3'>{t('Or')} <Link to="/login/register">{t('register now!')}</Link></div>
+        <div className='mt-3'>{t('Or')} <Link to="/login/register" className="a">{t('register now!')}</Link></div>
       </Form.Item>
     </Form>
   );

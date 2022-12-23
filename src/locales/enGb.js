@@ -18,6 +18,7 @@ const enGb = {
   'Forgot password': 'Forgot password',
   'Log in': 'Log in',
   'Or': 'Or',
+  'Login!': 'Login!',
   'register now!': 'register now!',
   'Password Login': 'Password Login',
   'Verification login': 'Verification login',
@@ -36,6 +37,9 @@ const enGb = {
   'agreement': 'agreement',
   'Register': 'Register',
   '登陆成功': 'Login succeeded',
+  'Verification code verification': 'Verification code verification',
+  'Reset password': 'Reset password',
+  'Next step': 'Next step',
 }
 
 export default enGb

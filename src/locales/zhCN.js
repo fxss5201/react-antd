@@ -18,6 +18,7 @@ const zhCN = {
   'Forgot password': '忘记密码',
   'Log in': '登录',
   'Or': '或',
+  'Login!': '登录！',
   'register now!': '注册！',
   'Password Login': '密码登录',
   'Verification login': '验证码登录',
@@ -36,6 +37,9 @@ const zhCN = {
   'agreement': '协议',
   'Register': '注册',
   '登陆成功': '登陆成功',
+  'Verification code verification': '验证码验证',
+  'Reset password': '重置密码',
+  'Next step': '下一步',
 }
 
 export default zhCN

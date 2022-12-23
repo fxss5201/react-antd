@@ -1,13 +1,10 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import {
   Button,
-  Checkbox,
   Form,
   Input
 } from 'antd';
-import config from '../../config';
 import { useUnmount } from 'ahooks';
 
 const formItemLayout = {
@@ -16,7 +13,7 @@ const formItemLayout = {
       span: 24,
     },
     sm: {
-      span: 8,
+      span: 4,
     },
   },
   wrapperCol: {
@@ -24,7 +21,7 @@ const formItemLayout = {
       span: 24,
     },
     sm: {
-      span: 16,
+      span: 20,
     },
   },
 };
@@ -36,14 +33,14 @@ const tailFormItemLayout = {
       offset: 0,
     },
     sm: {
-      span: 16,
-      offset: 8,
+      span: 20,
+      offset: 4,
     },
   },
 };
 
-const Register = () => {
-  const [isValidate, setIsValidate] = useState(false)
+const ForgetPasswordReset = ({ onFinishReset }) => {
+  const [isValidate, setIsValidate] = useState(false);
   const [form] = Form.useForm();
 
   const { t, i18n } = useTranslation();
@@ -54,54 +51,16 @@ const Register = () => {
     i18n.off('languageChanged');
   })
 
-  const onFinish = (values) => {
-    console.log('Received values of form: ', values);
-  };
-
   return (
     <Form
       form={form}
       {...formItemLayout}
-      name="register"
+      name="ForgetPassword"
       size="large"
-      onFinish={onFinish}
+      onFinish={onFinishReset}
       scrollToFirstError
-      style={{ width: '450px' }}
+      style={{ width: '800px', marginTop: '100px' }}
     >
-      <Form.Item
-        name="email"
-        label={ t('E-mail') }
-        rules={[
-          {
-            type: 'email',
-            message: t('The input is not valid E-mail!'),
-          },
-          {
-            required: true,
-            message: t('Please input your E-mail!'),
-          },
-        ]}
-      >
-        <Input placeholder={t('Please input your E-mail!')} allowClear />
-      </Form.Item>
-
-      <Form.Item
-        name="Phone"
-        label={ t('Phone') }
-        rules={[
-          {
-            required: true,
-            message: t('Please input your Phone!'),
-          },
-          {
-            pattern: config.phonePattern,
-            message: t('Incorrect phone number format!'),
-          },
-        ]}
-      >
-        <Input placeholder={t('Please input your Phone!')} allowClear />
-      </Form.Item>
-
       <Form.Item
         name="password"
         label={ t('Password') }
@@ -137,33 +96,13 @@ const Register = () => {
         <Input.Password placeholder={t('Please confirm your password!')} allowClear />
       </Form.Item>
 
-      <Form.Item
-        name="agreement"
-        valuePropName="checked"
-        {...tailFormItemLayout}
-        rules={[
-          {
-            validator: (_, value) =>
-              value ? Promise.resolve() : Promise.reject(new Error(t('Should accept agreement'))),
-          },
-        ]}
-      >
-        <Checkbox>
-          { t('I have read the') } <Link to="">{ t('agreement') }</Link>
-        </Checkbox>
-      </Form.Item>
-
       <Form.Item {...tailFormItemLayout}>
         <Button type="primary" htmlType="submit" onClick={() => setIsValidate(true)} className="w-full">
-          { t('Register') }
+          { t('Reset password') }
         </Button>
-        <div className='mt-3 clearfix'>
-          <Link className="float-left a" to="/login">{t('Login!')}</Link>
-          <Link className="float-right a" to="/login/password">{t('Forgot password')}</Link>
-        </div>
       </Form.Item>
     </Form>
   );
 };
 
-export default Register;
+export default ForgetPasswordReset;
