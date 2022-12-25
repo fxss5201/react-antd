@@ -6,6 +6,8 @@ import { Link, useNavigate } from "react-router-dom";
 import { useLocalStorageState, useMount, useUnmount } from 'ahooks';
 import { addPrefixName, encryptFn, decryptFn } from '../../../utils/index';
 import Cookies from 'js-cookie';
+import { useDispatch } from 'react-redux';
+import { setUserInfo } from './../../../store/userInfo';
 
 const PasswordLogin = ({ activeKey }) => {
   const [isValidate, setIsValidate] = useState(false);
@@ -33,6 +35,7 @@ const PasswordLogin = ({ activeKey }) => {
     i18n.off('languageChanged');
   })
 
+  const dispatch = useDispatch();
   const navigate = useNavigate();
   const onFinish = (values) => {
     setLocalLoginInfo({
@@ -41,6 +44,9 @@ const PasswordLogin = ({ activeKey }) => {
       remember: values.remember,
     })
     Cookies.set(addPrefixName('accessToken'), 'accessToken123', { expires: 7 })
+    dispatch(setUserInfo({
+      name: 'fxss'
+    }));
     message.success(t('登陆成功'));
     navigate('/');
     console.log('Received values of form: ', values);

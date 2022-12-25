@@ -9,7 +9,7 @@
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
     "ahooks": "^3.7.2",
-    "antd": "^5.0.4",
+    "antd": "^5.1.0",
     "classnames": "^2.3.2",
     "crypto-js": "^4.1.1",
     "http-proxy-middleware": "^2.0.6",

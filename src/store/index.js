@@ -1,8 +1,10 @@
 import { configureStore } from '@reduxjs/toolkit';
-import localeReducer from './locale';
+import locale from './locale';
+import userInfo from './userInfo';
 
 export default configureStore({
   reducer: {
-    locale: localeReducer
+    locale,
+    userInfo
   },
 })

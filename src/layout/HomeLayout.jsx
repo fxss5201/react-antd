@@ -1,16 +1,14 @@
 import React, { useState } from 'react';
 import { MenuUnfoldOutlined, MenuFoldOutlined, LaptopOutlined, NotificationOutlined, UserOutlined } from '@ant-design/icons';
 import { Breadcrumb, Layout, Menu } from 'antd';
-import { Outlet } from 'react-router-dom';
+import { Outlet, useNavigate } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
 import ToggleLang from '../components/ToggleLang';
+import Cookies from 'js-cookie';
+import { addPrefixName } from '../utils/index';
+import { setUserInfo } from '../store/userInfo';
 
 const { Header, Content, Sider } = Layout;
-const topMenuItems = [
-  // {
-  //   key: 'locale',
-  //   label: `语言`,
-  // }
-];
 const sideMenuItems = [UserOutlined, LaptopOutlined, NotificationOutlined].map((icon, index) => {
   const key = String(index + 1);
   return {
@@ -29,6 +27,31 @@ const sideMenuItems = [UserOutlined, LaptopOutlined, NotificationOutlined].map((
 
 const HomeLayout = () => {
   const [collapsed, setCollapsed] = useState(false);
+	const userInfo = useSelector(state => state.userInfo.value);
+
+	const topMenuItems = [
+		{
+			key: 'user',
+			label: userInfo.name,
+			children: [
+				{
+					key: 'logout',
+					label: '退出登录',
+				}
+			]
+		}
+	];
+	const dispatch = useDispatch();
+  const navigate = useNavigate();
+	const onTopMenuItemsEvent = ({ key}) => {
+		if (key === 'logout') {
+			Cookies.remove(addPrefixName('accessToken'));
+			dispatch(setUserInfo({
+				name: ''
+			}))
+			navigate('/login');
+		}
+	}
 
   return (
 		<Layout>
@@ -43,7 +66,7 @@ const HomeLayout = () => {
 				</div>
 				<div className='flex-auto flex items-center justify-end'>
 					<ToggleLang addClass="text-gray-400 hover:text-white" />
-					<Menu theme="dark" mode="horizontal" defaultSelectedKeys={['2']} items={topMenuItems} />
+					<Menu theme="dark" mode="horizontal" items={topMenuItems} onClick={onTopMenuItemsEvent} />
 				</div>
 			</Header>
 			<Layout>
