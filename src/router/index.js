@@ -1,18 +1,19 @@
 import React, { lazy } from 'react';
-import {
-  createHashRouter
-} from "react-router-dom";
+import { useRoutes } from "react-router-dom";
 import LoginRoutes from './login';
 
 const ErrorPage = lazy(() => import('./../error-page'));
 const HomeLayout = lazy(() => import('./../layout/HomeLayout'));
 const PageIndex = lazy(() => import('./../pages/PageIndex'));
 
-const router = createHashRouter([
+export const routerList = [
   {
     path: "/",
     element: <HomeLayout />,
     errorElement: <ErrorPage />,
+    meta: {
+      requiresAuth: true,
+    },
     children: [
       {
         index: true,
@@ -21,6 +22,11 @@ const router = createHashRouter([
     ],
   },
   ...LoginRoutes
-]);
+];
 
-export default router;
+const Router = () => {
+	const routes = useRoutes(routerList);
+	return routes;
+};
+
+export default Router;

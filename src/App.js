@@ -4,12 +4,13 @@ import zhCN from 'antd/locale/zh_CN';
 import 'dayjs/locale/en';
 import enGb from 'antd/locale/en_GB';
 import { ConfigProvider, Spin } from 'antd';
-import { RouterProvider } from "react-router-dom";
-import router from './router/index';
+import Router from './router/index';
+import AuthRouter from './router/AuthRouter';
 import { useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 import { useTitle } from 'ahooks';
-const pkg = require('./../package.json')
+import { HashRouter } from "react-router-dom";
+const pkg = require('./../package.json');
 
 const localeObj = {
   zhCN,
@@ -22,20 +23,24 @@ const App = () => {
   useTitle(pkg.name);
 
   return (
-    <div className="App flex h-screen">
-      <ConfigProvider
-        locale={localeObj[locale]}
-        theme={{}}
-      >
-        <Suspense fallback={
-          <Spin tip={t('Loading')} size="large">
-            <div className='w-screen h-screen'></div>
-          </Spin>
-        }>
-          <RouterProvider router={router} />
-        </Suspense>
-      </ConfigProvider>
-    </div>
+    <HashRouter>
+      <div className="App flex h-screen">
+        <ConfigProvider
+          locale={localeObj[locale]}
+          theme={{}}
+        >
+          <Suspense fallback={
+            <Spin tip={t('Loading')} size="large">
+              <div className='w-screen h-screen'></div>
+            </Spin>
+          }>
+            <AuthRouter>
+              <Router />
+            </AuthRouter>
+          </Suspense>
+        </ConfigProvider>
+      </div>
+    </HashRouter>
   );
 }
 

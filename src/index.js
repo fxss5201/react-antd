@@ -6,8 +6,19 @@ import './style/index.css';
 import App from './App';
 import store from './store/index';
 import { Provider } from 'react-redux';
+import { addPrefixName } from './utils';
+import Cookies from 'js-cookie';
+import { setUserInfo } from './store/userInfo';
 import './i18n';
 // import reportWebVitals from './reportWebVitals';
+
+console.log(store)
+const accessToken = Cookies.get(addPrefixName('accessToken'));
+if (accessToken) {
+  store.dispatch(setUserInfo({
+    name: 'fxss'
+  }));
+}
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 

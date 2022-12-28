@@ -1,7 +1,6 @@
 import React from 'react';
 import { DatePicker, Space } from 'antd';
 import { useTranslation } from 'react-i18next';
-import withAuth from './../access';
 
 const onChange = (date, dateString) => {
   console.log(date, dateString);
@@ -20,4 +19,4 @@ const App = () => {
     </Space>
   )
 };
-export default withAuth(App);
+export default App;
