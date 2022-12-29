@@ -8,7 +8,7 @@ import {
   Input
 } from 'antd';
 import config from '../../config';
-import { useTitle, useUnmount } from 'ahooks';
+import { useUnmount } from 'ahooks';
 
 const formItemLayout = {
   labelCol: {
@@ -53,8 +53,6 @@ const Register = () => {
   useUnmount(() => {
     i18n.off('languageChanged');
   })
-
-  useTitle(t('Register'));
 
   const onFinish = (values) => {
     console.log('Received values of form: ', values);

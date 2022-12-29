@@ -4,10 +4,17 @@ import { addPrefixName } from '../utils';
 import Cookies from 'js-cookie';
 import { searchRoute } from './../utils/router';
 import { routerList } from './index';
+import { useTitle } from 'ahooks';
 
 const AuthRouter = (props) => {
 	const location = useLocation();
   const route = searchRoute(location.pathname, routerList);
+
+  let curRoute = route
+  if (route.children && route.children[0]?.index) {
+    curRoute = route.children[0]
+  }
+  useTitle(curRoute.meta?.title)
 
   // TODO 在跳转路由之前，清除所有的请求
 

@@ -12,12 +12,16 @@ export const routerList = [
     element: <HomeLayout />,
     errorElement: <ErrorPage />,
     meta: {
+      // 是否需要用户登录权限
       requiresAuth: true,
     },
     children: [
       {
         index: true,
         element: <PageIndex />,
+        meta: {
+          title: '首页'
+        }
       },
     ],
   },

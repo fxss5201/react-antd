@@ -4,11 +4,9 @@ import { useTranslation } from 'react-i18next';
 import { Steps } from 'antd';
 import ForgetPasswordVerification from './components/ForgetPasswordVerification';
 import ForgetPasswordReset from './components/ForgetPasswordReset';
-import { useTitle } from 'ahooks';
 
 const ForgetPassword = () => {
   const { t } = useTranslation();
-  useTitle(t('Reset password'));
 
   const [current, setCurrent] = useState(0);
   const stepsItems = [

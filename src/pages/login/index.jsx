@@ -3,7 +3,6 @@ import { Tabs } from 'antd';
 import { useTranslation } from 'react-i18next';
 import PasswordLogin from './components/PasswordLogin';
 import VerificationLogin from './components/VerificationLogin';
-import { useTitle } from 'ahooks';
 
 const LoginIndex = () => {
   const { t } = useTranslation();
@@ -11,7 +10,6 @@ const LoginIndex = () => {
   const onChange = (key) => {
     setActiveKey(key);
   };
-  useTitle(t('Log in'));
 
   return (
     <Tabs
