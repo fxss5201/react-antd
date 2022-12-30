@@ -17,6 +17,7 @@ const LoginRoutes = [
     children: [
       {
         index: true,
+        path: '/login',
         element: <LoginIndex />,
         meta: {
           // 页面标题

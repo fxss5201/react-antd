@@ -15,3 +15,53 @@ export const searchRoute = (path = '', routes = []) => {
 	}
 	return result;
 };
+
+/**
+ * @description 递归查询menu展示的路由
+ * @param {Array} routes 路由列表
+ * @returns array
+ */
+export const searchMenuRoutes = (routes = []) => {
+	let result = [];
+	for (let item of routes) {
+		if (!item.meta?.hideInMenu) {
+      if (item.children) {
+        result.push({
+          ...item,
+          children: searchMenuRoutes(item.children)
+        })
+      } else {
+        result.push(item)
+      }
+    }
+	}
+	return result;
+};
+
+/**
+ * @description 递归menu路由转换为Menu导航菜单
+ * @param {Array} routes 路由列表
+ * @returns array
+ */
+export const menuRoutesToMenuItems = (routes = []) => {
+	let result = [];
+	for (let item of routes) {
+		if (!item.meta?.hideInMenu) {
+      if (item.children) {
+        result.push({
+          key: item.path,
+          icon: item.meta?.icon,
+          label: item.meta?.title,
+          children: menuRoutesToMenuItems(item.children)
+        })
+      } else {
+        result.push({
+          key: item.path,
+          icon: item.meta?.icon,
+          label: item.meta?.title,
+        })
+      }
+    }
+	}
+	return result;
+};

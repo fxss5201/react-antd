@@ -1,6 +1,7 @@
 import React, { lazy } from 'react';
 import { useRoutes } from "react-router-dom";
 import LoginRoutes from './login';
+import { BankOutlined } from '@ant-design/icons';
 
 const ErrorPage = lazy(() => import('./../error-page'));
 const HomeLayout = lazy(() => import('./../layout/HomeLayout'));
@@ -18,9 +19,11 @@ export const routerList = [
     children: [
       {
         index: true,
+        path: '/',
         element: <PageIndex />,
         meta: {
-          title: '首页'
+          title: '首页',
+          icon: <BankOutlined />,
         }
       },
     ],

@@ -1,33 +1,27 @@
 import React, { useState } from 'react';
-import { MenuUnfoldOutlined, MenuFoldOutlined, LaptopOutlined, NotificationOutlined, UserOutlined } from '@ant-design/icons';
+import { MenuUnfoldOutlined, MenuFoldOutlined } from '@ant-design/icons';
 import { Breadcrumb, Layout, Menu } from 'antd';
-import { Outlet, useNavigate } from 'react-router-dom';
+import { Outlet, useNavigate, useLocation } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import ToggleLang from '../components/ToggleLang';
 import Cookies from 'js-cookie';
 import { addPrefixName } from '../utils/index';
 import { setUserInfo } from '../store/userInfo';
+import { routerList } from './../router/index';
+import { searchMenuRoutes, menuRoutesToMenuItems } from './../utils/router';
 
 const { Header, Content, Sider } = Layout;
-const sideMenuItems = [UserOutlined, LaptopOutlined, NotificationOutlined].map((icon, index) => {
-  const key = String(index + 1);
-  return {
-    key: `sub${key}`,
-    icon: React.createElement(icon),
-    label: `subnav ${key}`,
-    children: new Array(4).fill(null).map((_, j) => {
-      const subKey = index * 4 + j + 1;
-      return {
-        key: subKey,
-        label: `option${subKey}`,
-      };
-    }),
-  };
-});
+
+let sideMenuList = searchMenuRoutes(routerList);
+if (sideMenuList.length && sideMenuList[0]?.children?.[0]?.index) {
+	sideMenuList = sideMenuList[0].children
+}
+const sideMenuItems = menuRoutesToMenuItems(sideMenuList);
 
 const HomeLayout = () => {
   const [collapsed, setCollapsed] = useState(false);
 	const userInfo = useSelector(state => state.userInfo.value);
+	const location = useLocation();
 
 	const topMenuItems = [
 		{
@@ -74,8 +68,7 @@ const HomeLayout = () => {
 					<Menu
 						theme="dark"
 						mode="inline"
-						defaultSelectedKeys={['1']}
-						defaultOpenKeys={['sub1']}
+						defaultSelectedKeys={[location.pathname]}
 						style={{
 							height: '100%',
 							borderRight: 0,
