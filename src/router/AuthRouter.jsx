@@ -5,8 +5,10 @@ import Cookies from 'js-cookie';
 import { searchRoute } from './../utils/router';
 import { routerList } from './index';
 import { useTitle } from 'ahooks';
+import { useTranslation } from 'react-i18next';
 
 const AuthRouter = (props) => {
+  const { t } = useTranslation();
 	const location = useLocation();
   const route = searchRoute(location.pathname, routerList);
 
@@ -14,7 +16,7 @@ const AuthRouter = (props) => {
   if (route.children && route.children[0]?.index) {
     curRoute = route.children[0]
   }
-  useTitle(curRoute.meta?.title)
+  useTitle(curRoute.meta?.titleTranslation ? t(curRoute.meta?.title) : curRoute.meta?.title)
 
   // TODO 在跳转路由之前，清除所有的请求
 

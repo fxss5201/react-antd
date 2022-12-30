@@ -1,5 +1,4 @@
 import React, { lazy } from 'react';
-import i18n from './../i18n';
 
 const LoginLayout = lazy(() => import('./../layout/LoginLayout'));
 const LoginIndex = lazy(() => import('../pages/login/index'));
@@ -21,21 +20,25 @@ const LoginRoutes = [
         element: <LoginIndex />,
         meta: {
           // 页面标题
-          title: i18n.t('Log in'),
+          title: 'Log in',
+          // 页面标题是否支持多语言
+          titleTranslation: true,
         }
       },
       {
         path: '/login/password',
         element: <ForgetPassword />,
         meta: {
-          title: i18n.t('Reset password'),
+          title: 'Reset password',
+          titleTranslation: true,
         }
       },
       {
         path: '/login/register',
         element: <Register />,
         meta: {
-          title: i18n.t('Register'),
+          title: 'Register',
+          titleTranslation: true,
         }
       }
     ],
