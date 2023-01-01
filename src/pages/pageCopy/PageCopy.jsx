@@ -2,7 +2,7 @@ import React from 'react';
 import CodeHighlighter from '../../components/CodeHighlighter';
 import { Typography } from 'antd';
 import CopyDemo from './CopyDemo';
-import { copyDemoCode } from './PageCode';
+import { copyDemoCode } from './Codes';
 
 const { Title } = Typography;
 

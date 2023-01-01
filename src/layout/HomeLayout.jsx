@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, Suspense, useEffect } from 'react';
 import { MenuUnfoldOutlined, MenuFoldOutlined } from '@ant-design/icons';
-import { Breadcrumb, Layout, Menu } from 'antd';
+import { Layout, Menu, Spin } from 'antd';
 import { Outlet, useNavigate, useLocation } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import ToggleLang from '../components/ToggleLang';
@@ -50,6 +50,10 @@ const HomeLayout = () => {
 		navigate(key);
 	}
 
+	useEffect(() => {
+		document.querySelector('#scrollBox').scrollTop = 0
+	}, [location])
+
   return (
 		<Layout>
 			<Header className="flex">
@@ -87,24 +91,22 @@ const HomeLayout = () => {
 						height: 'calc(100vh - 64px)',
 						overflow: 'auto'
 					}}
+					id="scrollBox"
 				>
-					<Breadcrumb
-						style={{
-							margin: '16px 0',
-						}}
-					>
-						<Breadcrumb.Item>Home</Breadcrumb.Item>
-						<Breadcrumb.Item>List</Breadcrumb.Item>
-						<Breadcrumb.Item>App</Breadcrumb.Item>
-					</Breadcrumb>
-					<Content
-						className="m-0"
-						style={{
-							minHeight: 'auto',
-						}}
-					>
-						<Outlet />
-					</Content>
+					<Suspense fallback={
+            <Spin tip="加载中..." size="large">
+              <div className='w-screen h-screen'></div>
+            </Spin>
+          }>
+						<Content
+							className="m-0"
+							style={{
+								minHeight: 'auto',
+							}}
+						>
+							<Outlet />
+						</Content>
+					</Suspense>
 				</Layout>
 			</Layout>
 		</Layout>

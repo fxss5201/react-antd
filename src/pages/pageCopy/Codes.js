@@ -8,6 +8,13 @@ const CopyDemo = () => {
   const [inputStr, setInputStr] = useState('demo');
   const [copied, setCopied] = useState(false);
   const onCopy = (text, result) => {
+    if (!text) {
+      messageApi.warning({
+        content: '请输入内容！',
+        duration: 2,
+      });
+      return;
+    }
     if (result) {
       setCopied(true);
       messageApi.success({
@@ -19,7 +26,7 @@ const CopyDemo = () => {
       });
     } else {
       setCopied(false);
-      messageApi.success({
+      messageApi.error({
         content: '复制失败！',
         duration: 2,
       });

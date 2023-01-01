@@ -1,35 +1,27 @@
 import React from 'react';
 import CodeHighlighter from '../../components/CodeHighlighter';
+import { Typography } from 'antd';
+import CodeDemo from './CodeDemo';
+import { Codes } from './Codes';
 
-const codeString = `import React from "react";
-import uniquePropHOC from "./lib/unique-prop-hoc";
+const { Title } = Typography;
 
-// this comment is here to demonstrate an extremely long line length, well beyond what you should probably allow in your own code, though sometimes you'll be highlighting code you can't refactor, which is unfortunate but should be handled gracefully
-
-class Expire extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = { component: props.children }
-    }
-    componentDidMount() {
-        setTimeout(() => {
-            this.setState({
-                component: null
-            });
-        }, this.props.time || this.props.seconds * 1000);
-    }
-    render() {
-        return this.state.component;
-    }
-}
-
-export default uniquePropHOC(["time", "seconds"])(Expire);`;
 
 const PageCode = () => {
   return (
-    <CodeHighlighter>
-      {codeString}
-    </CodeHighlighter>
+    <div>
+      <Title>react-syntax-highlighter</Title>
+      <Title level={2} style={{ marginTop: '0.5em' }}>安装：</Title>
+      <CodeHighlighter lang='sh'>
+        {'npm install react-syntax-highlighter --save'}
+      </CodeHighlighter>
+      <Title level={2} style={{ marginTop: '0.5em' }}>例子：</Title>
+      <CodeDemo></CodeDemo>
+      <Title level={2} style={{ marginTop: '0.5em' }}>代码渲染封装组件：</Title>
+      <CodeHighlighter>
+        {Codes}
+      </CodeHighlighter>
+    </div>
   )
 };
 export default PageCode;

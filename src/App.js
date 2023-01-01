@@ -9,7 +9,7 @@ import AuthRouter from './router/AuthRouter';
 import { useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 import { useTitle } from 'ahooks';
-import { HashRouter } from "react-router-dom";
+import { HashRouter } from 'react-router-dom';
 const pkg = require('./../package.json');
 
 const localeObj = {
