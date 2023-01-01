@@ -12,7 +12,6 @@ import { setUserInfo } from './store/userInfo';
 import './i18n';
 // import reportWebVitals from './reportWebVitals';
 
-console.log(store)
 const accessToken = Cookies.get(addPrefixName('accessToken'));
 if (accessToken) {
   store.dispatch(setUserInfo({

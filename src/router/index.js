@@ -1,11 +1,13 @@
 import React, { lazy } from 'react';
 import { useRoutes } from "react-router-dom";
 import LoginRoutes from './login';
-import { BankOutlined } from '@ant-design/icons';
+import { BankOutlined, CopyOutlined, CodeOutlined } from '@ant-design/icons';
 
 const ErrorPage = lazy(() => import('./../error-page'));
 const HomeLayout = lazy(() => import('./../layout/HomeLayout'));
 const PageIndex = lazy(() => import('./../pages/PageIndex'));
+const PageCopy = lazy(() => import('../pages/pageCopy/PageCopy'));
+const PageCode = lazy(() => import('../pages/pageCode/PageCode'));
 
 export const routerList = [
   {
@@ -24,6 +26,22 @@ export const routerList = [
         meta: {
           title: '首页',
           icon: <BankOutlined />,
+        }
+      },
+      {
+        path: '/pageCopy',
+        element: <PageCopy />,
+        meta: {
+          title: '复制粘贴',
+          icon: <CopyOutlined />,
+        }
+      },
+      {
+        path: '/pageCode',
+        element: <PageCode />,
+        meta: {
+          title: '代码渲染',
+          icon: <CodeOutlined />,
         }
       },
     ],

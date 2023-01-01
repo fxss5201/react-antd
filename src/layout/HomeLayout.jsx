@@ -37,7 +37,7 @@ const HomeLayout = () => {
 	];
 	const dispatch = useDispatch();
   const navigate = useNavigate();
-	const onTopMenuItemsEvent = ({ key}) => {
+	const onTopMenuItemsEvent = ({ key }) => {
 		if (key === 'logout') {
 			Cookies.remove(addPrefixName('accessToken'));
 			dispatch(setUserInfo({
@@ -45,6 +45,9 @@ const HomeLayout = () => {
 			}))
 			navigate('/login');
 		}
+	}
+	const onSideMenuItemsEvent = ({ key }) => {
+		navigate(key);
 	}
 
   return (
@@ -70,16 +73,19 @@ const HomeLayout = () => {
 						mode="inline"
 						defaultSelectedKeys={[location.pathname]}
 						style={{
-							height: '100%',
+							minHeight: '100%',
 							borderRight: 0,
 							overflowY: 'auto',
 						}}
 						items={sideMenuItems}
+						onClick={onSideMenuItemsEvent}
 					/>
 				</Sider>
 				<Layout
 					style={{
 						padding: '0 24px 24px',
+						height: 'calc(100vh - 64px)',
+						overflow: 'auto'
 					}}
 				>
 					<Breadcrumb
@@ -92,9 +98,9 @@ const HomeLayout = () => {
 						<Breadcrumb.Item>App</Breadcrumb.Item>
 					</Breadcrumb>
 					<Content
-						className=" p-6 m-0"
+						className="m-0"
 						style={{
-							minHeight: 280,
+							minHeight: 'auto',
 						}}
 					>
 						<Outlet />
