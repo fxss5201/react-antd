@@ -17,7 +17,7 @@ const PageCopy = () => {
       <Title level={2} style={{ marginTop: '0.5em' }}>例子：</Title>
       <CopyDemo></CopyDemo>
       <Title level={2} style={{ marginTop: '0.5em' }}>例子代码：</Title>
-      <CodeHighlighter>
+      <CodeHighlighter lang='jsx'>
         {copyDemoCode}
       </CodeHighlighter>
     </div>

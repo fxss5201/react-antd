@@ -52,7 +52,7 @@ const CodeHighlighter = ({ lang = 'javascript', children = '' }) => {
           </CopyToClipboard>
         </Tooltip>
       </div>
-      <SyntaxHighlighter language={lang} wrapLongLines showLineNumbers style={vscDarkPlus} customStyle={customStyle}>
+      <SyntaxHighlighter language={lang} showLineNumbers style={vscDarkPlus} customStyle={customStyle}>
         {children}
       </SyntaxHighlighter>
     </div>

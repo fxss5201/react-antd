@@ -12,6 +12,7 @@
     "antd": "^5.1.2",
     "classnames": "^2.3.2",
     "crypto-js": "^4.1.1",
+    "echarts": "^5.4.1",
     "http-proxy-middleware": "^2.0.6",
     "husky": "^8.0.2",
     "i18next": "^22.0.6",

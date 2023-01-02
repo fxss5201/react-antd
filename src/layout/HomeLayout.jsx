@@ -1,4 +1,4 @@
-import React, { useState, Suspense, useEffect } from 'react';
+import React, { useState, Suspense, useEffect, useRef } from 'react';
 import { MenuUnfoldOutlined, MenuFoldOutlined } from '@ant-design/icons';
 import { Layout, Menu, Spin } from 'antd';
 import { Outlet, useNavigate, useLocation } from 'react-router-dom';
@@ -50,8 +50,9 @@ const HomeLayout = () => {
 		navigate(key);
 	}
 
+	const scrollBox = useRef(null)
 	useEffect(() => {
-		document.querySelector('#scrollBox').scrollTop = 0
+		scrollBox.current.scrollTop = 0
 	}, [location])
 
   return (
@@ -87,11 +88,11 @@ const HomeLayout = () => {
 				</Sider>
 				<Layout
 					style={{
-						padding: '0 24px 24px',
+						padding: '24px',
 						height: 'calc(100vh - 64px)',
 						overflow: 'auto'
 					}}
-					id="scrollBox"
+					ref={scrollBox}
 				>
 					<Suspense fallback={
             <Spin tip="加载中..." size="large">
@@ -99,7 +100,6 @@ const HomeLayout = () => {
             </Spin>
           }>
 						<Content
-							className="m-0"
 							style={{
 								minHeight: 'auto',
 							}}

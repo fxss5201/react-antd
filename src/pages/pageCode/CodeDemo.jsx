@@ -27,7 +27,7 @@ export default uniquePropHOC(["time", "seconds"])(Expire);`;
 
 const CodeDemo = () => {
   return (
-    <CodeHighlighter>
+    <CodeHighlighter lang='jsx'>
       {codeString}
     </CodeHighlighter>
   )
