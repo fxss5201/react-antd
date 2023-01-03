@@ -25,6 +25,7 @@ const EchartsModule = ({
   let myChartEventTime = useRef(null);
   let currentSeriesIndex = useRef(0);
   let currentDataIndex = useRef(-1);
+  let timer = useRef(intervalTime);
 
   // 是否调用过 echartsPlay
   let isEchartsPlay = useRef(false);
@@ -124,7 +125,7 @@ const EchartsModule = ({
   function echartsTimeout(seriesIndex = 0) {
     myChartEventTime.current = setTimeout(() => {
       echartsEventPlay(seriesIndex)
-    }, intervalTime)
+    }, timer.current)
   }
 
   function echartsEventPlay(seriesIndex = 0) {
@@ -199,10 +200,7 @@ const EchartsModule = ({
   }, [autoPlay])
 
   useUpdateEffect(() => {
-    clearTimeout(myChartEventTime.current)
-    myChartEventTime.current = setTimeout(() => {
-      echartsEventPlay(currentSeriesIndex.current)
-    }, intervalTime)
+    timer.current = intervalTime
   }, [intervalTime])
 
   useUpdateEffect(() => {
