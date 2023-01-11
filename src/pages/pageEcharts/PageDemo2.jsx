@@ -14,7 +14,8 @@ const PageDemo = () => {
       data: ['Latte', 'Tea', 'Cocoa', 'Brownie']
     },
     tooltip: {
-      trigger: 'axis'
+      trigger: 'axis',
+      className: 'echart-tooltip-zIndex',
     }
   }
   const [seriesData, setSeriesData] = useState([])

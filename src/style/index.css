@@ -20,3 +20,7 @@
   cursor: pointer;
   transition: color 0.3s;
 }
+
+.echart-tooltip-zIndex {
+  z-index: 8 !important;
+}

@@ -13,7 +13,8 @@ const PageDemo = () => {
     },
     yAxis: {},
     tooltip: {
-      trigger: 'axis'
+      trigger: 'axis',
+      className: 'echart-tooltip-zIndex',
     }
   }
 

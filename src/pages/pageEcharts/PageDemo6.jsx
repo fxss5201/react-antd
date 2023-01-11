@@ -14,7 +14,8 @@ const PageDemo = () => {
     tooltip: {
       trigger: 'item',
       formatter: '{a} <br/>{b} : {c} ({d}%)',
-      confine: true
+      confine: true,
+      className: 'echart-tooltip-zIndex',
     },
     legend: {
       orient: 'vertical',

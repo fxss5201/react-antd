@@ -1,5 +1,5 @@
 import React, { lazy } from 'react';
-import { useRoutes } from "react-router-dom";
+import { createHashRouter } from "react-router-dom";
 import LoginRoutes from './login';
 import { BankOutlined, CopyOutlined, CodeOutlined, AreaChartOutlined } from '@ant-design/icons';
 
@@ -58,9 +58,6 @@ export const routerList = [
   ...LoginRoutes
 ];
 
-const Router = () => {
-	const routes = useRoutes(routerList);
-	return routes;
-};
+const router = createHashRouter(routerList);
 
-export default Router;
+export default router;
