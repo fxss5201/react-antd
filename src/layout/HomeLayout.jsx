@@ -96,7 +96,7 @@ const HomeLayout = () => {
 				>
 					<Suspense fallback={
             <Spin tip="加载中..." size="large">
-              <div className='w-screen h-screen'></div>
+              <div className='w-full' style={{ height: 'calc(100vh - 64px - 48px)' }}></div>
             </Spin>
           }>
 						<Content
