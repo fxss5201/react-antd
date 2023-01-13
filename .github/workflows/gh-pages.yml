@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-18.04
     steps:
       - uses: actions/checkout@v2
-      - run: npm install
+      - run: npm install --legacy-peer-deps
       # 编译命令
       - run: npm run build
       - name: Deploy
