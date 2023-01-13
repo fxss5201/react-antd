@@ -1,5 +1,8 @@
+import React, { Suspense } from 'react';
 import { Outlet } from 'react-router-dom';
 import ToggleLang from '../components/ToggleLang';
+import { Spin } from 'antd';
+
 const pkg = require('./../../package.json');
 
 const LoginLayout = () => {
@@ -11,7 +14,13 @@ const LoginLayout = () => {
       <div className='w-full h-full flex justify-center'>
         <div className='mt-20'>
           <div className='text-lg font-semibold text-center mb-5'>{pkg.name}</div>
-          <Outlet />
+          <Suspense fallback={
+							<Spin tip="加载中..." size="large">
+								<div className='w-full' style={{ height: 'calc(100vh - 64px - 48px)' }}></div>
+							</Spin>
+						}>
+            <Outlet />
+          </Suspense>
         </div>
       </div>
     </div>

@@ -2,12 +2,12 @@ import React from 'react';
 import { useLocation, Navigate } from "react-router-dom";
 import { addPrefixName } from '../utils';
 import Cookies from 'js-cookie';
-import { searchRoute } from './../utils/router';
+import { searchRoute } from '../utils/router';
 import { routerList } from './index';
 import { useTitle } from 'ahooks';
 import { useTranslation } from 'react-i18next';
 
-const AuthRouter = (props) => {
+const RouterExtend = (props) => {
   const { t } = useTranslation();
 	const location = useLocation();
   const route = searchRoute(location.pathname, routerList);
@@ -17,6 +17,8 @@ const AuthRouter = (props) => {
     curRoute = route.children[0]
   }
   useTitle(curRoute.meta?.titleTranslation ? t(curRoute.meta?.title) : curRoute.meta?.title)
+
+	if (route.redirect) return <Navigate to={route.redirect} replace />;
 
   // TODO 在跳转路由之前，清除所有的请求
 
@@ -39,4 +41,4 @@ const AuthRouter = (props) => {
 	return props.children;
 };
 
-export default AuthRouter;
+export default RouterExtend;

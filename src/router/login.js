@@ -9,10 +9,8 @@ const LoginRoutes = [
   {
     path: '/login',
     element: <LoginLayout />,
-    meta: {
-      // 指定是否在 menu 菜单中展示
-      hideInMenu: true
-    },
+    // 指定是否在 menu 菜单中展示
+    hideInMenu: true,
     children: [
       {
         index: true,
@@ -26,6 +24,7 @@ const LoginRoutes = [
         }
       },
       {
+        // 访问路由，必须使用以 / 开头的绝对路径
         path: '/login/password',
         element: <ForgetPassword />,
         meta: {

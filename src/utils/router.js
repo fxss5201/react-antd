@@ -17,18 +17,18 @@ export const searchRoute = (path = '', routes = []) => {
 };
 
 /**
- * @description 递归查询menu展示的路由
+ * @description 递归查询menu可展示的路由
  * @param {Array} routes 路由列表
  * @returns array
  */
-export const searchMenuRoutes = (routes = []) => {
+export const searchShowMenuRoutes = (routes = []) => {
 	let result = [];
 	for (let item of routes) {
-		if (!item.meta?.hideInMenu) {
+		if (!item.hideInMenu) {
       if (item.children) {
         result.push({
           ...item,
-          children: searchMenuRoutes(item.children)
+          children: searchShowMenuRoutes(item.children)
         })
       } else {
         result.push(item)
@@ -39,28 +39,26 @@ export const searchMenuRoutes = (routes = []) => {
 };
 
 /**
- * @description 递归menu路由转换为Menu导航菜单
+ * @description 递归menu可展示的路由转换为Menu导航菜单
  * @param {Array} routes 路由列表
  * @returns array
  */
-export const menuRoutesToMenuItems = (routes = []) => {
+export const showMenuRoutesToMenuItems = (routes = []) => {
 	let result = [];
 	for (let item of routes) {
-		if (!item.meta?.hideInMenu) {
-      if (item.children) {
-        result.push({
-          key: item.path,
-          icon: item.meta?.icon,
-          label: item.meta?.title,
-          children: menuRoutesToMenuItems(item.children)
-        })
-      } else {
-        result.push({
-          key: item.path,
-          icon: item.meta?.icon,
-          label: item.meta?.title,
-        })
-      }
+    if (item.children) {
+      result.push({
+        key: item.path,
+        icon: item.meta?.icon,
+        label: item.meta?.title,
+        children: showMenuRoutesToMenuItems(item.children)
+      })
+    } else {
+      result.push({
+        key: item.path,
+        icon: item.meta?.icon,
+        label: item.meta?.title,
+      })
     }
 	}
 	return result;

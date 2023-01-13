@@ -3,7 +3,7 @@ import 'dayjs/locale/zh-cn';
 import zhCN from 'antd/locale/zh_CN';
 import 'dayjs/locale/en';
 import enGb from 'antd/locale/en_GB';
-import { ConfigProvider, Spin } from 'antd';
+import { ConfigProvider, Spin, FloatButton } from 'antd';
 import router from './router/index';
 import { useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
@@ -33,6 +33,7 @@ const App = () => {
           </Spin>
         }>
           <RouterProvider router={router} />
+          <FloatButton.BackTop />
         </Suspense>
       </ConfigProvider>
     </div>

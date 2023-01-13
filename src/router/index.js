@@ -4,8 +4,9 @@ import LoginRoutes from './login';
 import { BankOutlined, CopyOutlined, CodeOutlined, AreaChartOutlined } from '@ant-design/icons';
 
 const ErrorPage = lazy(() => import('./../error-page'));
+const AllLayout = lazy(() => import('./../layout/AllLayout'));
 const HomeLayout = lazy(() => import('./../layout/HomeLayout'));
-const PageIndex = lazy(() => import('./../pages/PageIndex'));
+const PageIndex = lazy(() => import('../pages/pageIndex/PageIndex'));
 const PageCopy = lazy(() => import('../pages/pageCopy/PageCopy'));
 const PageCode = lazy(() => import('../pages/pageCode/PageCode'));
 const PageEcharts = lazy(() => import('../pages/pageEcharts/PageEcharts'));
@@ -13,49 +14,66 @@ const PageEcharts = lazy(() => import('../pages/pageEcharts/PageEcharts'));
 export const routerList = [
   {
     path: "/",
-    element: <HomeLayout />,
+    redirect: "/home/analysis",
     errorElement: <ErrorPage />,
-    meta: {
-      // 是否需要用户登录权限
-      requiresAuth: true,
-    },
+    element: <AllLayout />,
     children: [
       {
-        index: true,
-        path: '/',
-        element: <PageIndex />,
+        path: "/",
+        redirect: "/home/analysis",
+        element: <HomeLayout />,
         meta: {
-          title: '首页',
-          icon: <BankOutlined />,
-        }
+          // 是否需要用户登录权限
+          requiresAuth: true,
+        },
+        children: [
+          {
+            path: '/home',
+            redirect: "/home/analysis",
+            meta: {
+              title: '首页',
+              icon: <BankOutlined />,
+            },
+            children: [
+              {
+                path: '/home/analysis',
+                element: <PageIndex />,
+                meta: {
+                  title: '分析页',
+                  requiresAuth: true,
+                }
+              }
+            ]
+          },
+          {
+            path: '/pageCopy',
+            element: <PageCopy />,
+            meta: {
+              title: '复制粘贴',
+              icon: <CopyOutlined />,
+            }
+          },
+          {
+            path: '/pageCode',
+            element: <PageCode />,
+            meta: {
+              title: '代码渲染',
+              icon: <CodeOutlined />,
+            }
+          },
+          {
+            path: '/pageEcharts',
+            element: <PageEcharts />,
+            meta: {
+              title: 'echarts图表',
+              icon: <AreaChartOutlined />,
+            }
+          },
+        ],
       },
-      {
-        path: '/pageCopy',
-        element: <PageCopy />,
-        meta: {
-          title: '复制粘贴',
-          icon: <CopyOutlined />,
-        }
-      },
-      {
-        path: '/pageCode',
-        element: <PageCode />,
-        meta: {
-          title: '代码渲染',
-          icon: <CodeOutlined />,
-        }
-      },
-      {
-        path: '/pageEcharts',
-        element: <PageEcharts />,
-        meta: {
-          title: 'echarts图表',
-          icon: <AreaChartOutlined />,
-        }
-      },
-    ],
-  },
-  ...LoginRoutes
+      ...LoginRoutes
+    ]
+  }
 ];
 
 const router = createHashRouter(routerList);
