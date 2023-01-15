@@ -1,0 +1,2 @@
+"use strict";(self.webpackChunkreact_antd=self.webpackChunkreact_antd||[]).push([[901],{94901:function(e,a,n){n.r(a);var t=n(80184);a.default=function(){return(0,t.jsx)("div",{children:"PageWorkplace"})}}}]);
+//# sourceMappingURL=901.3d4e3454.chunk.js.map
