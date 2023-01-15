@@ -42,6 +42,9 @@ export const routerList = [
                 meta: {
                   title: '分析页',
                   requiresAuth: true,
+                  // [水印组件](https://ant-design.antgroup.com/components/watermark-cn#watermark)
+                  // 设置页面是否支持水印，支持 Boolean 和 Array ，如果为 Boolean 默认配置水印组件的 content 为 package.json [name, author]，如果为 Array ，则直接设置为水印组件的 content
+                  watermark: true,
                 }
               },
               {
@@ -50,6 +53,7 @@ export const routerList = [
                 meta: {
                   title: '工作台',
                   requiresAuth: true,
+                  watermark: ['aaa', '工作台'],
                 }
               }
             ]
@@ -60,6 +64,7 @@ export const routerList = [
             meta: {
               title: '复制粘贴',
               icon: <CopyOutlined />,
+              watermark: true,
             }
           },
           {

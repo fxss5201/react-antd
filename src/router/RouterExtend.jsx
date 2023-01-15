@@ -6,6 +6,9 @@ import { searchRoute } from '../utils/router';
 import { routerList } from './index';
 import { useTitle } from 'ahooks';
 import { useTranslation } from 'react-i18next';
+import { Watermark } from 'antd';
+import { getType } from '../utils';
+const pkg = require('./../../package.json');
 
 const RouterExtend = (props) => {
   const { t } = useTranslation();
@@ -25,8 +28,10 @@ const RouterExtend = (props) => {
 
   // TODO 在跳转路由之前，清除所有的请求
 
+	const watermarkChildren = <Watermark content={route.meta?.watermark ? (getType(route.meta?.watermark) === 'boolean' ? [pkg.name, pkg.author] : route.meta?.watermark) : ''}>{ props.children }</Watermark>;
+
 	// * 判断当前路由是否需要访问权限(不需要权限直接放行)
-	if (!route.meta?.requiresAuth) return props.children;
+	if (!route.meta?.requiresAuth) return watermarkChildren;
 
 	// * 判断是否有Token
   const accessToken = Cookies.get(addPrefixName('accessToken'));
@@ -41,7 +46,7 @@ const RouterExtend = (props) => {
 	// if (routers.indexOf(location.pathname) === -1) return <Navigate to="/403" />;
 
 	// * 当前账号有权限返回 Router，正常访问页面
-	return props.children;
+	return watermarkChildren;
 };
 
 export default RouterExtend;

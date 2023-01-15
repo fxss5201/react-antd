@@ -3,6 +3,15 @@ import CryptoJS from 'crypto-js';
 const pkg = require('./../../package.json');
 
 /**
+ * @description 获取类型
+ * @param {string} val 
+ * @returns string
+ */
+export const getType = (val) => {
+  return Object.prototype.toString.call(val).slice(8, -1).toLowerCase();
+}
+
+/**
  * @description 追加前缀
  * @param {string} val 
  * @returns string

@@ -1,7 +1,7 @@
 const PageWorkplace = () => {
 
   return (
-    <div>
+    <div className='h-screen'>
       PageWorkplace
     </div>
   )
