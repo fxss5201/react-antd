@@ -25,8 +25,11 @@ const HomeLayout = () => {
 	const userInfo = useSelector(state => state.userInfo.value);
 	const location = useLocation();
 	const defaultOpenKeys = location.pathname.slice(1).split('/').map((x, i, arr) => `/${arr.slice(0, i + 1).join('/')}`);
+
+	const route = searchRoute(location.pathname, routerList[0].children);
 	let breadcrumbList = []
-	if (config.isShowBreadcrumb) {
+	let isShowBreadcrumb = config.isShowBreadcrumb && !route.meta?.isHideBreadcrumb
+	if (isShowBreadcrumb) {
 		breadcrumbList = defaultOpenKeys.map(x => searchRoute(x, routerList[0].children));
 	}
 
@@ -109,7 +112,7 @@ const HomeLayout = () => {
 									minHeight: 'auto',
 								}}
 							>
-								{	config.isShowBreadcrumb && 
+								{	isShowBreadcrumb && 
 									(<Breadcrumb className='mb-6'>
 										{breadcrumbList.map((item, index, arr) => {
 											return index === arr.length - 1 ? (<Breadcrumb.Item key={item.path}>{item.meta?.icon}<span>{item.meta?.title === t(item.meta?.title) ? item.meta?.title : t(item.meta?.title)}</span></Breadcrumb.Item>) : (<Breadcrumb.Item key={item.path} href={item.path}>{item.meta?.icon}<span>{item.meta?.title === t(item.meta?.title) ? item.meta?.title : t(item.meta?.title)}</span></Breadcrumb.Item>)

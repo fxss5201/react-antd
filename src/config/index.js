@@ -6,7 +6,7 @@ const config = {
   verificationPattern: /^\d{6}$/, // 验证码正则
   secretKey: '', // 密码保存本地时的加解密key，未配置则使用 package.json 的 name
 
-  isShowBreadcrumb: true, // 是否展示 面包屑导航
+  isShowBreadcrumb: true, // 是否展示 面包屑导航，可在 router 的 meta 单个设置 isHideBreadcrumb 隐藏
 }
 
 export default config;

@@ -65,6 +65,7 @@ export const routerList = [
               title: '复制粘贴',
               icon: <CopyOutlined />,
               watermark: true,
+              isHideBreadcrumb: true,
             }
           },
           {
@@ -73,6 +74,7 @@ export const routerList = [
             meta: {
               title: '代码渲染',
               icon: <CodeOutlined />,
+              isHideBreadcrumb: true,
             }
           },
           {
@@ -81,6 +83,7 @@ export const routerList = [
             meta: {
               title: 'echarts图表',
               icon: <AreaChartOutlined />,
+              isHideBreadcrumb: true,
             }
           },
         ],
