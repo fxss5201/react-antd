@@ -19,8 +19,6 @@ const LoginRoutes = [
         meta: {
           // 页面标题
           title: 'Log in',
-          // 页面标题是否支持多语言
-          titleTranslation: true,
         }
       },
       {
@@ -29,7 +27,6 @@ const LoginRoutes = [
         element: <ForgetPassword />,
         meta: {
           title: 'Reset password',
-          titleTranslation: true,
         }
       },
       {
@@ -37,7 +34,6 @@ const LoginRoutes = [
         element: <Register />,
         meta: {
           title: 'Register',
-          titleTranslation: true,
         }
       }
     ],

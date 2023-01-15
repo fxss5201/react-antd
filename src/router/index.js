@@ -6,7 +6,8 @@ import { BankOutlined, CopyOutlined, CodeOutlined, AreaChartOutlined } from '@an
 const ErrorPage = lazy(() => import('./../error-page'));
 const AllLayout = lazy(() => import('./../layout/AllLayout'));
 const HomeLayout = lazy(() => import('./../layout/HomeLayout'));
-const PageIndex = lazy(() => import('../pages/pageIndex/PageIndex'));
+const PageAnalysis = lazy(() => import('../pages/pageIndex/PageAnalysis'));
+const PageWorkplace = lazy(() => import('../pages/pageIndex/PageWorkplace'));
 const PageCopy = lazy(() => import('../pages/pageCopy/PageCopy'));
 const PageCode = lazy(() => import('../pages/pageCode/PageCode'));
 const PageEcharts = lazy(() => import('../pages/pageEcharts/PageEcharts'));
@@ -37,9 +38,17 @@ export const routerList = [
             children: [
               {
                 path: '/home/analysis',
-                element: <PageIndex />,
+                element: <PageAnalysis />,
                 meta: {
                   title: '分析页',
+                  requiresAuth: true,
+                }
+              },
+              {
+                path: '/home/workplace',
+                element: <PageWorkplace />,
+                meta: {
+                  title: '工作台',
                   requiresAuth: true,
                 }
               }

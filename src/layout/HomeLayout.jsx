@@ -1,14 +1,17 @@
 import React, { useState, Suspense } from 'react';
 import { MenuUnfoldOutlined, MenuFoldOutlined } from '@ant-design/icons';
-import { Layout, Menu, Spin } from 'antd';
+import { Layout, Menu, Spin, Breadcrumb } from 'antd';
 import { Outlet, useNavigate, useLocation } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
+import { useTranslation } from 'react-i18next';
 import ToggleLang from '../components/ToggleLang';
 import Cookies from 'js-cookie';
 import { addPrefixName } from '../utils/index';
+import { searchRoute } from '../utils/router';
 import { setUserInfo } from '../store/userInfo';
 import { routerList } from './../router/index';
 import { searchShowMenuRoutes, showMenuRoutesToMenuItems } from './../utils/router';
+import config from '../config/index';
 
 const { Header, Content, Sider } = Layout;
 
@@ -17,9 +20,12 @@ sideMenuList = sideMenuList[0]?.children;
 const sideMenuItems = showMenuRoutesToMenuItems(sideMenuList);
 
 const HomeLayout = () => {
+  const { t } = useTranslation();
   const [collapsed, setCollapsed] = useState(false);
 	const userInfo = useSelector(state => state.userInfo.value);
 	const location = useLocation();
+	const defaultOpenKeys = location.pathname.slice(1).split('/').map((x, i, arr) => `/${arr.slice(0, i + 1).join('/')}`);
+	const breadcrumbList = defaultOpenKeys.map(x => searchRoute(x, routerList[0].children));
 
 	const topMenuItems = [
 		{
@@ -61,7 +67,7 @@ const HomeLayout = () => {
 						</div>
 					</div>
 					<div className='flex-auto flex items-center justify-end'>
-						<ToggleLang addClass="text-gray-400 hover:text-white" />
+						{config.isShowToggleLang && <ToggleLang addClass="text-gray-400 hover:text-white" />}
 						<Menu theme="dark" mode="horizontal" items={topMenuItems} onClick={onTopMenuItemsEvent} />
 					</div>
 				</Header>
@@ -70,6 +76,7 @@ const HomeLayout = () => {
 						<Menu
 							theme="dark"
 							mode="inline"
+							defaultOpenKeys={defaultOpenKeys}
 							defaultSelectedKeys={[location.pathname]}
 							selectedKeys={[location.pathname]}
 							style={{
@@ -99,6 +106,13 @@ const HomeLayout = () => {
 									minHeight: 'auto',
 								}}
 							>
+								{	config.isShowBreadcrumb && 
+									(<Breadcrumb className='mb-6'>
+										{breadcrumbList.map((item, index, arr) => {
+											return index === arr.length - 1 ? (<Breadcrumb.Item key={item.path}>{item.meta?.icon}<span>{item.meta?.title === t(item.meta?.title) ? item.meta?.title : t(item.meta?.title)}</span></Breadcrumb.Item>) : (<Breadcrumb.Item key={item.path} href={item.path}>{item.meta?.icon}<span>{item.meta?.title === t(item.meta?.title) ? item.meta?.title : t(item.meta?.title)}</span></Breadcrumb.Item>)
+										})}
+									</Breadcrumb>)
+								}
 								<Outlet />
 							</Content>
 						</Suspense>

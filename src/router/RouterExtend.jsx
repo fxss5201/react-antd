@@ -10,13 +10,16 @@ import { useTranslation } from 'react-i18next';
 const RouterExtend = (props) => {
   const { t } = useTranslation();
 	const location = useLocation();
-  const route = searchRoute(location.pathname, routerList);
+  const route = searchRoute(location.pathname, routerList[0].children);
 
   let curRoute = route
   if (route.children && route.children[0]?.index) {
     curRoute = route.children[0]
   }
-  useTitle(curRoute.meta?.titleTranslation ? t(curRoute.meta?.title) : curRoute.meta?.title)
+	const title = curRoute.meta?.title
+	const tTitle = t(curRoute.meta?.title)
+	// 此处利用多语言 t('aaa') 是否等于 'aaa' 来判断是否使用多语言
+  useTitle(title === tTitle ? title : tTitle)
 
 	if (route.redirect) return <Navigate to={route.redirect} replace />;
 
