@@ -25,7 +25,10 @@ const HomeLayout = () => {
 	const userInfo = useSelector(state => state.userInfo.value);
 	const location = useLocation();
 	const defaultOpenKeys = location.pathname.slice(1).split('/').map((x, i, arr) => `/${arr.slice(0, i + 1).join('/')}`);
-	const breadcrumbList = defaultOpenKeys.map(x => searchRoute(x, routerList[0].children));
+	let breadcrumbList = []
+	if (config.isShowBreadcrumb) {
+		breadcrumbList = defaultOpenKeys.map(x => searchRoute(x, routerList[0].children));
+	}
 
 	const topMenuItems = [
 		{

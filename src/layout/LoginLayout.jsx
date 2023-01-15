@@ -17,7 +17,7 @@ const LoginLayout = () => {
           <div className='text-lg font-semibold text-center mb-5'>{pkg.name}</div>
           <Suspense fallback={
 							<Spin tip="加载中..." size="large">
-								<div className='w-full' style={{ height: 'calc(100vh - 64px - 48px)' }}></div>
+								<div className='w-full' style={{ height: '50vh' }}></div>
 							</Spin>
 						}>
             <Outlet />
