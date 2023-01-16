@@ -1,7 +1,7 @@
 import React, { useState, Suspense } from 'react';
 import { MenuUnfoldOutlined, MenuFoldOutlined } from '@ant-design/icons';
 import { Layout, Menu, Spin, Breadcrumb, Tabs } from 'antd';
-import { Outlet, useNavigate, useLocation } from 'react-router-dom';
+import { Outlet, useNavigate, useLocation, Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 import ToggleLang from '../components/ToggleLang';
@@ -13,6 +13,7 @@ import { routerList } from './../router/index';
 import { searchShowMenuRoutes, showMenuRoutesToMenuItems } from './../utils/router';
 import config from '../config/index';
 
+const homePath = '/home/analysis'
 const { Header, Content, Sider } = Layout;
 
 let sideMenuList = searchShowMenuRoutes(routerList[0].children);
@@ -31,7 +32,16 @@ const HomeLayout = () => {
 	let breadcrumbList = []
 	const isShowBreadcrumb = config.isShowBreadcrumb && !route.meta?.isHideBreadcrumb
 	if (isShowBreadcrumb) {
-		breadcrumbList = sideMenuDefaultOpenKeys.map(x => searchRoute(x, routerList[0].children));
+		breadcrumbList = sideMenuDefaultOpenKeys.map(x => {
+			const curRoute = searchRoute(x, routerList[0].children);
+			if (curRoute.redirect) {
+				return {
+					...curRoute,
+					path: curRoute.redirect
+				}
+			}
+			return curRoute;
+		});
 	}
 
 	const topMenuItems = [
@@ -68,7 +78,7 @@ const HomeLayout = () => {
 		if (!localTabs) {
 			localTabs = [
 				{
-					key: '/home/analysis',
+					key: homePath,
 					label: '首页',
 					closable: false,
 				}
@@ -173,8 +183,8 @@ const HomeLayout = () => {
 							>
 								{	isShowBreadcrumb && 
 									(<Breadcrumb className='mb-6'>
-										{breadcrumbList.map((item, index, arr) => {
-											return index === arr.length - 1 ? (<Breadcrumb.Item key={item.path}>{item.meta?.icon}<span>{getFinalValue(t, item.meta?.title)}</span></Breadcrumb.Item>) : (<Breadcrumb.Item key={item.path} href={item.path}>{item.meta?.icon}<span>{getFinalValue(t, item.meta?.title)}</span></Breadcrumb.Item>)
+										{breadcrumbList.map(item => {
+											return <Breadcrumb.Item key={item.path}>{item.path === location.pathname ? <>{item.meta?.icon}{getFinalValue(t, item.meta?.title)}</> : <Link to={item.path}>{item.meta?.icon}{getFinalValue(t, item.meta?.title)}</Link>}</Breadcrumb.Item>
 										})}
 									</Breadcrumb>)
 								}
