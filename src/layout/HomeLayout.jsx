@@ -1,6 +1,6 @@
 import React, { useState, Suspense } from 'react';
 import { MenuUnfoldOutlined, MenuFoldOutlined } from '@ant-design/icons';
-import { Layout, Menu, Spin, Breadcrumb } from 'antd';
+import { Layout, Menu, Spin, Breadcrumb, Tabs } from 'antd';
 import { Outlet, useNavigate, useLocation } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { useTranslation } from 'react-i18next';
@@ -24,13 +24,14 @@ const HomeLayout = () => {
   const [collapsed, setCollapsed] = useState(false);
 	const userInfo = useSelector(state => state.userInfo.value);
 	const location = useLocation();
-	const defaultOpenKeys = location.pathname.slice(1).split('/').map((x, i, arr) => `/${arr.slice(0, i + 1).join('/')}`);
+	const sideMenuDefaultOpenKeys = location.pathname.slice(1).split('/').map((x, i, arr) => `/${arr.slice(0, i + 1).join('/')}`);
+	const [sideMenuOpenKeys, setSideMenuOpenKeys] = useState(sideMenuDefaultOpenKeys)
 
 	const route = searchRoute(location.pathname, routerList[0].children);
 	let breadcrumbList = []
-	let isShowBreadcrumb = config.isShowBreadcrumb && !route.meta?.isHideBreadcrumb
+	const isShowBreadcrumb = config.isShowBreadcrumb && !route.meta?.isHideBreadcrumb
 	if (isShowBreadcrumb) {
-		breadcrumbList = defaultOpenKeys.map(x => searchRoute(x, routerList[0].children));
+		breadcrumbList = sideMenuDefaultOpenKeys.map(x => searchRoute(x, routerList[0].children));
 	}
 
 	const topMenuItems = [
@@ -60,6 +61,57 @@ const HomeLayout = () => {
 		navigate(key);
 	}
 
+	const isShowTabs = config.isShowTabs && !route.meta?.isHideTabs
+	let localTabs
+	if (isShowTabs) {
+		localTabs = window.localStorage.getItem(addPrefixName('tabs'))
+		if (!localTabs) {
+			localTabs = [
+				{
+					key: '/home/analysis',
+					label: '首页',
+					closable: false,
+				}
+			]
+		} else {
+			localTabs = JSON.parse(localTabs)
+		}
+		const tabsItemsKeys = localTabs.map(x => x.key)
+		if (!tabsItemsKeys.includes(route.path)) {
+			localTabs.push({
+				key: route.path,
+				label: t(route.meta?.title) === route.meta?.title ? route.meta?.title : t(route.meta?.title)
+			})
+			window.localStorage.setItem(addPrefixName('tabs'), JSON.stringify(localTabs))
+		}
+	}
+	const [tabsItems, setTabsItems] = useState(localTabs)
+	if (localTabs && tabsItems.length !== localTabs.length) {
+		setTabsItems(localTabs)
+	}
+	const addSideMenuOpenKeys = (key) => {
+		const kyes = key.slice(1).split('/').map((x, i, arr) => `/${arr.slice(0, i + 1).join('/')}`).slice(0, -1);
+		setSideMenuOpenKeys([...sideMenuOpenKeys, ...kyes])
+	}
+	const tabsOnChange = (key) => {
+		navigate(key);
+		addSideMenuOpenKeys(key);
+	};
+	const tabsOnEdit = (targetKey, action) => {
+		if (action === 'remove') {
+			const curItems = JSON.parse(JSON.stringify(tabsItems))
+      const curIndex = curItems.findIndex(x => x.key === targetKey)
+			curItems.splice(curIndex, 1)
+			window.localStorage.setItem(addPrefixName('tabs'), JSON.stringify(curItems))
+			setTabsItems(curItems)
+			if (targetKey === location.pathname) {
+				const key = curItems[curIndex - 1].key;
+				navigate(key);
+				addSideMenuOpenKeys(key);
+			}
+    }
+	}
+
   return (
 		<>
 			<Layout>
@@ -82,7 +134,8 @@ const HomeLayout = () => {
 						<Menu
 							theme="dark"
 							mode="inline"
-							defaultOpenKeys={defaultOpenKeys}
+							defaultOpenKeys={sideMenuDefaultOpenKeys}
+							openKeys={sideMenuOpenKeys}
 							defaultSelectedKeys={[location.pathname]}
 							selectedKeys={[location.pathname]}
 							style={{
@@ -92,6 +145,7 @@ const HomeLayout = () => {
 							}}
 							items={sideMenuItems}
 							onClick={onSideMenuItemsEvent}
+							onOpenChange={(openKeys) => setSideMenuOpenKeys(openKeys)}
 						/>
 					</Sider>
 					<Layout
@@ -99,9 +153,13 @@ const HomeLayout = () => {
 						style={{
 							margin: collapsed ? '64px 0 0 80px' : '64px 0 0 200px',
 							boxSizing: 'border-box',
-							padding: '24px',
 						}}
 					>
+						{isShowTabs && (
+							<div style={{height: '40px'}}>
+								<Tabs defaultActiveKey={location.pathname} activeKey={location.pathname} items={tabsItems} onChange={tabsOnChange} onEdit={tabsOnEdit} type="editable-card" hideAdd tabBarGutter={0} tabBarStyle={{margin: 0}} style={{position: 'fixed', top: '64px', left: collapsed ? '80px': '200px', right: 0, zIndex: 10}} className='bg-white' />
+							</div>
+						)}
 						<Suspense fallback={
 							<Spin tip="加载中..." size="large">
 								<div className='w-full' style={{ height: 'calc(100vh - 64px - 48px)' }}></div>
@@ -110,6 +168,7 @@ const HomeLayout = () => {
 							<Content
 								style={{
 									minHeight: 'auto',
+									padding: '24px',
 								}}
 							>
 								{	isShowBreadcrumb && 

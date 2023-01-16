@@ -1,13 +1,12 @@
 import React from 'react';
 import { useLocation, Navigate } from "react-router-dom";
-import { addPrefixName } from '../utils';
+import { addPrefixName, getType } from '../utils/index';
 import Cookies from 'js-cookie';
 import { searchRoute } from '../utils/router';
 import { routerList } from './index';
 import { useTitle } from 'ahooks';
 import { useTranslation } from 'react-i18next';
 import { Watermark } from 'antd';
-import { getType } from '../utils';
 import config from '../config';
 
 
@@ -20,7 +19,7 @@ const RouterExtend = (props) => {
   if (route.children && route.children[0]?.index) {
     curRoute = route.children[0]
   }
-	const title = curRoute.meta?.title
+  const title = curRoute.meta?.title
 	const tTitle = t(curRoute.meta?.title)
 	// 此处利用多语言 t('aaa') 是否等于 'aaa' 来判断是否使用多语言
   useTitle(title === tTitle ? title : tTitle)

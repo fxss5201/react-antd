@@ -41,7 +41,6 @@ export const decryptFn = (val) => {
   return CryptoJS.AES.decrypt(val, secretKey).toString(CryptoJS.enc.Utf8)
 }
 
-
 /**
  * @description 获取浏览器默认语言
  * @return string
@@ -50,3 +49,13 @@ export const getBrowserLang = () => {
 	let browserLang = navigator.language ? navigator.language : navigator.browserLanguage;
 	return ['zh-cn', 'cn', 'zh'].includes(browserLang.toLowerCase()) ? 'zhCN' : 'enGb';
 };
+
+/**
+ * 获取最终值，针对多语言情况，利用多语言 t('aaa') 是否等于 'aaa' 来判断是否使用多语言
+ * @param {function} t 
+ * @param {string} val 
+ * @returns 
+ */
+export const getFinalValue = (t, val) => {
+  return t(val) === val ? val : t(val)
+}

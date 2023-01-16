@@ -75,6 +75,7 @@ export const routerList = [
               title: '代码渲染',
               icon: <CodeOutlined />,
               isHideBreadcrumb: true,
+              isHideTabs: true
             }
           },
           {
