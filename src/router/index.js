@@ -43,7 +43,7 @@ export const routerList = [
                   title: '分析页',
                   requiresAuth: true,
                   // [水印组件](https://ant-design.antgroup.com/components/watermark-cn#watermark)
-                  // 设置页面是否支持水印，支持 Boolean 和 Array ，如果为 Boolean 默认配置水印组件的 content 为 package.json [name, author]，如果为 Array ，则直接设置为水印组件的 content
+                  // 设置页面是否支持水印，支持 Boolean 和 Array ，如果为 Boolean 默认配置水印组件的 content 为 config.watermark，如果为 Array ，则直接覆盖设置为水印组件的 content
                   watermark: true,
                 }
               },

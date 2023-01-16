@@ -8,7 +8,8 @@ import { useTitle } from 'ahooks';
 import { useTranslation } from 'react-i18next';
 import { Watermark } from 'antd';
 import { getType } from '../utils';
-const pkg = require('./../../package.json');
+import config from '../config';
+
 
 const RouterExtend = (props) => {
   const { t } = useTranslation();
@@ -28,7 +29,7 @@ const RouterExtend = (props) => {
 
   // TODO 在跳转路由之前，清除所有的请求
 
-	const watermarkChildren = <Watermark content={route.meta?.watermark ? (getType(route.meta?.watermark) === 'boolean' ? [pkg.name, pkg.author] : route.meta?.watermark) : ''}>{ props.children }</Watermark>;
+	const watermarkChildren = <Watermark content={route.meta?.watermark ? (getType(route.meta?.watermark) === 'boolean' ? config.watermark : route.meta?.watermark) : ''}>{ props.children }</Watermark>;
 
 	// * 判断当前路由是否需要访问权限(不需要权限直接放行)
 	if (!route.meta?.requiresAuth) return watermarkChildren;
