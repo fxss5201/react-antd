@@ -6,7 +6,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 import ToggleLang from '../components/ToggleLang';
 import Cookies from 'js-cookie';
-import { addPrefixName } from '../utils/index';
+import { addPrefixName, getFinalValue } from '../utils/index';
 import { searchRoute } from '../utils/router';
 import { setUserInfo } from '../store/userInfo';
 import { routerList } from './../router/index';
@@ -80,7 +80,7 @@ const HomeLayout = () => {
 		if (!tabsItemsKeys.includes(route.path)) {
 			localTabs.push({
 				key: route.path,
-				label: t(route.meta?.title) === route.meta?.title ? route.meta?.title : t(route.meta?.title)
+				label: getFinalValue(t, route.meta?.title)
 			})
 			window.localStorage.setItem(addPrefixName('tabs'), JSON.stringify(localTabs))
 		}
@@ -174,7 +174,7 @@ const HomeLayout = () => {
 								{	isShowBreadcrumb && 
 									(<Breadcrumb className='mb-6'>
 										{breadcrumbList.map((item, index, arr) => {
-											return index === arr.length - 1 ? (<Breadcrumb.Item key={item.path}>{item.meta?.icon}<span>{item.meta?.title === t(item.meta?.title) ? item.meta?.title : t(item.meta?.title)}</span></Breadcrumb.Item>) : (<Breadcrumb.Item key={item.path} href={item.path}>{item.meta?.icon}<span>{item.meta?.title === t(item.meta?.title) ? item.meta?.title : t(item.meta?.title)}</span></Breadcrumb.Item>)
+											return index === arr.length - 1 ? (<Breadcrumb.Item key={item.path}>{item.meta?.icon}<span>{getFinalValue(t, item.meta?.title)}</span></Breadcrumb.Item>) : (<Breadcrumb.Item key={item.path} href={item.path}>{item.meta?.icon}<span>{getFinalValue(t, item.meta?.title)}</span></Breadcrumb.Item>)
 										})}
 									</Breadcrumb>)
 								}

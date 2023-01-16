@@ -1,6 +1,6 @@
 import React from 'react';
 import { useLocation, Navigate } from "react-router-dom";
-import { addPrefixName, getType } from '../utils/index';
+import { addPrefixName, getType, getFinalValue } from '../utils/index';
 import Cookies from 'js-cookie';
 import { searchRoute } from '../utils/router';
 import { routerList } from './index';
@@ -19,10 +19,9 @@ const RouterExtend = (props) => {
   if (route.children && route.children[0]?.index) {
     curRoute = route.children[0]
   }
-  const title = curRoute.meta?.title
-	const tTitle = t(curRoute.meta?.title)
+  
 	// 此处利用多语言 t('aaa') 是否等于 'aaa' 来判断是否使用多语言
-  useTitle(title === tTitle ? title : tTitle)
+  useTitle(getFinalValue(t, curRoute.meta?.title))
 
 	if (route.redirect) return <Navigate to={route.redirect} replace />;
 
