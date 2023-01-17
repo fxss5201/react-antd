@@ -2,11 +2,13 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { Steps } from 'antd';
+import { getColorPrimary } from '../../utils';
 import ForgetPasswordVerification from './components/ForgetPasswordVerification';
 import ForgetPasswordReset from './components/ForgetPasswordReset';
 
 const ForgetPassword = () => {
   const { t } = useTranslation();
+  const colorPrimary = getColorPrimary();
 
   const [current, setCurrent] = useState(0);
   const stepsItems = [
@@ -34,8 +36,8 @@ const ForgetPassword = () => {
       <Steps current={current} items={stepsItems} />
       {current === 0 ? <ForgetPasswordVerification onFinishVerification={onFinishVerification} /> : <ForgetPasswordReset onFinishReset={onFinishReset} />}
       <div className='mt-3 clearfix'>
-        <Link className="float-left a" to="/login">{t('Login!')}</Link>
-        <Link className="float-right a" to="/login/register">{t('register now!')}</Link>
+        <Link className="float-left a" to="/login" style={{color: colorPrimary}}>{t('Login!')}</Link>
+        <Link className="float-right a" to="/login/register" style={{color: colorPrimary}}>{t('register now!')}</Link>
       </div>
     </div>
   );

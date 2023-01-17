@@ -9,6 +9,7 @@ import { useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 import { useTitle } from 'ahooks';
 import { RouterProvider } from 'react-router-dom';
+import config from './config';
 const pkg = require('./../package.json');
 
 const localeObj = {
@@ -25,7 +26,7 @@ const App = () => {
     <div className="App">
       <ConfigProvider
         locale={localeObj[locale]}
-        theme={{}}
+        theme={config.theme ? {token: config.theme} : {}}
       >
         <Suspense fallback={
           <Spin tip={t('Loading')} size="large">

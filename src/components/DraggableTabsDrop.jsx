@@ -3,9 +3,11 @@ import { Tabs } from 'antd';
 import { DndProvider, useDrag, useDrop } from 'react-dnd';
 import { HTML5Backend } from 'react-dnd-html5-backend';
 import cloneDeep from 'lodash.clonedeep';
+import { getColorPrimary } from './../utils';
 
 const type = 'DraggableTabNode';
 const DraggableTabNode = ({ index, children, moveNode, canDragEvent, canDropEvent }) => {
+  const colorPrimary = getColorPrimary();
   const ref = useRef(null);
   const [{ isOver }, drop] = useDrop({
     accept: type,
@@ -44,7 +46,7 @@ const DraggableTabNode = ({ index, children, moveNode, canDragEvent, canDropEven
     opacity: 1
   };
   if (isOver) {
-    style.color = '#1677ff';
+    style.color = colorPrimary;
   }
   if (isDragging) {
     style.opacity = 0;

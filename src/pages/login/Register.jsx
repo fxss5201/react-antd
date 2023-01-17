@@ -9,6 +9,7 @@ import {
 } from 'antd';
 import config from '../../config';
 import { useUnmount } from 'ahooks';
+import { getColorPrimary } from '../../utils';
 
 const formItemLayout = {
   labelCol: {
@@ -43,6 +44,7 @@ const tailFormItemLayout = {
 };
 
 const Register = () => {
+  const colorPrimary = getColorPrimary();
   const [isValidate, setIsValidate] = useState(false)
   const [form] = Form.useForm();
 
@@ -149,7 +151,7 @@ const Register = () => {
         ]}
       >
         <Checkbox>
-          { t('I have read the') } <Link to="">{ t('agreement') }</Link>
+          { t('I have read the') } <Link to="" style={{color: colorPrimary}}>{ t('agreement') }</Link>
         </Checkbox>
       </Form.Item>
 
@@ -158,8 +160,8 @@ const Register = () => {
           { t('Register') }
         </Button>
         <div className='mt-3 clearfix'>
-          <Link className="float-left a" to="/login">{t('Login!')}</Link>
-          <Link className="float-right a" to="/login/password">{t('Forgot password')}</Link>
+          <Link className="float-left a" to="/login" style={{color: colorPrimary}}>{t('Login!')}</Link>
+          <Link className="float-right a" to="/login/password" style={{color: colorPrimary}}>{t('Forgot password')}</Link>
         </div>
       </Form.Item>
     </Form>

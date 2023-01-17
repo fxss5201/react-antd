@@ -12,7 +12,12 @@ const config = {
   isShowTabs: true, // 是否展示 Tabs 导航，可在 route 的 meta 单个设置 isHideTabs 隐藏，隐藏之后次 route 也不会在 Tabs 导航中
   // [水印组件](https://ant-design.antgroup.com/components/watermark-cn#watermark)
   // 统一设置为水印组件的 content，支持 Array
-  watermark: [pkg.name, pkg.author]
+  watermark: [pkg.name, pkg.author],
+
+  // 主题色配置，放开的话，必须配置，否则主题色有问题
+  // theme: {
+  //   colorPrimary: '#00b96b'
+  // }
 }
 
 export default config;

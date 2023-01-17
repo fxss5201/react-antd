@@ -59,3 +59,11 @@ export const getBrowserLang = () => {
 export const getFinalValue = (t, val) => {
   return t(val) === val ? val : t(val)
 }
+
+/**
+ * 获取主题色
+ * @returns string
+ */
+export const getColorPrimary = () => {
+  return config.theme ? config.theme.colorPrimary : '#1677ff';
+}

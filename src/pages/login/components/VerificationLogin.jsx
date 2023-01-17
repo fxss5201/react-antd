@@ -5,8 +5,10 @@ import { useTranslation } from 'react-i18next';
 import { Link } from "react-router-dom";
 import { useCountDown, useUnmount } from 'ahooks';
 import config from '../../../config';
+import { getColorPrimary } from '../../../utils';
 
 const VerificationLogin = ({ activeKey }) => {
+  const colorPrimary = getColorPrimary();
   const [isValidate, setIsValidate] = useState(false)
 
   const [form] = Form.useForm()
@@ -92,8 +94,8 @@ const VerificationLogin = ({ activeKey }) => {
       <Form.Item>
         <Button type="primary" htmlType="submit" className="w-full" onClick={() => setIsValidate(true)}>{t('Log in')}</Button>
         <div className='mt-3 clearfix'>
-          <Link className="float-left a" to="/login/register">{t('register now!')}</Link>
-          <Link className="float-right a" to="/login/password">{t('Forgot password')}</Link>
+          <Link className="float-left a" to="/login/register" style={{color: colorPrimary}}>{t('register now!')}</Link>
+          <Link className="float-right a" to="/login/password" style={{color: colorPrimary}}>{t('Forgot password')}</Link>
         </div>
       </Form.Item>
     </Form>

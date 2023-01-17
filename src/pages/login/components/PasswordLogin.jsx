@@ -4,12 +4,13 @@ import { Button, Checkbox, Form, Input, message } from 'antd';
 import { useTranslation } from 'react-i18next';
 import { Link, useNavigate } from "react-router-dom";
 import { useLocalStorageState, useMount, useUnmount } from 'ahooks';
-import { addPrefixName, encryptFn, decryptFn } from '../../../utils/index';
+import { addPrefixName, encryptFn, decryptFn, getColorPrimary } from '../../../utils/index';
 import Cookies from 'js-cookie';
 import { useDispatch } from 'react-redux';
 import { setUserInfo } from './../../../store/userInfo';
 
 const PasswordLogin = ({ activeKey }) => {
+  const colorPrimary = getColorPrimary();
   const [isValidate, setIsValidate] = useState(false);
   const [localLoginInfo, setLocalLoginInfo] = useLocalStorageState(addPrefixName('loginInfo'));
 
@@ -90,12 +91,12 @@ const PasswordLogin = ({ activeKey }) => {
           <Checkbox>{t('Remember me')}</Checkbox>
         </Form.Item>
 
-        <Link className="float-right a" to="/login/password">{t('Forgot password')}</Link>
+        <Link className="float-right a" to="/login/password" style={{color: colorPrimary}}>{t('Forgot password')}</Link>
       </Form.Item>
 
       <Form.Item>
         <Button type="primary" htmlType="submit" className="w-full" onClick={() => setIsValidate(true)}>{t('Log in')}</Button>
-        <div className='mt-3'>{t('Or')} <Link to="/login/register" className="a">{t('register now!')}</Link></div>
+        <div className='mt-3'>{t('Or')} <Link to="/login/register" className="a" style={{color: colorPrimary}}>{t('register now!')}</Link></div>
       </Form.Item>
     </Form>
   );
