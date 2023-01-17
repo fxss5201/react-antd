@@ -25,7 +25,7 @@ const DraggableTabNode = ({ index, children, moveNode, canDragEvent, canDropEven
       moveNode(item.index, index);
     },
   });
-  const [, drag] = useDrag({
+  const [{ isDragging }, drag] = useDrag({
     type,
     item: {
       index,
@@ -40,9 +40,15 @@ const DraggableTabNode = ({ index, children, moveNode, canDragEvent, canDropEven
   drop(drag(ref));
 
   // Style
-  const style = {};
+  const style = {
+    opacity: 1
+  };
   if (isOver) {
-    style.transition = 'all 0.3s';
+    style.color = '#1677ff';
+  }
+  if (isDragging) {
+    style.opacity = 0;
+    style.transition = 'all 0.8s';
   }
   return (
     <div ref={ref} style={style}>
