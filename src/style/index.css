@@ -24,3 +24,7 @@
 .echart-tooltip-zIndex {
   z-index: 8 !important;
 }
+
+.dropping {
+  transition: all 0.3s;
+}

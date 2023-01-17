@@ -1,7 +1,7 @@
 import React, { lazy } from 'react';
 import { createHashRouter } from "react-router-dom";
 import LoginRoutes from './login';
-import { BankOutlined, CopyOutlined, CodeOutlined, AreaChartOutlined } from '@ant-design/icons';
+import { BankOutlined, CopyOutlined, CodeOutlined, AreaChartOutlined, AntDesignOutlined } from '@ant-design/icons';
 
 const ErrorPage = lazy(() => import('./../error-page'));
 const AllLayout = lazy(() => import('./../layout/AllLayout'));
@@ -11,6 +11,7 @@ const PageWorkplace = lazy(() => import('../pages/pageIndex/PageWorkplace'));
 const PageCopy = lazy(() => import('../pages/pageCopy/PageCopy'));
 const PageCode = lazy(() => import('../pages/pageCode/PageCode'));
 const PageEcharts = lazy(() => import('../pages/pageEcharts/PageEcharts'));
+const PageDraggableTabs = lazy(() => import('../pages/pageAntd/PageDraggableTabs'));
 
 export const routerList = [
   {
@@ -86,6 +87,23 @@ export const routerList = [
               icon: <AreaChartOutlined />,
               isHideBreadcrumb: true,
             }
+          },
+          {
+            path: '/antd',
+            redirect: "/antd/pageDraggableTabs",
+            meta: {
+              title: 'antd',
+              icon: <AntDesignOutlined />,
+            },
+            children: [
+              {
+                path: '/antd/pageDraggableTabs',
+                element: <PageDraggableTabs />,
+                meta: {
+                  title: '编辑拖拽Tabs',
+                }
+              },
+            ]
           },
         ],
       },

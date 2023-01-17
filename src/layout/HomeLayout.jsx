@@ -4,6 +4,7 @@ import { Layout, Menu, Spin, Breadcrumb, Tabs } from 'antd';
 import { Outlet, useNavigate, useLocation, Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { useTranslation } from 'react-i18next';
+import cloneDeep from 'lodash.clonedeep';
 import ToggleLang from '../components/ToggleLang';
 import Cookies from 'js-cookie';
 import { addPrefixName, getFinalValue } from '../utils/index';
@@ -109,7 +110,7 @@ const HomeLayout = () => {
 	};
 	const tabsOnEdit = (targetKey, action) => {
 		if (action === 'remove') {
-			const curItems = JSON.parse(JSON.stringify(tabsItems))
+			const curItems = cloneDeep(tabsItems)
       const curIndex = curItems.findIndex(x => x.key === targetKey)
 			curItems.splice(curIndex, 1)
 			window.localStorage.setItem(addPrefixName('tabs'), JSON.stringify(curItems))
