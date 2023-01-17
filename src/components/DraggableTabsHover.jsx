@@ -58,7 +58,7 @@ const DraggableTabNode = ({ index, children, moveNode, canDragEvent, canDropEven
     </div>
   );
 };
-const DraggableTabs = (props) => {
+const DraggableTabsHover = (props) => {
   const { items = [], onDragEndEvent, canDragEvent, canDropEvent } = props;
   const [order, setOrder] = useState([]);
   const moveTabNode = (dragKey, hoverKey) => {
@@ -113,4 +113,4 @@ const DraggableTabs = (props) => {
   );
 };
 
-export default DraggableTabs;
+export default DraggableTabsHover;

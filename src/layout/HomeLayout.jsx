@@ -1,6 +1,6 @@
 import React, { useState, Suspense } from 'react';
 import { MenuUnfoldOutlined, MenuFoldOutlined } from '@ant-design/icons';
-import { Layout, Menu, Spin, Breadcrumb, Tabs } from 'antd';
+import { Layout, Menu, Spin, Breadcrumb } from 'antd';
 import { Outlet, useNavigate, useLocation, Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { useTranslation } from 'react-i18next';
@@ -13,6 +13,7 @@ import { setUserInfo } from '../store/userInfo';
 import { routerList } from './../router/index';
 import { searchShowMenuRoutes, showMenuRoutesToMenuItems } from './../utils/router';
 import config from '../config/index';
+import DraggableTabsHover from '../components/DraggableTabsHover';
 
 const homePath = '/home/analysis'
 const { Header, Content, Sider } = Layout;
@@ -122,6 +123,26 @@ const HomeLayout = () => {
 			}
     }
 	}
+	const tabsOnDragEndEvent = (keys) => {
+    const list = [];
+    keys.forEach(key => {
+      list.push(tabsItems.find(x => x.key === key))
+    });
+    setTabsItems(list)
+		window.localStorage.setItem(addPrefixName('tabs'), JSON.stringify(list))
+  }
+  const tabsCanDragEvent = (key) => {
+    const cur = tabsItems.find(x => x.key === key)
+    let res = true
+    if (cur.hasOwnProperty('closable') && !cur.closable) res = false
+    return res
+  }
+  const tabsCanDropEvent = (key) => {
+    const cur = tabsItems.find(x => x.key === key)
+    let res = true
+    if (cur.hasOwnProperty('closable') && !cur.closable) res = false
+    return res
+  }
 
   return (
 		<>
@@ -168,7 +189,21 @@ const HomeLayout = () => {
 					>
 						{isShowTabs && (
 							<div style={{height: '40px'}}>
-								<Tabs defaultActiveKey={location.pathname} activeKey={location.pathname} items={tabsItems} onChange={tabsOnChange} onEdit={tabsOnEdit} type="editable-card" hideAdd tabBarGutter={0} tabBarStyle={{margin: 0}} style={{position: 'fixed', top: '64px', left: collapsed ? '80px': '200px', right: 0, zIndex: 10}} className='bg-white' />
+								<DraggableTabsHover
+									defaultActiveKey={location.pathname}
+									activeKey={location.pathname}
+									items={tabsItems}
+									onChange={tabsOnChange}
+									onEdit={tabsOnEdit}
+									onDragEndEvent={tabsOnDragEndEvent}
+									canDragEvent={tabsCanDragEvent}
+									canDropEvent={tabsCanDropEvent}
+									type="editable-card"
+									hideAdd
+									tabBarGutter={0}
+									tabBarStyle={{margin: 0}}
+									style={{position: 'fixed', top: '64px', left: collapsed ? '80px': '200px', right: 0, zIndex: 10}}
+									className='bg-white' />
 							</div>
 						)}
 						<Suspense fallback={
