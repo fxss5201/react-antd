@@ -63,6 +63,7 @@ const HomeLayout = () => {
 	const onTopMenuItemsEvent = ({ key }) => {
 		if (key === 'logout') {
 			Cookies.remove(addPrefixName('accessToken'));
+			window.localStorage.removeItem(addPrefixName('tabs'));
 			dispatch(setUserInfo({
 				name: ''
 			}))
