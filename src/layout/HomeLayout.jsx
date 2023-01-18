@@ -11,16 +11,14 @@ import { addPrefixName, getFinalValue } from '../utils/index';
 import { searchRoute } from '../utils/router';
 import { setUserInfo } from '../store/userInfo';
 import { routerList } from './../router/index';
-import { searchShowMenuRoutes, showMenuRoutesToMenuItems } from './../utils/router';
+import { searchShowMenuRoutes, showMenuRoutesToMenuItems, showMenuRoutesFilterAccess } from './../utils/router';
 import config from '../config/index';
 import DraggableTabsHover from '../components/DraggableTabsHover';
 
-const homePath = '/home/analysis'
 const { Header, Content, Sider } = Layout;
 
 let sideMenuList = searchShowMenuRoutes(routerList[0].children);
 sideMenuList = sideMenuList[0]?.children;
-const sideMenuItems = showMenuRoutesToMenuItems(sideMenuList);
 
 const HomeLayout = () => {
   const { t } = useTranslation();
@@ -28,7 +26,11 @@ const HomeLayout = () => {
 	const userInfo = useSelector(state => state.userInfo.value);
 	const location = useLocation();
 	const sideMenuDefaultOpenKeys = location.pathname.slice(1).split('/').map((x, i, arr) => `/${arr.slice(0, i + 1).join('/')}`);
-	const [sideMenuOpenKeys, setSideMenuOpenKeys] = useState(sideMenuDefaultOpenKeys)
+	const [sideMenuOpenKeys, setSideMenuOpenKeys] = useState(sideMenuDefaultOpenKeys);
+
+	const sideMenuListClone = cloneDeep(sideMenuList);
+	const sideMenuListFilterAccess = showMenuRoutesFilterAccess(sideMenuListClone, userInfo.access);
+	const sideMenuItems = showMenuRoutesToMenuItems(sideMenuListFilterAccess);
 
 	const route = searchRoute(location.pathname, routerList[0].children);
 	let breadcrumbList = []
@@ -65,7 +67,8 @@ const HomeLayout = () => {
 			Cookies.remove(addPrefixName('accessToken'));
 			window.localStorage.removeItem(addPrefixName('tabs'));
 			dispatch(setUserInfo({
-				name: ''
+				name: '',
+				access: []
 			}))
 			navigate('/login');
 		}
@@ -79,9 +82,10 @@ const HomeLayout = () => {
 	if (isShowTabs) {
 		localTabs = window.localStorage.getItem(addPrefixName('tabs'))
 		if (!localTabs) {
+			const homeRoute = searchRoute('/', routerList[0].children);
 			localTabs = [
 				{
-					key: homePath,
+					key: homeRoute.redirect || homeRoute.path,
 					label: '首页',
 					closable: false,
 				}

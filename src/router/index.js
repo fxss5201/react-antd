@@ -154,17 +154,16 @@ export const routerList = [
                 watermark: true,
                 access: 'normal',
                 meta: {
-                  title: '普通用户',
+                  title: 'normal用户',
                 }
               },
               {
                 path: '/access/pageMiddle',
                 element: <PageMiddle />,
-                requiresAuth: true,
                 watermark: true,
                 access: 'middle',
                 meta: {
-                  title: '中级用户',
+                  title: 'middle用户',
                 }
               },
               {
@@ -174,7 +173,7 @@ export const routerList = [
                 watermark: true,
                 access: 'admin',
                 meta: {
-                  title: '管理员',
+                  title: 'admin用户',
                 }
               }
             ]

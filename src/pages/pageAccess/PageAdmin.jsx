@@ -1,7 +1,7 @@
 const PageAdmin = () => {
   return (
     <>
-      PageAdmin: 用户管理员权限 可以看到该页面
+      PageAdmin: 管理员权限用户可以看到该页面
     </>
   )
 }

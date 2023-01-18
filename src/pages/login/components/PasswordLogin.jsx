@@ -45,16 +45,18 @@ const PasswordLogin = ({ activeKey }) => {
       remember: values.remember,
     })
 
-    let access = ['normal'];
-    if (values.username === 'middle') {
+    let access = [];
+    if (values.username === 'normal') {
+      access = ['normal'];
+    } else if (values.username === 'middle') {
       access = ['middle'];
     } else if (values.username === 'admin') {
       access = ['normal', 'middle', 'admin'];
     }
 
-    Cookies.set(addPrefixName('accessToken'), access, { expires: 7 })
+    Cookies.set(addPrefixName('accessToken'), values.username, { expires: 7 })
     dispatch(setUserInfo({
-      name: 'fxss',
+      name: values.username,
       access
     }));
     message.success(t('登陆成功'));
@@ -113,7 +115,7 @@ const PasswordLogin = ({ activeKey }) => {
           <li>账号normal，密码随意，对应的是normal权限</li>
           <li>账号middle，密码随意，对应的是middle权限</li>
           <li>账号admin，密码随意，对应的是admin权限（拥有normal和middle权限）</li>
-          <li>账号随意 ，密码随意，对应的是 normal 权限</li>
+          <li>账号随意 ，密码随意，对应的仅是requiresAuth: true的页面</li>
         </ul>
       </Form.Item>
     </Form>

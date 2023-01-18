@@ -17,7 +17,10 @@ const config = {
   // 主题色配置，放开的话，必须配置，否则主题色有问题
   // theme: {
   //   colorPrimary: '#00b96b'
-  // }
+  // },
+
+  // 没权限时跳转的 path ，默认值为'/403'，'/403' 或者 '/404'
+  noAccessPath: '/403',
 }
 
 export default config;

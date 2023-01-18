@@ -39,6 +39,25 @@ export const searchShowMenuRoutes = (routes = []) => {
 };
 
 /**
+ * 递归menu可展示的路由根据权限过滤
+ * @param {*} routes 路由列表
+ * @param {*} access 权限列表
+ * @returns array
+ */
+export const showMenuRoutesFilterAccess = (routes = [], access = []) => {
+  let result = [];
+	for (let item of routes) {
+    if (!item.access || access.includes(item.access)) {
+      if (item.children) {
+        item.children = showMenuRoutesFilterAccess(item.children, access)
+      }
+      result.push(item)
+    }
+	}
+	return result;
+}
+
+/**
  * @description 递归menu可展示的路由转换为Menu导航菜单
  * @param {Array} routes 路由列表
  * @returns array

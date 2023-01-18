@@ -14,8 +14,10 @@ import './i18n';
 
 const accessToken = Cookies.get(addPrefixName('accessToken'));
 
-let access = ['normal'];
-if (accessToken === 'middle') {
+let access = [];
+if (accessToken === 'normal') {
+  access = ['normal'];
+} else if (accessToken === 'middle') {
   access = ['middle'];
 } else if (accessToken === 'admin') {
   access = ['normal', 'middle', 'admin'];
@@ -23,7 +25,7 @@ if (accessToken === 'middle') {
 
 if (accessToken) {
   store.dispatch(setUserInfo({
-    name: 'fxss',
+    name: accessToken,
     access
   }));
 }

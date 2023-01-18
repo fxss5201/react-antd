@@ -1,7 +1,7 @@
 const PageNormal = () => {
   return (
     <>
-      PageNormal: 普通用户权限 可以看到该页面
+      PageNormal: normal权限用户可以看到该页面
     </>
   )
 }

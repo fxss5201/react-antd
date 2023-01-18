@@ -33,14 +33,16 @@ const RouterExtend = (props) => {
 	const watermarkChildren = <Watermark content={route.watermark ? (getType(route.watermark) === 'boolean' ? config.watermark : route.watermark) : ''}>{ props.children }</Watermark>;
 
 	// * 判断当前路由是否需要访问权限(不需要权限直接放行)
-	if (!route.requiresAuth) return watermarkChildren;
+	if (!route.requiresAuth && !route.access) return watermarkChildren;
 
 	// * 判断是否有Token
   const accessToken = Cookies.get(addPrefixName('accessToken'));
 	if (!accessToken) return <Navigate to="/login" replace />;
 
-	const routeAccess = route.access ? route.access : 'normal';
-	if (!userInfo.access.includes(routeAccess)) return <Navigate to="/403" />;
+	if (route.access) {
+		const noAccessPath = config.noAccessPath || '/403';
+		if (!userInfo.access.includes(route.access)) return <Navigate to={noAccessPath} />;
+	}
 
 	// 当前账号有权限返回 Router，正常访问页面
 	return watermarkChildren;
