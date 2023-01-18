@@ -1,0 +1,1 @@
+{"version":3,"file":"static/js/945.59d0c1f6.chunk.js","mappings":"oIAQA,UARmB,WACjB,OACE,8BAAE,wFAIN,C","sources":["pages/pageAccess/PageMiddle.jsx"],"sourcesContent":["const PageMiddle = () => {\n  return (\n    <>\n      PageMiddle: middle权限用户可以看到该页面\n    </>\n  )\n}\n\nexport default PageMiddle;\n"],"names":[],"sourceRoot":""}

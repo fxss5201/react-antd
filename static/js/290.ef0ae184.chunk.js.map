@@ -1,0 +1,1 @@
+{"version":3,"file":"static/js/290.ef0ae184.chunk.js","mappings":"oIAQA,UARkB,WAChB,OACE,8BAAE,sCAIN,C","sources":["pages/pageUser/PageUsers.jsx"],"sourcesContent":["const PageUsers = () => {\n  return (\n    <>\n      PageUsers 用户管理\n    </>\n  )\n}\n\nexport default PageUsers;\n"],"names":[],"sourceRoot":""}
