@@ -32,7 +32,7 @@ const HomeLayout = () => {
 
 	const route = searchRoute(location.pathname, routerList[0].children);
 	let breadcrumbList = []
-	const isShowBreadcrumb = config.isShowBreadcrumb && !route.meta?.isHideBreadcrumb
+	const isShowBreadcrumb = config.isShowBreadcrumb && !route.isHideBreadcrumb
 	if (isShowBreadcrumb) {
 		breadcrumbList = sideMenuDefaultOpenKeys.map(x => {
 			const curRoute = searchRoute(x, routerList[0].children);
@@ -74,7 +74,7 @@ const HomeLayout = () => {
 		navigate(key);
 	}
 
-	const isShowTabs = config.isShowTabs && !route.meta?.isHideTabs
+	const isShowTabs = config.isShowTabs && !route.isHideTabs
 	let localTabs
 	if (isShowTabs) {
 		localTabs = window.localStorage.getItem(addPrefixName('tabs'))

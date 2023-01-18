@@ -13,9 +13,18 @@ import './i18n';
 // import reportWebVitals from './reportWebVitals';
 
 const accessToken = Cookies.get(addPrefixName('accessToken'));
+
+let access = ['normal'];
+if (accessToken === 'middle') {
+  access = ['middle'];
+} else if (accessToken === 'admin') {
+  access = ['normal', 'middle', 'admin'];
+}
+
 if (accessToken) {
   store.dispatch(setUserInfo({
-    name: 'fxss'
+    name: 'fxss',
+    access
   }));
 }
 

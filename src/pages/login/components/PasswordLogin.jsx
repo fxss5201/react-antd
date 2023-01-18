@@ -44,9 +44,18 @@ const PasswordLogin = ({ activeKey }) => {
       password: encryptFn(values.password),
       remember: values.remember,
     })
-    Cookies.set(addPrefixName('accessToken'), 'accessToken123', { expires: 7 })
+
+    let access = ['normal'];
+    if (values.username === 'middle') {
+      access = ['middle'];
+    } else if (values.username === 'admin') {
+      access = ['normal', 'middle', 'admin'];
+    }
+
+    Cookies.set(addPrefixName('accessToken'), access, { expires: 7 })
     dispatch(setUserInfo({
-      name: 'fxss'
+      name: 'fxss',
+      access
     }));
     message.success(t('登陆成功'));
     navigate('/');
@@ -97,6 +106,15 @@ const PasswordLogin = ({ activeKey }) => {
       <Form.Item>
         <Button type="primary" htmlType="submit" className="w-full" onClick={() => setIsValidate(true)}>{t('Log in')}</Button>
         <div className='mt-3'>{t('Or')} <Link to="/login/register" className="a" style={{color: colorPrimary}}>{t('register now!')}</Link></div>
+      </Form.Item>
+
+      <Form.Item>
+        <ul style={{listStyle: 'decimal', paddingLeft: '14px'}}>
+          <li>账号normal，密码随意，对应的是normal权限</li>
+          <li>账号middle，密码随意，对应的是middle权限</li>
+          <li>账号admin，密码随意，对应的是admin权限（拥有normal和middle权限）</li>
+          <li>账号随意 ，密码随意，对应的是 normal 权限</li>
+        </ul>
       </Form.Item>
     </Form>
   );

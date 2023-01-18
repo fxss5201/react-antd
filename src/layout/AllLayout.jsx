@@ -5,12 +5,12 @@ import RouterExtend from '../router/RouterExtend';
 const AllLayout = () => {
   return (
     <>
+      <ScrollRestoration
+        getKey={(location) => {
+          return location.pathname;
+        }}
+      />
       <RouterExtend>
-        <ScrollRestoration
-          getKey={(location) => {
-            return location.pathname;
-          }}
-        />
         <Outlet />
       </RouterExtend>
     </>
