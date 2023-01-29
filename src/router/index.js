@@ -1,7 +1,7 @@
 import React, { lazy } from 'react';
 import { createHashRouter } from "react-router-dom";
 import LoginRoutes from './login';
-import { BankOutlined, CopyOutlined, CodeOutlined, AreaChartOutlined, AntDesignOutlined, UserOutlined, KeyOutlined } from '@ant-design/icons';
+import { BankOutlined, CopyOutlined, CodeOutlined, AreaChartOutlined, AntDesignOutlined, UserOutlined, KeyOutlined, ApiOutlined } from '@ant-design/icons';
 
 const ErrorPage = lazy(() => import('./../error-page'));
 const AllLayout = lazy(() => import('./../layout/AllLayout'));
@@ -20,6 +20,7 @@ const PageAdmin = lazy(() => import('../pages/pageAccess/PageAdmin'));
 const Page403 = lazy(() => import('../pages/pageCommon/Page403'));
 const Page404 = lazy(() => import('../pages/pageCommon/Page404'));
 const Page500 = lazy(() => import('../pages/pageCommon/Page500'));
+const PageMockUsers = lazy(() => import('../pages/pageMock/PageMockUsers'));
 
 export const routerList = [
   {
@@ -135,6 +136,25 @@ export const routerList = [
                 watermark: true,
                 meta: {
                   title: '用户管理',
+                }
+              }
+            ]
+          },
+          {
+            path: '/mock',
+            redirect: '/mock/users',
+            meta: {
+              title: 'mock示例',
+              icon: <ApiOutlined />,
+            },
+            children: [
+              {
+                path: '/mock/users',
+                element: <PageMockUsers />,
+                requiresAuth: true,
+                watermark: true,
+                meta: {
+                  title: 'mock用户',
                 }
               }
             ]

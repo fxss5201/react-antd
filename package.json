@@ -6,12 +6,15 @@
   "private": true,
   "dependencies": {
     "@ant-design/icons": "^4.8.0",
+    "@koa/router": "^12.0.0",
     "@reduxjs/toolkit": "^1.9.0",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
     "ahooks": "^3.7.2",
     "antd": "^5.1.2",
+    "axios": "^1.2.6",
+    "chalk": "^4.1.1",
     "classnames": "^2.3.2",
     "crypto-js": "^4.1.1",
     "echarts": "^5.4.1",
@@ -20,6 +23,7 @@
     "husky": "^8.0.2",
     "i18next": "^22.0.6",
     "js-cookie": "^3.0.1",
+    "koa": "^2.14.1",
     "lint-staged": "^13.0.3",
     "localforage": "^1.10.0",
     "lodash.clonedeep": "^4.5.0",
@@ -44,9 +48,11 @@
       "prettier --write"
     ]
   },
+  "port": "8888",
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
+    "mock": "nodemon",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "predeploy": "npm run build",
@@ -78,6 +84,7 @@
   },
   "devDependencies": {
     "autoprefixer": "^10.4.13",
+    "nodemon": "^2.0.20",
     "postcss": "^8.4.19",
     "redux-devtools": "^3.7.0",
     "tailwindcss": "^3.2.4"
