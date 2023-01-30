@@ -21,6 +21,7 @@ const Page403 = lazy(() => import('../pages/pageCommon/Page403'));
 const Page404 = lazy(() => import('../pages/pageCommon/Page404'));
 const Page500 = lazy(() => import('../pages/pageCommon/Page500'));
 const PageMockUsers = lazy(() => import('../pages/pageMock/PageMockUsers'));
+const PageMockUserList = lazy(() => import('../pages/pageMock/PageMockUserList'));
 
 export const routerList = [
   {
@@ -155,6 +156,15 @@ export const routerList = [
                 watermark: true,
                 meta: {
                   title: 'mock用户',
+                }
+              },
+              {
+                path: '/mock/userList',
+                element: <PageMockUserList />,
+                requiresAuth: true,
+                watermark: true,
+                meta: {
+                  title: 'mock列表',
                 }
               }
             ]

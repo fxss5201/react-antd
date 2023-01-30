@@ -1,4 +1,5 @@
 const Koa = require("koa");
+const bodyParser = require("koa-bodyparser");
 const chalk = require("chalk");
 const dayjs = require("dayjs");
 const controllers = require("./controller");
@@ -11,6 +12,9 @@ const app = new Koa();
 // const logInfo = () => chalk.blue(" ℹ ")
 // const logWarning = () => chalk.yellow(" ⚠ ")
 
+app.use(controllers());
+app.use(bodyParser());
+
 app.use(async (ctx, next) => {
   console.log(
     chalk.blue(" ℹ "),
@@ -19,8 +23,6 @@ app.use(async (ctx, next) => {
   );
   await next();
 });
-
-app.use(controllers());
 
 app.listen(port);
 console.log(chalk.green(`app started at port ${port}:`), chalk.blue(`http://localhost:${port}`));

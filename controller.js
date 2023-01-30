@@ -2,7 +2,7 @@
 const path = require("path");
 const fs = require("fs");
 const chalk = require("chalk");
-const { port } = require("./package.json");
+const { port, timeout } = require("./package.json");
 
 function addControllers(router, dir) {
   const fullpath = path.join(__dirname + '/' + dir);
@@ -39,13 +39,18 @@ function addRoutes(router, routes) {
       routePath = routeList[1];
     }
     let routeContent = routes[route];
-    if (Object.prototype.toString.call(routeContent).slice(8, -1).toLowerCase() !== 'function') {
-      router[routeMethod](routePath, ctx => {
-        ctx.body = routeContent
-      });
-    } else {
-      router[routeMethod](routePath, routeContent);
-    }
+    router[routeMethod](routePath, (ctx, next) => {
+      return new Promise((resolve, reject) => {
+        setTimeout(() => {
+          if (Object.prototype.toString.call(routeContent).slice(8, -1).toLowerCase() !== 'function') {
+            ctx.body = routeContent
+          } else {
+            routeContent(ctx, next)
+          }
+          resolve()
+        }, timeout || 0)
+      })
+    });
     console.log(chalk.green(`注册路由: ${chalk.yellow(routeMethod.toUpperCase())}`), chalk.blue(`http://localhost:${port}${routePath}`));
   }
 }
