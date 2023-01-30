@@ -1,6 +1,7 @@
 import React from 'react';
 import { Outlet, ScrollRestoration } from 'react-router-dom';
 import RouterExtend from '../router/RouterExtend';
+import { AliveScope } from 'react-activation';
 
 const AllLayout = () => {
   return (
@@ -10,9 +11,11 @@ const AllLayout = () => {
           return location.pathname;
         }}
       />
-      <RouterExtend>
-        <Outlet />
-      </RouterExtend>
+      <AliveScope>
+        <RouterExtend>
+          <Outlet />
+        </RouterExtend>
+      </AliveScope>
     </>
   )
 };

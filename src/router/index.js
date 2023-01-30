@@ -1,7 +1,11 @@
 import React, { lazy } from 'react';
 import { createHashRouter } from "react-router-dom";
+import KeepAlive from 'react-activation';
 import LoginRoutes from './login';
 import { BankOutlined, CopyOutlined, CodeOutlined, AreaChartOutlined, AntDesignOutlined, UserOutlined, KeyOutlined, ApiOutlined } from '@ant-design/icons';
+// 如果懒加载的话第一次点击不能渲染出组件,要缓存的路由不能懒加载！
+// const PageMockUserList = lazy(() => import('../pages/pageMock/PageMockUserList'));
+import PageMockUserList from '../pages/pageMock/PageMockUserList';
 
 const ErrorPage = lazy(() => import('./../error-page'));
 const AllLayout = lazy(() => import('./../layout/AllLayout'));
@@ -21,7 +25,6 @@ const Page403 = lazy(() => import('../pages/pageCommon/Page403'));
 const Page404 = lazy(() => import('../pages/pageCommon/Page404'));
 const Page500 = lazy(() => import('../pages/pageCommon/Page500'));
 const PageMockUsers = lazy(() => import('../pages/pageMock/PageMockUsers'));
-const PageMockUserList = lazy(() => import('../pages/pageMock/PageMockUserList'));
 
 export const routerList = [
   {
@@ -160,7 +163,9 @@ export const routerList = [
               },
               {
                 path: '/mock/userList',
-                element: <PageMockUserList />,
+                // KeepAlive需要添加唯一的id
+                // saveScrollPosition保存滚动位置：https://github.com/CJY0208/react-activation/blob/master/README_CN.md#%E4%BF%9D%E5%AD%98%E6%BB%9A%E5%8A%A8%E4%BD%8D%E7%BD%AE%E9%BB%98%E8%AE%A4%E4%B8%BA-true
+                element: <KeepAlive id="PageMockUserList" saveScrollPosition="screen"><PageMockUserList /></KeepAlive>,
                 requiresAuth: true,
                 watermark: true,
                 meta: {
