@@ -38,29 +38,30 @@ const PageMockUsers = () => {
   if (error) {
     return <div>failed to load</div>;
   }
-  return <div style={{height: 'calc(100vh - 198px)'}}>
-    <Table
-      loading={loading}
-      columns={columns}
-      dataSource={data?.data?.list || []}
-      pagination={{ 
-        position: ['bottomCenter'],
-        total: data?.data?.total || 0,
-        showSizeChanger: true,
-        showQuickJumper: true,
-        showTotal: (total) => `总共${data?.data?.total || 0}条`,
-        current: pageCurrent,
-        pageSize: pageSize,
-        onChange: (page, pageSize) => {
-          setPageCurrent(page);
-          setPageSize(pageSize);
-          getUsersRun(page, pageSize);
-        }
-      }}
-      scroll={{ scrollToFirstRowOnChange: true, y: 'calc(100vh - 298px)' }}
-      bordered
-    />
-  </div>;
+  return <Table
+    sticky={{
+      offsetHeader: 104
+    }}
+    loading={loading}
+    columns={columns}
+    dataSource={data?.data?.list || []}
+    pagination={{ 
+      position: ['bottomCenter'],
+      total: data?.data?.total || 0,
+      showSizeChanger: true,
+      showQuickJumper: true,
+      showTotal: (total) => `总共${data?.data?.total || 0}条`,
+      current: pageCurrent,
+      pageSize: pageSize,
+      onChange: (page, pageSize) => {
+        setPageCurrent(page);
+        setPageSize(pageSize);
+        getUsersRun(page, pageSize);
+        document.documentElement.scrollTop = 0;
+      }
+    }}
+    bordered
+  />;
 }
 
 export default PageMockUsers;
