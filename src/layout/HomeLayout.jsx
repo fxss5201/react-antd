@@ -13,6 +13,7 @@ import { setUserInfo } from '../store/userInfo';
 import { routerList } from './../router/index';
 import { searchShowMenuRoutes, showMenuRoutesToMenuItems, showMenuRoutesFilterAccess } from './../utils/router';
 import config from '../config/index';
+import DocsLink from '../components/DocsLink';
 import DraggableTabsHover from '../components/DraggableTabsHover';
 
 const { Header, Content, Sider } = Layout;
@@ -164,6 +165,7 @@ const HomeLayout = () => {
 					<div className='flex-auto flex items-center justify-end'>
 						{config.isShowToggleLang && <ToggleLang addClass="text-gray-400 hover:text-white" />}
 						<Menu theme="dark" mode="horizontal" items={topMenuItems} onClick={onTopMenuItemsEvent} />
+						<DocsLink></DocsLink>
 					</div>
 				</Header>
 				<Layout>
