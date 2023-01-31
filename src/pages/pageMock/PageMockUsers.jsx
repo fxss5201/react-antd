@@ -1,15 +1,7 @@
 import { useState } from 'react';
-import axios from 'axios';
 import { useRequest } from 'ahooks';
 import { Table, Button, Modal, Spin } from 'antd';
-
-function getUsers() {
-  return axios.get('/api/users')
-}
-
-function getUsersDetail(id) {
-  return axios.get(`/api/users/${id}`)
-}
+import { getUsers, getUsersDetail } from '../../apis/users';
 
 const PageMockUsers = () => {
   const { data = {}, error, loading } = useRequest(getUsers);

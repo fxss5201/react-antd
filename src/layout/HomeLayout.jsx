@@ -159,7 +159,7 @@ const HomeLayout = () => {
 					</div>
 					<div className='flex-auto flex items-center justify-end'>
 						{config.isShowToggleLang && <ToggleLang addClass="text-gray-400 hover:text-white" />}
-						<Dropdown menu={{
+						<Dropdown arrow placement="bottom" menu={{
 							theme: 'dark',
 							items: topMenuItems,
 							onClick: onTopMenuItemsEvent,
