@@ -47,6 +47,7 @@ function addRoutes(router, routes) {
           } else {
             routeContent(ctx, next)
           }
+          next()
           resolve()
         }, timeout || 0)
       })

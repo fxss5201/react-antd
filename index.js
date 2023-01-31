@@ -12,16 +12,24 @@ const app = new Koa();
 // const logInfo = () => chalk.blue(" ℹ ")
 // const logWarning = () => chalk.yellow(" ⚠ ")
 
-app.use(controllers());
 app.use(bodyParser());
+app.use(controllers());
 
-app.use(async (ctx, next) => {
-  console.log(
-    chalk.blue(" ℹ "),
-    chalk.blue(`请求： ${chalk.yellow(ctx.request.method)} ${ctx.request.url}`),
-    dayjs().format("YYYY-MM-DD HH:mm:ss")
-  );
-  await next();
+app.use((ctx, next) => {
+  if (ctx.request.method === 'GET') {
+    console.log(
+      chalk.blue(" ℹ "),
+      chalk.blue(`请求： ${chalk.yellow(ctx.request.method)} ${ctx.request.url}`),
+      dayjs().format("YYYY-MM-DD HH:mm:ss")
+    );
+  } else {
+    console.log(
+      chalk.blue(" ℹ "),
+      chalk.blue(`请求： ${chalk.yellow(ctx.request.method)} ${ctx.request.url} ${JSON.stringify(ctx.request.body)}`),
+      dayjs().format("YYYY-MM-DD HH:mm:ss")
+    );
+  }
+  next();
 });
 
 app.listen(port);

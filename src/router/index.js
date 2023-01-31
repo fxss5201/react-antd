@@ -8,6 +8,7 @@ import PageOutlet from '../pages/pageCommon/PageOutlet';
 // 如果懒加载的话第一次点击不能渲染出组件,要缓存的路由不能懒加载！
 // const PageMockUserList = lazy(() => import('../pages/pageMock/PageMockUserList'));
 import PageMockUserList from '../pages/pageMock/PageMockUserList';
+import PageMockUserListPost from '../pages/pageMock/PageMockUserListPost';
 import PageKeepAlive from '../pages/pageKeepAlive/PageKeepAlive';
 
 const ErrorPage = lazy(() => import('./../error-page'));
@@ -180,7 +181,16 @@ export const routerList = [
                 meta: {
                   title: 'mock列表',
                 }
-              }
+              },
+              {
+                path: '/mock/userListPost',
+                element: <KeepAlive id="PageMockUserListPost" saveScrollPosition="screen"><PageMockUserListPost /></KeepAlive>,
+                requiresAuth: true,
+                watermark: true,
+                meta: {
+                  title: 'mock列表',
+                }
+              },
             ]
           },
           {

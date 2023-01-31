@@ -1,12 +1,12 @@
 import { useRequest } from 'ahooks';
 import { Table } from 'antd';
 import { useState } from 'react';
-import { getUsersList } from '../../apis/users';
+import { getUsersListPost } from '../../apis/users';
 
-const PageMockUserList = () => {
+const PageMockUserListPost = () => {
   const [pageCurrent, setPageCurrent] = useState(1);
   const [pageSize, setPageSize] = useState(10);
-  const { data = {}, error, loading, run: getUsersRun } = useRequest(getUsersList, {
+  const { data = {}, error, loading, run: getUsersRun } = useRequest(getUsersListPost, {
     defaultParams: [{
       page: pageCurrent,
       pageSize
@@ -32,7 +32,7 @@ const PageMockUserList = () => {
     return <div>failed to load</div>;
   }
   return <>
-    <div className='my-3'>本页面使用 react-activation 进行了路由缓存，get请求数据</div>
+    <div className='my-3'>本页面使用 react-activation 进行了路由缓存，post请求数据</div>
     <Table
       sticky={{
         offsetHeader: 104
@@ -60,4 +60,4 @@ const PageMockUserList = () => {
   </>
 }
 
-export default PageMockUserList;
+export default PageMockUserListPost;

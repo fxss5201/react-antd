@@ -13,3 +13,7 @@ export const getUsersList = (params) => {
     params
   })
 }
+
+export const getUsersListPost = (params) => {
+  return axios.post('/api/usersList', params)
+}
