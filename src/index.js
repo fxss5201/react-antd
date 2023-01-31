@@ -26,7 +26,8 @@ if (accessToken === 'normal') {
 if (accessToken) {
   store.dispatch(setUserInfo({
     name: accessToken,
-    access
+    header: 'https://avatars.githubusercontent.com/u/21698289?s=48&v=4',
+    access,
   }));
 }
 

@@ -5,6 +5,7 @@ export const userInfoSlice = createSlice({
   initialState: {
     value: {
       name: '',
+      header: '',
       access: []
     }
   },

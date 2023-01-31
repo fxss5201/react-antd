@@ -57,7 +57,8 @@ const PasswordLogin = ({ activeKey }) => {
     Cookies.set(addPrefixName('accessToken'), values.username, { expires: 7 })
     dispatch(setUserInfo({
       name: values.username,
-      access
+      header: 'https://avatars.githubusercontent.com/u/21698289?s=48&v=4',
+      access,
     }));
     message.success(t('登陆成功'));
     navigate('/');

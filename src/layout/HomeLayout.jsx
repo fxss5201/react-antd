@@ -1,6 +1,6 @@
 import React, { useState, Suspense } from 'react';
 import { MenuUnfoldOutlined, MenuFoldOutlined } from '@ant-design/icons';
-import { Layout, Menu, Spin, Breadcrumb } from 'antd';
+import { Layout, Menu, Spin, Breadcrumb, Dropdown, Avatar } from 'antd';
 import { Outlet, useNavigate, useLocation, Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { useTranslation } from 'react-i18next';
@@ -51,14 +51,8 @@ const HomeLayout = () => {
 
 	const topMenuItems = [
 		{
-			key: 'user',
-			label: userInfo.name,
-			children: [
-				{
-					key: 'logout',
-					label: '退出登录',
-				}
-			]
+			key: 'logout',
+			label: '退出登录',
 		}
 	];
 	const dispatch = useDispatch();
@@ -69,6 +63,7 @@ const HomeLayout = () => {
 			window.localStorage.removeItem(addPrefixName('tabs'));
 			dispatch(setUserInfo({
 				name: '',
+				Header: '',
 				access: []
 			}))
 			navigate('/login');
@@ -164,7 +159,16 @@ const HomeLayout = () => {
 					</div>
 					<div className='flex-auto flex items-center justify-end'>
 						{config.isShowToggleLang && <ToggleLang addClass="text-gray-400 hover:text-white" />}
-						<Menu theme="dark" mode="horizontal" items={topMenuItems} onClick={onTopMenuItemsEvent} />
+						<Dropdown menu={{
+							theme: 'dark',
+							items: topMenuItems,
+							onClick: onTopMenuItemsEvent,
+						}}>
+							<div className='px-4 text-gray-400 hover:text-white cursor-pointer flex items-center'>
+								<Avatar src={userInfo.header} size={24} />
+								<span className='ml-1'>{userInfo.name}</span>
+							</div>
+						</Dropdown>
 						<DocsLink></DocsLink>
 					</div>
 				</Header>

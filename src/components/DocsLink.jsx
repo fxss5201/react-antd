@@ -6,7 +6,7 @@ const DocsLink = ({className}) => {
   return (
     <a className={classNames(className, 'flex', 'a')} href='https://fxss5201.github.io/react-antd-docs' target='_blank' rel="noreferrer">
       <LinkOutlined />
-      <span>文档地址</span>
+      <span className='ml-1'>文档地址</span>
     </a>
   )
 }
