@@ -2,14 +2,18 @@ import React, { lazy } from 'react';
 import { createHashRouter } from "react-router-dom";
 import KeepAlive from 'react-activation';
 import LoginRoutes from './login';
-import { BankOutlined, CopyOutlined, CodeOutlined, AreaChartOutlined, AntDesignOutlined, UserOutlined, KeyOutlined, ApiOutlined } from '@ant-design/icons';
+import { BankOutlined, CopyOutlined, CodeOutlined, AreaChartOutlined, AntDesignOutlined, UserOutlined, KeyOutlined, ApiOutlined, LockOutlined } from '@ant-design/icons';
 // 如果懒加载的话第一次点击不能渲染出组件,要缓存的路由不能懒加载！
 // const PageMockUserList = lazy(() => import('../pages/pageMock/PageMockUserList'));
 import PageMockUserList from '../pages/pageMock/PageMockUserList';
+import PageKeepAlive from '../pages/pageKeepAlive/PageKeepAlive';
 
 const ErrorPage = lazy(() => import('./../error-page'));
 const AllLayout = lazy(() => import('./../layout/AllLayout'));
 const HomeLayout = lazy(() => import('./../layout/HomeLayout'));
+const Page403 = lazy(() => import('../pages/pageCommon/Page403'));
+const Page404 = lazy(() => import('../pages/pageCommon/Page404'));
+const Page500 = lazy(() => import('../pages/pageCommon/Page500'));
 const PageAnalysis = lazy(() => import('../pages/pageIndex/PageAnalysis'));
 const PageWorkplace = lazy(() => import('../pages/pageIndex/PageWorkplace'));
 const PageCopy = lazy(() => import('../pages/pageCopy/PageCopy'));
@@ -21,10 +25,8 @@ const PageUsers = lazy(() => import('../pages/pageUser/PageUsers'));
 const PageNormal = lazy(() => import('../pages/pageAccess/PageNormal'));
 const PageMiddle = lazy(() => import('../pages/pageAccess/PageMiddle'));
 const PageAdmin = lazy(() => import('../pages/pageAccess/PageAdmin'));
-const Page403 = lazy(() => import('../pages/pageCommon/Page403'));
-const Page404 = lazy(() => import('../pages/pageCommon/Page404'));
-const Page500 = lazy(() => import('../pages/pageCommon/Page500'));
 const PageMockUsers = lazy(() => import('../pages/pageMock/PageMockUsers'));
+const PageKeepAliveComponent = lazy(() => import('../pages/pageKeepAlive/PageKeepAliveComponent'));
 
 export const routerList = [
   {
@@ -209,6 +211,30 @@ export const routerList = [
                 access: 'admin',
                 meta: {
                   title: 'admin用户',
+                }
+              }
+            ]
+          },
+          {
+            path: '/keepalive',
+            redirect: '/keepalive/keepalive',
+            meta: {
+              title: '缓存示例',
+              icon: <LockOutlined />,
+            },
+            children: [
+              {
+                path: '/keepalive/keepalive',
+                element: <KeepAlive id="PageKeepAlive" saveScrollPosition="screen"><PageKeepAlive /></KeepAlive>,
+                meta: {
+                  title: '路由缓存',
+                }
+              },
+              {
+                path: '/keepalive/keepalivecomponent',
+                element: <PageKeepAliveComponent />,
+                meta: {
+                  title: '组件缓存',
                 }
               }
             ]
