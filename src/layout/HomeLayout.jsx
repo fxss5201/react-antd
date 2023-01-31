@@ -39,6 +39,7 @@ const HomeLayout = () => {
 	if (isShowBreadcrumb) {
 		breadcrumbList = sideMenuDefaultOpenKeys.map(x => {
 			const curRoute = searchRoute(x, routerList[0].children);
+			// 此处是为了防止左侧menu菜单重新渲染的问题
 			if (curRoute.redirect) {
 				return {
 					...curRoute,

@@ -3,6 +3,8 @@ import { createHashRouter } from "react-router-dom";
 import KeepAlive from 'react-activation';
 import LoginRoutes from './login';
 import { BankOutlined, CopyOutlined, CodeOutlined, AreaChartOutlined, AntDesignOutlined, UserOutlined, KeyOutlined, ApiOutlined, LockOutlined } from '@ant-design/icons';
+import PageOutlet from '../pages/pageCommon/PageOutlet';
+
 // 如果懒加载的话第一次点击不能渲染出组件,要缓存的路由不能懒加载！
 // const PageMockUserList = lazy(() => import('../pages/pageMock/PageMockUserList'));
 import PageMockUserList from '../pages/pageMock/PageMockUserList';
@@ -31,6 +33,7 @@ const PageKeepAliveComponent = lazy(() => import('../pages/pageKeepAlive/PageKee
 export const routerList = [
   {
     path: "/",
+    // 使用 redirect 时，并且含有 element 时，element 中必须包含 <Outlet />
     redirect: "/home/analysis",
     errorElement: <ErrorPage />,
     element: <AllLayout />,
@@ -45,6 +48,7 @@ export const routerList = [
           {
             path: '/home',
             redirect: '/home/analysis',
+            element: <PageOutlet />,
             meta: {
               title: 'dashboard',
               icon: <BankOutlined />,
@@ -104,6 +108,7 @@ export const routerList = [
           {
             path: '/antd',
             redirect: "/antd/pageDraggableTabs",
+            element: <PageOutlet />,
             meta: {
               title: 'antd',
               icon: <AntDesignOutlined />,
@@ -121,6 +126,7 @@ export const routerList = [
           {
             path: '/user',
             redirect: '/user/userInfo',
+            element: <PageOutlet />,
             meta: {
               title: '用户中心',
               icon: <UserOutlined />,
@@ -149,6 +155,7 @@ export const routerList = [
           {
             path: '/mock',
             redirect: '/mock/users',
+            element: <PageOutlet />,
             meta: {
               title: 'mock示例',
               icon: <ApiOutlined />,
@@ -179,6 +186,7 @@ export const routerList = [
           {
             path: '/access',
             redirect: '/access/pageNormal',
+            element: <PageOutlet />,
             meta: {
               title: '权限演示',
               icon: <KeyOutlined />,
@@ -188,7 +196,7 @@ export const routerList = [
                 path: '/access/pageNormal',
                 element: <PageNormal />,
                 requiresAuth: true,
-                // Object 配置仅支持 user 属性数组配置，且自行保证配置的都是 store.getState().userInfo 中的 key 值
+                // Object 配置仅支持 user 属性数组配置，且自行保证配置的都是 store.getState().userInfo.value 中的 key 值
                 watermark: {
                   user: ['name', 'header', 'name']
                 },
@@ -225,6 +233,7 @@ export const routerList = [
           {
             path: '/keepalive',
             redirect: '/keepalive/keepalive',
+            element: <PageOutlet />,
             meta: {
               title: '缓存示例',
               icon: <LockOutlined />,
