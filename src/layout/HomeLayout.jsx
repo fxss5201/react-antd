@@ -173,7 +173,7 @@ const HomeLayout = () => {
 					</div>
 				</Header>
 				<Layout>
-					<Sider width={200} collapsible collapsed={collapsed} onCollapse={(value) => setCollapsed(value)} style={{position: 'fixed',left: 0,top: '64px',bottom: 0,zIndex: 10}}>
+					<Sider width={200} style={{position: 'fixed',left: 0,top: '64px',bottom: 0,zIndex: 10, overflow: 'auto'}}>
 						<Menu
 							theme="dark"
 							mode="inline"
