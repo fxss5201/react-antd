@@ -188,7 +188,10 @@ export const routerList = [
                 path: '/access/pageNormal',
                 element: <PageNormal />,
                 requiresAuth: true,
-                watermark: true,
+                // Object 配置仅支持 user 属性数组配置，且自行保证配置的都是 store.getState().userInfo 中的 key 值
+                watermark: {
+                  user: ['name', 'header', 'name']
+                },
                 access: 'normal',
                 meta: {
                   title: 'normal用户',
@@ -197,7 +200,9 @@ export const routerList = [
               {
                 path: '/access/pageMiddle',
                 element: <PageMiddle />,
-                watermark: true,
+                watermark: {
+                  user: ['name']
+                },
                 access: 'middle',
                 meta: {
                   title: 'middle用户',
@@ -207,7 +212,9 @@ export const routerList = [
                 path: '/access/pageAdmin',
                 element: <PageAdmin />,
                 requiresAuth: true,
-                watermark: true,
+                watermark: {
+                  user: ['name']
+                },
                 access: 'admin',
                 meta: {
                   title: 'admin用户',

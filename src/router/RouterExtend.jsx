@@ -30,7 +30,8 @@ const RouterExtend = (props) => {
 
   // TODO 在跳转路由之前，清除所有的请求
 
-	const watermarkChildren = <Watermark content={route.watermark ? (getType(route.watermark) === 'boolean' ? config.watermark : route.watermark) : ''}>{ props.children }</Watermark>;
+	let watermarkContent = route.watermark ? (getType(route.watermark) === 'object' ? route.watermark.user.map(key => userInfo[key]) : (getType(route.watermark) === 'boolean' ? config.watermark : route.watermark)) : '';
+	const watermarkChildren = <Watermark content={watermarkContent}>{ props.children }</Watermark>;
 
 	// * 判断当前路由是否需要访问权限(不需要权限直接放行)
 	if (!route.requiresAuth && !route.access) return watermarkChildren;
