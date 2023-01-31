@@ -16,19 +16,10 @@ app.use(bodyParser());
 app.use(controllers());
 
 app.use((ctx, next) => {
-  if (ctx.request.method === 'GET') {
-    console.log(
-      chalk.blue(" ℹ "),
-      chalk.blue(`请求： ${chalk.yellow(ctx.request.method)} ${ctx.request.url}`),
-      dayjs().format("YYYY-MM-DD HH:mm:ss")
-    );
-  } else {
-    console.log(
-      chalk.blue(" ℹ "),
-      chalk.blue(`请求： ${chalk.yellow(ctx.request.method)} ${ctx.request.url} ${JSON.stringify(ctx.request.body)}`),
-      dayjs().format("YYYY-MM-DD HH:mm:ss")
-    );
-  }
+  console.log(
+    chalk.blue(`请求：${chalk.yellow(ctx.request.method)} ${ctx.request.url}${ctx.request.method === 'GET' ? '' : ` ${JSON.stringify(ctx.request.body)}`}`),
+    dayjs().format("YYYY-MM-DD HH:mm:ss")
+  );
   next();
 });
 
