@@ -6,6 +6,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 import cloneDeep from 'lodash.clonedeep';
 import ToggleLang from '../components/ToggleLang';
+import ToggleFullscreen from '../components/ToggleFullscreen';
 import Cookies from 'js-cookie';
 import { addPrefixName, getFinalValue } from '../utils/index';
 import { searchRoute } from '../utils/router';
@@ -165,12 +166,13 @@ const HomeLayout = () => {
 							items: topMenuItems,
 							onClick: onTopMenuItemsEvent,
 						}}>
-							<div className='px-4 text-gray-400 hover:text-white cursor-pointer flex items-center'>
+							<div className='mx-4 text-gray-400 hover:text-white cursor-pointer flex items-center'>
 								<Avatar src={userInfo.header} size={24} />
 								<span className='ml-1'>{userInfo.name}</span>
 							</div>
 						</Dropdown>
-						<DocsLink></DocsLink>
+						<ToggleFullscreen />
+						<DocsLink className='ml-4' />
 					</div>
 				</Header>
 				<Layout>

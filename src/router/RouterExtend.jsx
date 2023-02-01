@@ -28,8 +28,6 @@ const RouterExtend = (props) => {
 
 	if (route.redirect) return <Navigate to={route.redirect} replace />;
 
-  // TODO 在跳转路由之前，清除所有的请求
-
 	let watermarkContent = route.watermark ? (getType(route.watermark) === 'object' ? route.watermark.user.map(key => userInfo[key]) : (getType(route.watermark) === 'boolean' ? config.watermark : route.watermark)) : '';
 	const watermarkChildren = <Watermark content={watermarkContent}>{ props.children }</Watermark>;
 
