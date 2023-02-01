@@ -81,7 +81,7 @@ export const routerList = [
             path: '/pageCopy',
             element: <PageCopy />,
             watermark: true,
-            isHideBreadcrumb: true,
+            isShowBreadcrumb: false,
             meta: {
               title: '复制粘贴',
               icon: <CopyOutlined />,
@@ -90,8 +90,8 @@ export const routerList = [
           {
             path: '/pageCode',
             element: <PageCode />,
-            isHideBreadcrumb: true,
-            isHideTabs: true,
+            isShowBreadcrumb: false,
+            isShowTabs: false,
             meta: {
               title: '代码渲染',
               icon: <CodeOutlined />,
@@ -100,7 +100,6 @@ export const routerList = [
           {
             path: '/pageEcharts',
             element: <PageEcharts />,
-            isHideBreadcrumb: true,
             meta: {
               title: 'echarts图表',
               icon: <AreaChartOutlined />,
@@ -269,7 +268,7 @@ export const routerList = [
             path: '/403',
             element: <Page403 />,
             hideInMenu: true,
-            isHideBreadcrumb: true,
+            isShowBreadcrumb: false,
             meta: {
               title: '403',
             }
@@ -278,7 +277,7 @@ export const routerList = [
             path: '/404',
             element: <Page404 />,
             hideInMenu: true,
-            isHideBreadcrumb: true,
+            isShowBreadcrumb: false,
             meta: {
               title: '404',
             }
@@ -287,7 +286,7 @@ export const routerList = [
             path: '/500',
             element: <Page500 />,
             hideInMenu: true,
-            isHideBreadcrumb: true,
+            isShowBreadcrumb: false,
             meta: {
               title: '500',
             }

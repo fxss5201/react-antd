@@ -21,8 +21,8 @@ const HomeLayout = () => {
 	const [sideMenuOpenKeys, setSideMenuOpenKeys] = useState(sideMenuDefaultOpenKeys);
 
 	const route = searchRoute(location.pathname, routerList[0].children);
-	const isShowBreadcrumb = config.isShowBreadcrumb && !route.isHideBreadcrumb;
-	const isShowTabs = config.isShowTabs && !route.isHideTabs;
+	const isShowBreadcrumb = route.hasOwnProperty('isShowBreadcrumb') ? route.isShowBreadcrumb : config.isShowBreadcrumb;
+	const isShowTabs = route.hasOwnProperty('isShowTabs') ? route.isShowTabs : config.isShowTabs;
 
   return (
 		<>
