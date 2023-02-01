@@ -68,7 +68,7 @@ const HomeLayout = () => {
 									padding: '24px',
 								}}
 							>
-								{isShowBreadcrumb && <LayoutBreadcrumb sideMenuDefaultOpenKeys={sideMenuDefaultOpenKeys} />}
+								{isShowBreadcrumb && <LayoutBreadcrumb userInfo={userInfo} sideMenuDefaultOpenKeys={sideMenuDefaultOpenKeys} />}
 								<Outlet />
 							</Content>
 						</Suspense>

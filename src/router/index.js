@@ -34,7 +34,7 @@ const PageKeepAliveComponent = lazy(() => import('../pages/pageKeepAlive/PageKee
 export const routerList = [
   {
     path: "/",
-    // 使用 redirect 时，并且含有 element 时，element 中必须包含 <Outlet />
+    // 使用 redirect 时，并且含有 element 时，element 中必须包含 <Outlet />，且 redirect 必须指向其后代 route 的 path
     redirect: "/home/analysis",
     errorElement: <ErrorPage />,
     element: <AllLayout />,
