@@ -1,1 +1,0 @@
-{"version":3,"file":"static/js/831.ed8165f1.chunk.js","mappings":"oIAQA,UARqB,WACnB,OACE,8BAAE,gBAIN,C","sources":["pages/pageUser/PageUserInfo.jsx"],"sourcesContent":["const PageUserInfo = () => {\n  return (\n    <>\n      PageUserInfo\n    </>\n  )\n}\n\nexport default PageUserInfo;\n"],"names":[],"sourceRoot":""}
