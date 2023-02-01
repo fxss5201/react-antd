@@ -54,6 +54,7 @@ const HomeLayout = () => {
 						style={{
 							margin: collapsed ? '64px 0 0 80px' : '64px 0 0 200px',
 							boxSizing: 'border-box',
+							minHeight: 'calc(100vh - 64px)',
 						}}
 					>
 						{isShowTabs && <LayoutTabs route={route} collapsed={collapsed} sideMenuOpenKeys={sideMenuOpenKeys} setSideMenuOpenKeys={setSideMenuOpenKeys} />}
@@ -64,7 +65,6 @@ const HomeLayout = () => {
 						}>
 							<Content
 								style={{
-									minHeight: 'auto',
 									padding: '24px',
 								}}
 							>
