@@ -28,7 +28,7 @@ const RouterExtend = (props) => {
 
 	if (route.redirect) return <Navigate to={route.redirect} replace />;
 
-	let watermarkContent = route.watermark ? (getType(route.watermark) === 'object' ? route.watermark.user.map(key => userInfo[key]) : (getType(route.watermark) === 'boolean' ? config.watermark : route.watermark)) : '';
+	let watermarkContent = route.watermark ? (getType(route.watermark) === 'object' ? route.watermark.user.map(key => userInfo[key]) : (getType(route.watermark) === 'boolean' ? (getType(config.watermark) === 'object' ? config.watermark.user.map(key => userInfo[key]) : config.watermark) : route.watermark)) : '';
 	const watermarkChildren = <Watermark content={watermarkContent}>{ props.children }</Watermark>;
 
 	// * 判断当前路由是否需要访问权限(不需要权限直接放行)

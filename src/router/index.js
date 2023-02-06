@@ -60,7 +60,7 @@ export const routerList = [
                 element: <PageAnalysis />,
                 requiresAuth: true,
                 // [水印组件](https://ant-design.antgroup.com/components/watermark-cn#watermark)
-                // 设置页面是否支持水印，支持 Boolean 和 Array ，如果为 Boolean 默认配置水印组件的 content 为 config.watermark，如果为 Array ，则直接覆盖设置为水印组件的 content
+                // 设置页面是否支持水印，支持 Boolean/Array/Object ，如果为 Boolean 默认配置水印组件的 content 为 config.watermark，如果为 Array ，则直接覆盖设置为水印组件的 content，如果为 Object，仅支持 user 属性数组配置，用于配置用户信息，且自行保证配置的都是 store.getState().userInfo.value 中的 key 值
                 watermark: true,
                 meta: {
                   title: '首页',
