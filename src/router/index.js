@@ -60,8 +60,20 @@ export const routerList = [
                 element: <PageAnalysis />,
                 requiresAuth: true,
                 // [水印组件](https://ant-design.antgroup.com/components/watermark-cn#watermark)
-                // 设置页面是否支持水印，支持 Boolean/Array/Object ，如果为 Boolean 默认配置水印组件的 content 为 config.watermark，如果为 Array ，则直接覆盖设置为水印组件的 content，如果为 Object，仅支持 user 属性数组配置，用于配置用户信息，且自行保证配置的都是 store.getState().userInfo.value 中的 key 值
+                // 设置页面是否支持水印，支持 Boolean/String/Array/Object/Function
+                // 如果为 Boolean 默认配置水印组件的 content 为 config.watermark
+                // 如果为 String/Array ，则直接覆盖设置为水印组件的 content
+                // 如果为 Object，仅支持 user 属性数组配置，用于配置用户信息，且自行保证配置的都是 store.getState().userInfo.value 中的 key 值
+                // 如果为 Function，参数为用户信息，返回为值为 string | string[]
                 watermark: true,
+                // watermark: '8888',
+                // watermark: ['aaa', '工作台'],
+                // watermark: {
+                //   user: ['name', 'header', 'name']
+                // },
+                // watermark: (userInfo) => {
+                //   return `${userInfo.name} 1234`
+                // },
                 meta: {
                   title: '首页',
                 }
@@ -136,7 +148,9 @@ export const routerList = [
                 path: '/user/userInfo',
                 element: <PageUserInfo />,
                 requiresAuth: true,
-                watermark: true,
+                watermark: (userInfo) => {
+                  return `${userInfo.name} 1234`
+                },
                 meta: {
                   title: '个人中心',
                 }

@@ -28,7 +28,28 @@ const RouterExtend = (props) => {
 
 	if (route.redirect) return <Navigate to={route.redirect} replace />;
 
-	let watermarkContent = route.watermark ? (getType(route.watermark) === 'object' ? route.watermark.user.map(key => userInfo[key]) : (getType(route.watermark) === 'boolean' ? (getType(config.watermark) === 'object' ? config.watermark.user.map(key => userInfo[key]) : config.watermark) : route.watermark)) : '';
+	// 获取config设置的水印
+	const getConfigWatermark = () => {
+		let result = config.watermark;
+		if (getType(config.watermark) === 'object') {
+			result = config.watermark.user.map(key => userInfo[key]);
+		} else if (getType(config.watermark) === 'function') {
+			result = config.watermark(userInfo);
+		}
+		return result;
+	}
+
+	let watermarkContent = route.watermark || '';
+	if (route.watermark) {
+		if (getType(route.watermark) === 'object') {
+			watermarkContent = route.watermark.user.map(key => userInfo[key]);
+		} else if (getType(route.watermark) === 'boolean') {
+			watermarkContent = getConfigWatermark()
+		} else if (getType(route.watermark) === 'function') {
+			watermarkContent = route.watermark(userInfo);
+		}
+	}
+
 	const watermarkChildren = <Watermark content={watermarkContent}>{ props.children }</Watermark>;
 
 	// * 判断当前路由是否需要访问权限(不需要权限直接放行)
