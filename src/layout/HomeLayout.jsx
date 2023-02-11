@@ -1,6 +1,6 @@
 import React, { useState, Suspense } from 'react';
 import { MenuUnfoldOutlined, MenuFoldOutlined } from '@ant-design/icons';
-import { Layout, Spin } from 'antd';
+import { Layout, Spin, Popover } from 'antd';
 import { Outlet, useLocation } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { searchRoute } from '../utils/router';
@@ -30,11 +30,11 @@ const HomeLayout = () => {
 				<Header className="flex" style={{position: 'fixed',left: 0,right: 0,height: '64px',zIndex: 10}}>
 					<div className="flex-shrink-0 w-32 h-8 my-4 bg-gray-500" />
 					<div className="flex items-center justify-center">
-						<div className="text-gray-200 px-4 text-16 hover:text-white cursor-pointer">
-							{React.createElement(collapsed ? MenuUnfoldOutlined : MenuFoldOutlined, {
-								onClick: () => setCollapsed(!collapsed),
-							})}
-						</div>
+						<Popover placement="bottom" content={collapsed ? '展开菜单' : '收起菜单'}>
+							<div className="text-gray-200 px-4 text-16 hover:text-white cursor-pointer" onClick={() => setCollapsed(!collapsed)}>
+								{collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
+							</div>
+						</Popover>
 					</div>
 					<div className='flex-auto flex items-center justify-end'>
 						<LayoutHeaderRight userInfo={userInfo} />
