@@ -23,6 +23,7 @@ const PageCopy = lazy(() => import('../pages/pageCopy/PageCopy'));
 const PageCode = lazy(() => import('../pages/pageCode/PageCode'));
 const PageEcharts = lazy(() => import('../pages/pageEcharts/PageEcharts'));
 const PageDraggableTabs = lazy(() => import('../pages/pageAntd/PageDraggableTabs'));
+const PageQrcode = lazy(() => import('../pages/pageAntd/PageQrcode'));
 const PageUserInfo = lazy(() => import('../pages/pageUser/PageUserInfo'));
 const PageUsers = lazy(() => import('../pages/pageUser/PageUsers'));
 const PageNormal = lazy(() => import('../pages/pageAccess/PageNormal'));
@@ -131,6 +132,13 @@ export const routerList = [
                 element: <PageDraggableTabs />,
                 meta: {
                   title: '编辑拖拽Tabs',
+                }
+              },
+              {
+                path: '/antd/PageQrcode',
+                element: <PageQrcode />,
+                meta: {
+                  title: '二维码',
                 }
               },
             ]
