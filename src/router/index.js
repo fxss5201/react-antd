@@ -2,7 +2,7 @@ import React, { lazy } from 'react';
 import { createHashRouter } from "react-router-dom";
 import KeepAlive from 'react-activation';
 import LoginRoutes from './login';
-import { BankOutlined, CopyOutlined, CodeOutlined, AreaChartOutlined, AntDesignOutlined, UserOutlined, KeyOutlined, ApiOutlined, LockOutlined } from '@ant-design/icons';
+import { BankOutlined, CopyOutlined, CodeOutlined, AreaChartOutlined, AntDesignOutlined, UserOutlined, KeyOutlined, ApiOutlined, LockOutlined, GithubOutlined } from '@ant-design/icons';
 import PageOutlet from '../pages/pageCommon/PageOutlet';
 
 // 如果懒加载的话第一次点击不能渲染出组件,要缓存的路由不能懒加载！
@@ -31,6 +31,7 @@ const PageMiddle = lazy(() => import('../pages/pageAccess/PageMiddle'));
 const PageAdmin = lazy(() => import('../pages/pageAccess/PageAdmin'));
 const PageMockUsers = lazy(() => import('../pages/pageMock/PageMockUsers'));
 const PageKeepAliveComponent = lazy(() => import('../pages/pageKeepAlive/PageKeepAliveComponent'));
+const PageReactNumberFormat = lazy(() => import('../pages/pageRecommendation/PageReactNumberFormat'));
 
 export const routerList = [
   {
@@ -285,6 +286,24 @@ export const routerList = [
                 }
               },
             ]
+          },
+          {
+            path: '/recommendation',
+            redirect: "/recommendation/react-number-format",
+            element: <PageOutlet />,
+            meta: {
+              title: '社区组件',
+              icon: <GithubOutlined />,
+            },
+            children: [
+              {
+                path: '/recommendation/react-number-format',
+                element: <PageReactNumberFormat />,
+                meta: {
+                  title: 'react-number-format',
+                }
+              }
+            ],
           },
           {
             path: '/403',

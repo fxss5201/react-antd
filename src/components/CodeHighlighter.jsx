@@ -4,8 +4,9 @@ import { vscDarkPlus } from 'react-syntax-highlighter/dist/esm/styles/prism';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 import { Button, message, Tooltip } from 'antd';
 import { CopyOutlined, CheckOutlined } from '@ant-design/icons';
+import classNames from 'classnames';
 
-const CodeHighlighter = ({ lang = 'javascript', children = '' }) => {
+const CodeHighlighter = ({ lang = 'javascript', children = '', className = '' }) => {
   const [messageApi, contextHolder] = message.useMessage();
   const [copied, setCopied] = useState(false);
   const onCopy = (text, result) => {
@@ -42,7 +43,7 @@ const CodeHighlighter = ({ lang = 'javascript', children = '' }) => {
   }
 
   return (
-    <div className='relative'>
+    <div className={classNames('relative', className)}>
       {contextHolder}
       <div className='absolute right-1 top-1 flex items-center'>
         <span className='text-zinc-400 mr-3'>{lang}</span>
