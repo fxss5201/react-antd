@@ -119,31 +119,6 @@ export const routerList = [
             }
           },
           {
-            path: '/antd',
-            redirect: "/antd/pageDraggableTabs",
-            element: <PageOutlet />,
-            meta: {
-              title: 'antd',
-              icon: <AntDesignOutlined />,
-            },
-            children: [
-              {
-                path: '/antd/pageDraggableTabs',
-                element: <PageDraggableTabs />,
-                meta: {
-                  title: '编辑拖拽Tabs',
-                }
-              },
-              {
-                path: '/antd/PageQrcode',
-                element: <PageQrcode />,
-                meta: {
-                  title: '二维码',
-                }
-              },
-            ]
-          },
-          {
             path: '/user',
             redirect: '/user/userInfo',
             element: <PageOutlet />,
@@ -200,7 +175,7 @@ export const routerList = [
                 requiresAuth: true,
                 watermark: true,
                 meta: {
-                  title: 'mock列表',
+                  title: 'mock列表1',
                 }
               },
               {
@@ -209,7 +184,7 @@ export const routerList = [
                 requiresAuth: true,
                 watermark: true,
                 meta: {
-                  title: 'mock列表',
+                  title: 'mock列表2',
                 }
               },
             ]
@@ -284,6 +259,31 @@ export const routerList = [
                   title: '组件缓存',
                 }
               }
+            ]
+          },
+          {
+            path: '/antd',
+            redirect: "/antd/pageDraggableTabs",
+            element: <PageOutlet />,
+            meta: {
+              title: 'antd',
+              icon: <AntDesignOutlined />,
+            },
+            children: [
+              {
+                path: '/antd/pageDraggableTabs',
+                element: <PageDraggableTabs />,
+                meta: {
+                  title: '编辑拖拽Tabs',
+                }
+              },
+              {
+                path: '/antd/PageQrcode',
+                element: <PageQrcode />,
+                meta: {
+                  title: '二维码',
+                }
+              },
             ]
           },
           {
