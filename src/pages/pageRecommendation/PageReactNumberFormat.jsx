@@ -6,7 +6,7 @@ const { Title } = Typography;
 
 const PageReactNumberFormat = () => {
   return <>
-    <Title>react-number-format</Title>
+    <Title><a href="https://github.com/s-yadav/react-number-format" target="_blank" rel="noreferrer">react-number-format</a></Title>
     <Title level={2} style={{ marginTop: '0.5em' }}>安装：</Title>
     <CodeHighlighter lang='sh'>
       {'npm install react-number-format'}
@@ -15,7 +15,10 @@ const PageReactNumberFormat = () => {
     <div className='mb-4'>
       <Title level={3} style={{ marginTop: '0.5em' }}>1. 自定义渲染输入框</Title>
       <CodeHighlighter lang='javascript' className='mb-2'>
-        {`<NumericFormat value={12323} customInput={Input} />`}
+        {`import { NumericFormat } from 'react-number-format';
+import { Input } from 'antd';
+
+<NumericFormat value={12323} customInput={Input} />`}
       </CodeHighlighter>
       <NumericFormat value={12323} customInput={Input} />
     </div>
@@ -137,7 +140,10 @@ const PageReactNumberFormat = () => {
       <div className='my-2'>allowEmptyFormatting: 允许空格式</div>
       <div className='my-2'>mask: 占位符</div>
       <CodeHighlighter lang='javascript' className='mb-2'>
-        {`<PatternFormat format="+86 ### #### ####" allowEmptyFormatting mask="_" customInput={Input} />`}
+        {`import { PatternFormat } from 'react-number-format';
+import { Input } from 'antd';
+
+<PatternFormat format="+86 ### #### ####" allowEmptyFormatting mask="_" customInput={Input} />`}
       </CodeHighlighter>
       <PatternFormat format="+86 ### #### ####" allowEmptyFormatting mask="_" customInput={Input} />
       <div className='my-2'>patternChar: format模式字符</div>

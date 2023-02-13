@@ -1,5 +1,5 @@
 import React from 'react';
-import CodeHighlighter from '../../components/CodeHighlighter';
+import CodeHighlighter from '../../../components/CodeHighlighter';
 
 const codeString = `import React from "react";
 import uniquePropHOC from "./lib/unique-prop-hoc";

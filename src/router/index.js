@@ -19,8 +19,6 @@ const Page404 = lazy(() => import('../pages/pageCommon/Page404'));
 const Page500 = lazy(() => import('../pages/pageCommon/Page500'));
 const PageAnalysis = lazy(() => import('../pages/pageIndex/PageAnalysis'));
 const PageWorkplace = lazy(() => import('../pages/pageIndex/PageWorkplace'));
-const PageCopy = lazy(() => import('../pages/pageCopy/PageCopy'));
-const PageCode = lazy(() => import('../pages/pageCode/PageCode'));
 const PageEcharts = lazy(() => import('../pages/pageEcharts/PageEcharts'));
 const PageDraggableTabs = lazy(() => import('../pages/pageAntd/PageDraggableTabs'));
 const PageQrcode = lazy(() => import('../pages/pageAntd/PageQrcode'));
@@ -32,6 +30,8 @@ const PageAdmin = lazy(() => import('../pages/pageAccess/PageAdmin'));
 const PageMockUsers = lazy(() => import('../pages/pageMock/PageMockUsers'));
 const PageKeepAliveComponent = lazy(() => import('../pages/pageKeepAlive/PageKeepAliveComponent'));
 const PageReactNumberFormat = lazy(() => import('../pages/pageRecommendation/PageReactNumberFormat'));
+const PageCopy = lazy(() => import('../pages/pageRecommendation/pageCopy/PageCopy'));
+const PageCode = lazy(() => import('../pages/pageRecommendation/pageCode/PageCode'));
 
 export const routerList = [
   {
@@ -84,6 +84,7 @@ export const routerList = [
                 path: '/home/workplace',
                 element: <PageWorkplace />,
                 requiresAuth: true,
+                isShowBreadcrumb: false,
                 watermark: ['aaa', '工作台'],
                 meta: {
                   title: '工作台',
@@ -92,28 +93,10 @@ export const routerList = [
             ]
           },
           {
-            path: '/pageCopy',
-            element: <PageCopy />,
-            watermark: true,
-            isShowBreadcrumb: false,
-            meta: {
-              title: '复制粘贴',
-              icon: <CopyOutlined />,
-            }
-          },
-          {
-            path: '/pageCode',
-            element: <PageCode />,
-            isShowBreadcrumb: false,
-            isShowTabs: false,
-            meta: {
-              title: '代码渲染',
-              icon: <CodeOutlined />,
-            }
-          },
-          {
             path: '/pageEcharts',
             element: <PageEcharts />,
+            isShowBreadcrumb: false,
+            isShowTabs: false,
             meta: {
               title: 'echarts图表',
               icon: <AreaChartOutlined />,
@@ -302,7 +285,23 @@ export const routerList = [
                 meta: {
                   title: 'react-number-format',
                 }
-              }
+              },
+              {
+                path: '/recommendation/pageCopy',
+                element: <PageCopy />,
+                meta: {
+                  title: '复制粘贴',
+                  icon: <CopyOutlined />,
+                }
+              },
+              {
+                path: '/recommendation/pageCode',
+                element: <PageCode />,
+                meta: {
+                  title: '代码渲染',
+                  icon: <CodeOutlined />,
+                }
+              },
             ],
           },
           {
