@@ -1,14 +1,16 @@
 import React, { useEffect, useState } from 'react';
 import { SafetyCertificateOutlined, MobileOutlined } from '@ant-design/icons';
-import { Button, Form, Input } from 'antd';
+import { Button, Form, Input, theme } from 'antd';
 import { useTranslation } from 'react-i18next';
 import { Link } from "react-router-dom";
 import { useCountDown, useUnmount } from 'ahooks';
 import config from '../../../config';
-import { getColorPrimary } from '../../../utils';
+
+const { useToken } = theme;
 
 const VerificationLogin = ({ activeKey }) => {
-  const colorPrimary = getColorPrimary();
+  const { token } = useToken();
+  const { colorPrimary } = token;
   const [isValidate, setIsValidate] = useState(false)
 
   const [form] = Form.useForm()

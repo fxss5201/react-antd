@@ -1,16 +1,19 @@
 import React, { useState } from 'react';
 import { LockOutlined, UserOutlined } from '@ant-design/icons';
-import { Button, Checkbox, Form, Input, message } from 'antd';
+import { Button, Checkbox, Form, Input, message, theme } from 'antd';
 import { useTranslation } from 'react-i18next';
 import { Link, useNavigate } from "react-router-dom";
 import { useLocalStorageState, useMount, useUnmount } from 'ahooks';
-import { addPrefixName, encryptFn, decryptFn, getColorPrimary } from '../../../utils/index';
+import { addPrefixName, encryptFn, decryptFn } from '../../../utils/index';
 import Cookies from 'js-cookie';
 import { useDispatch } from 'react-redux';
 import { setUserInfo } from './../../../store/userInfo';
 
+const { useToken } = theme;
+
 const PasswordLogin = ({ activeKey }) => {
-  const colorPrimary = getColorPrimary();
+  const { token } = useToken();
+  const { colorPrimary } = token;
   const [isValidate, setIsValidate] = useState(false);
   const [localLoginInfo, setLocalLoginInfo] = useLocalStorageState(addPrefixName('loginInfo'));
 

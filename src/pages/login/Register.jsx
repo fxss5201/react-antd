@@ -1,15 +1,11 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import {
-  Button,
-  Checkbox,
-  Form,
-  Input
-} from 'antd';
+import { Button, Checkbox, Form, Input, theme } from 'antd';
 import config from '../../config';
 import { useUnmount } from 'ahooks';
-import { getColorPrimary } from '../../utils';
+
+const { useToken } = theme;
 
 const formItemLayout = {
   labelCol: {
@@ -44,7 +40,8 @@ const tailFormItemLayout = {
 };
 
 const Register = () => {
-  const colorPrimary = getColorPrimary();
+  const { token } = useToken();
+  const { colorPrimary } = token;
   const [isValidate, setIsValidate] = useState(false)
   const [form] = Form.useForm();
 

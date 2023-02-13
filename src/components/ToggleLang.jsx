@@ -1,12 +1,15 @@
 import MyIcon from '../components/MyIcon';
 import { useSelector, useDispatch } from 'react-redux';
 import { useLocalStorageState } from 'ahooks';
-import { Popover } from 'antd';
+import { Popover, theme } from 'antd';
 import { changeLocale } from '../store/locale';
-import { addPrefixName, getColorPrimary } from './../utils/index';
+import { addPrefixName } from './../utils/index';
+
+const { useToken } = theme;
 
 const ToggleLang = ({addClass}) => {
-  const colorPrimary = getColorPrimary();
+  const { token } = useToken();
+  const { colorPrimary } = token;
   const [, setLocaleStorage] = useLocalStorageState(addPrefixName('locale'));
 	const locale = useSelector(state => state.locale.value);
 	const dispatch = useDispatch();

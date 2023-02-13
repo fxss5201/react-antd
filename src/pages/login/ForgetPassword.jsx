@@ -1,14 +1,16 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import { Steps } from 'antd';
-import { getColorPrimary } from '../../utils';
+import { Steps, theme } from 'antd';
 import ForgetPasswordVerification from './components/ForgetPasswordVerification';
 import ForgetPasswordReset from './components/ForgetPasswordReset';
 
+const { useToken } = theme;
+
 const ForgetPassword = () => {
   const { t } = useTranslation();
-  const colorPrimary = getColorPrimary();
+  const { token } = useToken();
+  const { colorPrimary } = token;
 
   const [current, setCurrent] = useState(0);
   const stepsItems = [
