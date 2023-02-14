@@ -1,13 +1,15 @@
 import React, { useRef, useState } from 'react';
-import { Tabs } from 'antd';
+import { Tabs, theme } from 'antd';
 import { DndProvider, useDrag, useDrop } from 'react-dnd';
 import { HTML5Backend } from 'react-dnd-html5-backend';
 import cloneDeep from 'lodash.clonedeep';
-import { getColorPrimary } from './../utils';
+
+const { useToken } = theme;
 
 const type = 'DraggableTabNode';
 const DraggableTabNode = ({ index, children, moveNode, canDragEvent, canDropEvent }) => {
-  const colorPrimary = getColorPrimary();
+  const { token } = useToken();
+  const { colorPrimary } = token;
   const ref = useRef(null);
   const [{ isOver }, drop] = useDrop({
     accept: type,

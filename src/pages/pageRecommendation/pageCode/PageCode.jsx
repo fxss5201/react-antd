@@ -1,15 +1,16 @@
 import React from 'react';
 import CodeHighlighter from '../../../components/CodeHighlighter';
-import { Typography } from 'antd';
+import { Typography, theme } from 'antd';
 import CodeDemo from './CodeDemo';
 import { Codes } from './Codes';
-import { getColorPrimary } from '../../../utils';
 
+const { useToken } = theme;
 const { Title, Text, Link  } = Typography;
 
 
 const PageCode = () => {
-  const colorPrimary = getColorPrimary();
+  const { token } = useToken();
+  const { colorPrimary } = token;
   return (
     <div>
       <Title><a href="https://github.com/react-syntax-highlighter/react-syntax-highlighter" target="_blank" rel="noreferrer">react-syntax-highlighter</a></Title>
