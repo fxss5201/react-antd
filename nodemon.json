@@ -1,3 +1,3 @@
 {
-  "watch": ["index.js", "controller.js", "./mock/*"]
+  "watch": ["index.js", "controller.js", "package.json", "./mock/*"]
 }

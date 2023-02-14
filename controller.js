@@ -2,7 +2,7 @@
 const path = require("path");
 const fs = require("fs");
 const chalk = require("chalk");
-const { port, timeout } = require("./package.json");
+const { port, timeout = 0 } = require("./package.json");
 
 function addControllers(router, dir) {
   const fullpath = path.join(__dirname + '/' + dir);
@@ -33,10 +33,23 @@ function addRoutes(router, routes) {
   for (const route in routes) {
     let routePath = route.toLowerCase();
     let routeMethod = 'get';
+    let routeTimeout = timeout
     if (/[\s]+/.test(routePath)) {
       const routeList = routePath.split(' ');
-      routeMethod = routeList[0];
-      routePath = routeList[1];
+      if (routeList.length === 2) {
+        if (/^\d+$/.test(routeList[1])) {
+          // 第二个是数字
+          routePath = routeList[0];
+          routeTimeout = routeList[1];
+        } else {
+          routeMethod = routeList[0];
+          routePath = routeList[1];
+        }
+      } else if (routeList.length === 3) {
+        routeMethod = routeList[0];
+        routePath = routeList[1];
+        routeTimeout = routeList[2];
+      }
     }
     let routeContent = routes[route];
     router[routeMethod](routePath, (ctx, next) => {
@@ -49,7 +62,7 @@ function addRoutes(router, routes) {
           }
           next()
           resolve()
-        }, timeout || 0)
+        }, routeTimeout)
       })
     });
     console.log(chalk.green(`注册路由: ${chalk.yellow(routeMethod.toUpperCase())}`), chalk.blue(`http://localhost:${port}${routePath}`));
