@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/react-antd/static/css/main.5ad1cc24.css",
-    "main.js": "/react-antd/static/js/main.ed76aad3.js",
+    "main.js": "/react-antd/static/js/main.bdf735c1.js",
     "static/js/103.fe1812ee.chunk.js": "/react-antd/static/js/103.fe1812ee.chunk.js",
     "static/js/366.5280ec50.chunk.js": "/react-antd/static/js/366.5280ec50.chunk.js",
     "static/js/920.321ed12c.chunk.js": "/react-antd/static/js/920.321ed12c.chunk.js",
@@ -44,7 +44,7 @@
     "static/js/948.f5468234.chunk.js": "/react-antd/static/js/948.f5468234.chunk.js",
     "index.html": "/react-antd/index.html",
     "main.5ad1cc24.css.map": "/react-antd/static/css/main.5ad1cc24.css.map",
-    "main.ed76aad3.js.map": "/react-antd/static/js/main.ed76aad3.js.map",
+    "main.bdf735c1.js.map": "/react-antd/static/js/main.bdf735c1.js.map",
     "103.fe1812ee.chunk.js.map": "/react-antd/static/js/103.fe1812ee.chunk.js.map",
     "366.5280ec50.chunk.js.map": "/react-antd/static/js/366.5280ec50.chunk.js.map",
     "920.321ed12c.chunk.js.map": "/react-antd/static/js/920.321ed12c.chunk.js.map",
@@ -88,6 +88,6 @@
   },
   "entrypoints": [
     "static/css/main.5ad1cc24.css",
-    "static/js/main.ed76aad3.js"
+    "static/js/main.bdf735c1.js"
   ]
 }
