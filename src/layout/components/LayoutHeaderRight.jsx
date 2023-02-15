@@ -32,18 +32,18 @@ const LayoutHeaderRight = ({userInfo}) => {
 	}
 
   return <>
-    {config.isShowToggleLang && <ToggleLang addClass="text-gray-400 hover:text-white" />}
-    <Dropdown arrow placement="bottom" menu={{
+    {config.isShowToggleLang && <ToggleLang className="text-gray-400 hover:text-white" />}
+		{userInfo.name && <Dropdown arrow placement="bottom" menu={{
       theme: 'dark',
       items: topMenuItems,
       onClick: onTopMenuItemsEvent,
     }}>
-      <div className='mx-4 text-gray-400 hover:text-white cursor-pointer flex items-center'>
+      <div className='ml-4 text-gray-400 hover:text-white cursor-pointer flex items-center'>
         <Avatar src={userInfo.header} size={24} />
         <span className='ml-1'>{userInfo.name}</span>
       </div>
-    </Dropdown>
-    <ToggleFullscreen />
+    </Dropdown>}
+    <ToggleFullscreen className='ml-4' />
     <DocsLink className='ml-4' />
   </>
 }

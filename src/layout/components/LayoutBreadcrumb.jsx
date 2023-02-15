@@ -16,7 +16,7 @@ const LayoutBreadcrumb = ({userInfo, sideMenuDefaultOpenKeys}) => {
     // 此处是为了防止左侧menu菜单重新渲染的问题
     if (curRoute.redirect && curRoute.children) {
       // 权限筛选
-      const accessList = curRoute.children.filter(item => !item.access || userInfo.access.includes(item.access))
+      const accessList = curRoute.children.filter(item => (!item.requiresAuth && !item.access) || userInfo.access.includes(item.access))
       const accessListPath = accessList.map(y => y.path)
       let path = curRoute.redirect
       if (!accessListPath.includes(path) && accessListPath.length) {

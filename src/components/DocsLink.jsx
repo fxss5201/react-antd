@@ -4,7 +4,7 @@ import classNames from 'classnames';
 
 const { useToken } = theme;
 
-const DocsLink = ({className}) => {
+const DocsLink = ({className=''}) => {
   const { token } = useToken();
   const { colorPrimary } = token;
   return (

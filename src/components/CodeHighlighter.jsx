@@ -6,7 +6,7 @@ import { Button, message, Tooltip } from 'antd';
 import { CopyOutlined, CheckOutlined } from '@ant-design/icons';
 import classNames from 'classnames';
 
-const CodeHighlighter = ({ lang = 'javascript', children = '', className = '' }) => {
+const CodeHighlighter = ({ lang='javascript', children='', className='' }) => {
   const [messageApi, contextHolder] = message.useMessage();
   const [copied, setCopied] = useState(false);
   const onCopy = (text, result) => {
