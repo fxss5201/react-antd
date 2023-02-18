@@ -1,1 +1,0 @@
-{"version":3,"file":"static/js/778.8ef4db72.chunk.js","mappings":"oIAQA,UARmB,WACjB,OACE,gBAAKA,UAAU,OAAM,SAAC,wFAI1B,C","sources":["pages/pageAccess/PageNormal.jsx"],"sourcesContent":["const PageNormal = () => {\n  return (\n    <div className='h-96'>\n      PageNormal: normal权限用户可以看到该页面\n    </div>\n  )\n}\n\nexport default PageNormal;\n"],"names":["className"],"sourceRoot":""}

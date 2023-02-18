@@ -1,0 +1,2 @@
+"use strict";(self.webpackChunkreact_antd=self.webpackChunkreact_antd||[]).push([[126],{66126:function(a,e,n){n.r(e);var r=n(52202),t=n(80184),c=r.Z.Paragraph;e.default=function(){return(0,t.jsx)(c,{children:"PageUserInfo"})}}}]);
+//# sourceMappingURL=126.2d99660d.chunk.js.map

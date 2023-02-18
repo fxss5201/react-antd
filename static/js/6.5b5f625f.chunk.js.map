@@ -1,1 +1,0 @@
-{"version":3,"file":"static/js/6.5b5f625f.chunk.js","mappings":"kIAQA,UARkB,WAChB,OACE,gBAAKA,UAAU,YAAW,SAAC,mGAI/B,C","sources":["pages/pageAccess/PageAdmin.jsx"],"sourcesContent":["const PageAdmin = () => {\n  return (\n    <div className='h-[500px]'>\n      PageAdmin: 管理员权限用户可以看到该页面\n    </div>\n  )\n}\n\nexport default PageAdmin;\n"],"names":["className"],"sourceRoot":""}

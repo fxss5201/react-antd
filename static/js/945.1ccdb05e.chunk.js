@@ -1,0 +1,2 @@
+"use strict";(self.webpackChunkreact_antd=self.webpackChunkreact_antd||[]).push([[945],{14945:function(a,e,n){n.r(e);var r=n(52202),t=n(80184),c=r.Z.Paragraph;e.default=function(){return(0,t.jsx)(c,{className:"h-96",children:"PageMiddle: middle\u6743\u9650\u7528\u6237\u53ef\u4ee5\u770b\u5230\u8be5\u9875\u9762"})}}}]);
+//# sourceMappingURL=945.1ccdb05e.chunk.js.map
