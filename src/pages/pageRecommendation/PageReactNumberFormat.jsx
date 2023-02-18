@@ -8,7 +8,7 @@ const { useToken } = theme;
 const PageReactNumberFormat = () => {
   const { token } = useToken();
   const { colorPrimary } = token;
-  console.log(token)
+
   return <>
     <Title><a href="https://github.com/s-yadav/react-number-format" target="_blank" rel="noreferrer" style={{color: colorPrimary}}>react-number-format</a></Title>
     <Title level={2} style={{ marginTop: '0.5em' }}>安装：</Title>

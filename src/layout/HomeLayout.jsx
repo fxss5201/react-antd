@@ -1,4 +1,4 @@
-import React, { useState, Suspense } from 'react';
+import React, { useState, Suspense, useEffect, useRef } from 'react';
 import { MenuUnfoldOutlined, MenuFoldOutlined } from '@ant-design/icons';
 import { Layout, Spin, Popover, theme, Typography } from 'antd';
 import { Outlet, useLocation } from 'react-router-dom';
@@ -23,6 +23,15 @@ const HomeLayout = () => {
 	const location = useLocation();
 	const sideMenuDefaultOpenKeys = location.pathname.slice(1).split('/').map((x, i, arr) => `/${arr.slice(0, i + 1).join('/')}`);
 	const [sideMenuOpenKeys, setSideMenuOpenKeys] = useState(sideMenuDefaultOpenKeys);
+
+	// 重定向之后，左侧菜单选中项移至视野中
+	const timeOut = useRef();
+	useEffect(() => {
+		timeOut.current && clearTimeout(timeOut.current);
+		timeOut.current = setTimeout(() => {
+			document.querySelector('.ant-menu-item-selected')?.scrollIntoView();
+		}, 88);
+	}, [location])
 
 	const route = searchRoute(location.pathname, routerList[0].children);
 	const isShowBreadcrumb = route.hasOwnProperty('isShowBreadcrumb') ? route.isShowBreadcrumb : config.isShowBreadcrumb;
