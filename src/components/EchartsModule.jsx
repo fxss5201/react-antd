@@ -1,6 +1,7 @@
 import { useEffect, useImperativeHandle, useRef } from "react";
 import * as echarts from 'echarts';
 import { useDeepCompareEffect, useMount, useSize, useUnmount, useUpdateEffect } from "ahooks";
+import classNames from 'classnames';
 
 const EchartsModule = ({
   // https://echarts.apache.org/zh/api.html#echarts.init
@@ -16,7 +17,8 @@ const EchartsModule = ({
   autoPlay = true,
   // 是否自动添加鼠标上移事件
   isAddOn = true,
-  onRef
+  onRef,
+  className = ''
 }) => {
   
   const echartsRef = useRef(null);
@@ -225,7 +227,7 @@ const EchartsModule = ({
   });
 
   return (
-    <div ref={echartsRef} className="w-full h-full"></div>
+    <div ref={echartsRef} className={classNames('w-full h-full', className)}></div>
   );
 };
 

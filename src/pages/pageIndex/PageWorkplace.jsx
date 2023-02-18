@@ -1,9 +1,13 @@
+import { Typography } from 'antd';
+
+const { Paragraph } = Typography;
+
 const PageWorkplace = () => {
 
   return (
-    <div className='h-screen'>
+    <Paragraph className='h-screen'>
       PageWorkplace
-    </div>
+    </Paragraph>
   )
 };
 export default PageWorkplace;

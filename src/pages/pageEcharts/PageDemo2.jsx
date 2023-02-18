@@ -1,13 +1,27 @@
-import { Button, Typography } from "antd";
+import { Button, Typography, theme } from "antd";
 import { useState } from "react";
 import EchartsModule from "../../components/EchartsModule";
 
 const { Title } = Typography;
+const { useToken } = theme;
 
 const PageDemo = () => {
+  const { token } = useToken();
+  const { colorText, colorBgContainer, colorBorder } = token;
   const [isShow, setIsShow] = useState(false)
   const options = {
-    legend: {},
+    grid: {
+      top: '15%',
+      bottom: '10%',
+    },
+    textStyle: {
+      color: colorText,
+    },
+    legend: {
+      textStyle: {
+        color: colorText,
+      },
+    },
     xAxis: {},
     yAxis: {
       type: 'category',
@@ -16,6 +30,11 @@ const PageDemo = () => {
     tooltip: {
       trigger: 'axis',
       className: 'echart-tooltip-zIndex',
+      backgroundColor: colorBgContainer,
+      borderColor: colorBorder,
+      textStyle: {
+        color: colorText,
+      },
     }
   }
   const [seriesData, setSeriesData] = useState([])
@@ -41,7 +60,7 @@ const PageDemo = () => {
       <div>
         <Button onClick={changeDate}>切换</Button>
       </div>
-      <div className="w-full h-80">
+      <div className="w-full h-72" style={{backgroundColor: colorBgContainer}}>
         {isShow && <EchartsModule options={options} seriesData={seriesData}></EchartsModule>}
       </div>
     </div>

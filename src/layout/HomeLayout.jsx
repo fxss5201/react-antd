@@ -1,6 +1,6 @@
 import React, { useState, Suspense } from 'react';
 import { MenuUnfoldOutlined, MenuFoldOutlined } from '@ant-design/icons';
-import { Layout, Spin, Popover } from 'antd';
+import { Layout, Spin, Popover, theme, Typography } from 'antd';
 import { Outlet, useLocation } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { searchRoute } from '../utils/router';
@@ -12,8 +12,12 @@ import LayoutSiderMenu from './components/LayoutSiderMenu';
 import LayoutHeaderRight from './components/LayoutHeaderRight';
 
 const { Header, Content, Sider } = Layout;
+const { useToken } = theme;
+const { Text } = Typography;
 
 const HomeLayout = () => {
+  const { token } = useToken();
+  const { colorBgLayout } = token;
   const [collapsed, setCollapsed] = useState(false);
 	const userInfo = useSelector(state => state.userInfo.value);
 	const location = useLocation();
@@ -31,8 +35,10 @@ const HomeLayout = () => {
 					<div className="flex-shrink-0 w-32 h-8 my-4 bg-gray-500" />
 					<div className="flex items-center justify-center">
 						<Popover placement="bottom" content={collapsed ? '展开菜单' : '收起菜单'}>
-							<div className="text-gray-200 px-4 text-16 hover:text-white cursor-pointer" onClick={() => setCollapsed(!collapsed)}>
-								{collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
+							<div className="px-4 text-16 cursor-pointer flex items-center" onClick={() => setCollapsed(!collapsed)}>
+								<Text className='leading-none text-gray-300 hover:text-white'>
+									{collapsed ? <MenuUnfoldOutlined size={24} /> : <MenuFoldOutlined size={24} />}
+								</Text>
 							</div>
 						</Popover>
 					</div>
@@ -50,11 +56,11 @@ const HomeLayout = () => {
 						/>
 					</Sider>
 					<Layout
-						className='bg-white'
 						style={{
 							margin: collapsed ? '64px 0 0 80px' : '64px 0 0 200px',
 							boxSizing: 'border-box',
 							minHeight: 'calc(100vh - 64px)',
+							backgroundColor: colorBgLayout,
 						}}
 					>
 						{isShowTabs && <LayoutTabs route={route} collapsed={collapsed} sideMenuOpenKeys={sideMenuOpenKeys} setSideMenuOpenKeys={setSideMenuOpenKeys} />}

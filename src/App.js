@@ -26,7 +26,7 @@ const App = () => {
     <div className="App">
       <ConfigProvider
         locale={localeObj[locale]}
-        theme={config.theme ? {token: config.theme} : {}}
+        theme={config.theme || {}}
       >
         <Suspense fallback={
           <Spin tip={t('Loading')} size="large">

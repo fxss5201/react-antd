@@ -13,7 +13,7 @@ const PageCode = () => {
   const { colorPrimary } = token;
   return (
     <div>
-      <Title><a href="https://github.com/react-syntax-highlighter/react-syntax-highlighter" target="_blank" rel="noreferrer">react-syntax-highlighter</a></Title>
+      <Title><a href="https://github.com/react-syntax-highlighter/react-syntax-highlighter" target="_blank" rel="noreferrer" style={{color: colorPrimary}}>react-syntax-highlighter</a></Title>
       <Text>
         <Link href="https://react-syntax-highlighter.github.io/react-syntax-highlighter/demo/" target="_blank" style={{color: colorPrimary}}>官方实例</Link>
       </Text>

@@ -1,7 +1,9 @@
 import { useRequest } from 'ahooks';
-import { Table } from 'antd';
+import { Table, Typography } from 'antd';
 import { useState } from 'react';
 import { getUsersListPost } from '../../apis/users';
+
+const { Paragraph } = Typography;
 
 const PageMockUserListPost = () => {
   const [pageCurrent, setPageCurrent] = useState(1);
@@ -29,10 +31,10 @@ const PageMockUserListPost = () => {
   ];
 
   if (error) {
-    return <div>failed to load</div>;
+    return <Paragraph>failed to load</Paragraph>;
   }
   return <>
-    <div className='my-3'>本页面使用 react-activation 进行了路由缓存，post请求数据</div>
+    <Paragraph className='my-3'>本页面使用 react-activation 进行了路由缓存，post请求数据</Paragraph>
     <Table
       sticky={{
         offsetHeader: 104

@@ -87,7 +87,7 @@ const ForgetPasswordVerification = ({ onFinishVerification }) => {
           },
           {
             pattern: config.phonePattern,
-            message: t('Incorrect phone number format!'),
+            message: t('Incorrect mobile number format!'),
           },
         ]}
       >

@@ -2,12 +2,17 @@ import React, { useState } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import cloneDeep from 'lodash.clonedeep';
+import { theme } from "antd";
 import DraggableTabsHover from '../../components/DraggableTabsHover';
 import { addPrefixName, getFinalValue } from '../../utils/index';
 import { searchRoute } from '../../utils/router';
 import { routerList } from '../../router/index';
 
+const { useToken } = theme;
+
 const LayoutTabs = ({route, collapsed, sideMenuOpenKeys, setSideMenuOpenKeys}) => {
+  const { token } = useToken();
+  const { colorBgLayout } = token;
   const { t } = useTranslation();
   const location = useLocation();
   const navigate = useNavigate();
@@ -19,7 +24,7 @@ const LayoutTabs = ({route, collapsed, sideMenuOpenKeys, setSideMenuOpenKeys}) =
     localTabs = [
       {
         key: homeRoute.redirect || homeRoute.path,
-        label: '首页',
+        label: homeRoute.redirect ? searchRoute(homeRoute.redirect, routerList[0].children)?.meta?.title : homeRoute.meta?.title,
         closable: false,
       }
     ]
@@ -96,8 +101,8 @@ const LayoutTabs = ({route, collapsed, sideMenuOpenKeys, setSideMenuOpenKeys}) =
         hideAdd
         tabBarGutter={0}
         tabBarStyle={{margin: 0}}
-        style={{position: 'fixed', top: '64px', left: collapsed ? '80px': '200px', right: 0, zIndex: 10}}
-        className='bg-white' />
+        style={{position: 'fixed', top: '64px', left: collapsed ? '80px': '200px', right: 0, zIndex: 10, backgroundColor: colorBgLayout}}
+      />
     </div>
   )
 }

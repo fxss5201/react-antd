@@ -1,4 +1,4 @@
-import { Dropdown, Avatar } from 'antd';
+import { Dropdown, Avatar, Typography } from 'antd';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import Cookies from 'js-cookie';
@@ -8,6 +8,8 @@ import config from '../../config/index';
 import ToggleLang from '../../components/ToggleLang';
 import ToggleFullscreen from '../../components/ToggleFullscreen';
 import DocsLink from '../../components/DocsLink';
+
+const { Text } = Typography;
 
 const LayoutHeaderRight = ({userInfo}) => {
   const topMenuItems = [
@@ -32,15 +34,15 @@ const LayoutHeaderRight = ({userInfo}) => {
 	}
 
   return <>
-    {config.isShowToggleLang && <ToggleLang className="text-gray-400 hover:text-white" />}
+    {config.isShowToggleLang && <ToggleLang textClassName="text-gray-300 hover:text-white" />}
 		{userInfo.name && <Dropdown arrow placement="bottom" menu={{
       theme: 'dark',
       items: topMenuItems,
       onClick: onTopMenuItemsEvent,
     }}>
-      <div className='ml-4 text-gray-400 hover:text-white cursor-pointer flex items-center'>
+      <div className='ml-4 cursor-pointer flex items-center'>
         <Avatar src={userInfo.header} size={24} />
-        <span className='ml-1'>{userInfo.name}</span>
+        <Text className='ml-1 text-gray-300 hover:text-white'>{userInfo.name}</Text>
       </div>
     </Dropdown>}
     <ToggleFullscreen className='ml-4' />

@@ -21,7 +21,7 @@ const PageMockUsers = () => {
     {
       title: '操作',
       key: 'action',
-      render: (_, record) => <Button onClick={(e) => showModal(record.key, e)} type="link" className='pl-0 pr-0'>详情</Button>,
+      render: (_, record) => <Button onClick={(e) => showModal(record.key, e)} type="dashed" size="small">详情</Button>,
     },
   ];
 

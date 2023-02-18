@@ -1,8 +1,12 @@
+import { Typography } from 'antd';
+
+const { Paragraph } = Typography;
+
 const PageMiddle = () => {
   return (
-    <div className='h-96'>
+    <Paragraph className='h-96'>
       PageMiddle: middle权限用户可以看到该页面
-    </div>
+    </Paragraph>
   )
 }
 
