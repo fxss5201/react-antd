@@ -7,6 +7,7 @@ import { addPrefixName } from '../../utils/index';
 import config from '../../config/index';
 import ToggleLang from '../../components/ToggleLang';
 import ToggleFullscreen from '../../components/ToggleFullscreen';
+import ToggleSetting from '../../components/ToggleSetting';
 import DocsLink from '../../components/DocsLink';
 
 const { Text } = Typography;
@@ -46,6 +47,7 @@ const LayoutHeaderRight = ({userInfo}) => {
       </div>
     </Dropdown>}
     <ToggleFullscreen className='ml-4' />
+		<ToggleSetting className='ml-4' />
     <DocsLink className='ml-4' />
   </>
 }

@@ -23,7 +23,7 @@ const ToggleLang = ({className='', textClassName=''}) => {
   return (
     <Popover placement="bottom" content={locale === 'zhCN' ? '中文/English' : 'English/中文'}>
       <div className={classNames(`flex items-center cursor-pointer`, className)} onClick={() => changeLocaleEvent(locale === 'zhCN' ? 'enGb' : 'zhCN')}>
-        <MyIcon type={locale === 'zhCN' ? 'icon-zhongyingwenqiehuan-zhongwen' : 'icon-zhongyingwenqiehuan-yingwen' } className='text-24' style={{color: colorPrimary}} />
+        <MyIcon type={locale === 'zhCN' ? 'icon-zhongyingwenqiehuan-zhongwen' : 'icon-zhongyingwenqiehuan-yingwen' } className='text-20' style={{color: colorPrimary}} />
         <Text className={classNames('ml-1', textClassName)}>{locale === 'zhCN' ? '中文' : 'English' }</Text>
       </div>
     </Popover>

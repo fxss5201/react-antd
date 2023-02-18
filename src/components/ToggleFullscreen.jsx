@@ -13,7 +13,7 @@ const ToggleFullscreen = ({className=''}) => {
     <Popover placement="bottom" content={isFullscreen ? '退出全屏' : '设置全屏'}>
       <div className={classNames(className, 'flex items-center')}>
         <Text onClick={toggleFullscreen} className={classNames('leading-none', classlist)}>
-          {isFullscreen ? <FullscreenExitOutlined size={24} /> : <FullscreenOutlined size={24} />}
+          {isFullscreen ? <FullscreenExitOutlined /> : <FullscreenOutlined />}
         </Text>
       </div>
     </Popover>

@@ -12,7 +12,7 @@ const DocsLink = ({className=''}) => {
     <Popover placement="bottom" content='文档地址'>
       <Text className={classNames(className, 'leading-6')}>
         <a className='flex a' href='https://fxss5201.github.io/react-antd-docs' target='_blank' rel="noreferrer" style={{color: colorPrimary}}>
-          <LinkOutlined />
+          <LinkOutlined className='text-20' />
           <span className='ml-1'>文档地址</span>
         </a>
       </Text>

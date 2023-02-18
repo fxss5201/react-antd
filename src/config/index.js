@@ -1,4 +1,3 @@
-import { theme } from 'antd';
 const pkg = require('../../package.json');
 
 const config = {
@@ -28,9 +27,9 @@ const config = {
   // 主题色配置，放开的话，必须配置，否则主题色有问题
   theme: {
     token: {
-      colorPrimary: '#00b96b'
+      colorPrimary: '#1677ff'
     },
-    algorithm: theme.defaultAlgorithm,
+    algorithm: 'defaultAlgorithm',
   },
 
   // 没权限时跳转的 path ，默认值为'/403'，'/403' 或者 '/404'

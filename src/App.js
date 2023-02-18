@@ -3,13 +3,12 @@ import 'dayjs/locale/zh-cn';
 import zhCN from 'antd/locale/zh_CN';
 import 'dayjs/locale/en';
 import enGb from 'antd/locale/en_GB';
-import { ConfigProvider, Spin, FloatButton } from 'antd';
+import { ConfigProvider, Spin, FloatButton, theme } from 'antd';
 import router from './router/index';
 import { useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 import { useTitle } from 'ahooks';
 import { RouterProvider } from 'react-router-dom';
-import config from './config';
 const pkg = require('./../package.json');
 
 const localeObj = {
@@ -19,6 +18,7 @@ const localeObj = {
 
 const App = () => {
   const locale = useSelector(state => state.locale.value);
+  const themeInfo = useSelector(state => state.themeInfo.value);
   const { t } = useTranslation();
   useTitle(pkg.name);
 
@@ -26,7 +26,7 @@ const App = () => {
     <div className="App">
       <ConfigProvider
         locale={localeObj[locale]}
-        theme={config.theme || {}}
+        theme={{...themeInfo, algorithm: theme[themeInfo.algorithm]}}
       >
         <Suspense fallback={
           <Spin tip={t('Loading')} size="large">

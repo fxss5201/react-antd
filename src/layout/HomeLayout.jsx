@@ -36,8 +36,8 @@ const HomeLayout = () => {
 					<div className="flex items-center justify-center">
 						<Popover placement="bottom" content={collapsed ? '展开菜单' : '收起菜单'}>
 							<div className="px-4 text-16 cursor-pointer flex items-center" onClick={() => setCollapsed(!collapsed)}>
-								<Text className='leading-none text-gray-300 hover:text-white'>
-									{collapsed ? <MenuUnfoldOutlined size={24} /> : <MenuFoldOutlined size={24} />}
+								<Text className='text-20 leading-none text-gray-300 hover:text-white'>
+									{collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
 								</Text>
 							</div>
 						</Popover>
