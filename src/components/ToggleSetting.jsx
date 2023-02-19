@@ -65,7 +65,7 @@ const ToggleSetting = ({className=''}) => {
 
   return (
     <>
-      <Popover placement="bottom" content='设置'>
+      <Popover placement="bottom" content='设置主题'>
         <div className={classNames(className, 'flex items-center')}>
           <Text onClick={toggleSettingShow} className={classNames('leading-none', classlist)}>
             <SettingOutlined />
@@ -73,7 +73,7 @@ const ToggleSetting = ({className=''}) => {
         </div>
       </Popover>
       <Drawer
-        title="主题设置"
+        title="设置主题"
         placement="right"
         open={themeInfoShow}
         onClose={toggleSettingClose}

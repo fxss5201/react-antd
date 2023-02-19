@@ -3,6 +3,7 @@ import { useNavigate, useLocation } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import cloneDeep from 'lodash.clonedeep';
 import { theme } from "antd";
+import { useSelector } from 'react-redux';
 import DraggableTabsHover from '../../components/DraggableTabsHover';
 import { addPrefixName, getFinalValue } from '../../utils/index';
 import { searchRoute } from '../../utils/router';
@@ -10,12 +11,14 @@ import { routerList } from '../../router/index';
 
 const { useToken } = theme;
 
-const LayoutTabs = ({route, collapsed, sideMenuOpenKeys, setSideMenuOpenKeys}) => {
+const LayoutTabs = ({route, collapsed, sideMenuOpenKeys, setSideMenuOpenKeys, headerHeight, sideMenuWidth}) => {
   const { token } = useToken();
   const { colorBgLayout } = token;
   const { t } = useTranslation();
   const location = useLocation();
   const navigate = useNavigate();
+  const themeInfo = useSelector(state => state.themeInfo.value);
+	const tabsHeight = themeInfo.algorithm === 'compactAlgorithm' ? '37px' : '40px';
 
   let localTabs
   localTabs = window.localStorage.getItem(addPrefixName('tabs'))
@@ -87,7 +90,7 @@ const LayoutTabs = ({route, collapsed, sideMenuOpenKeys, setSideMenuOpenKeys}) =
   }
 
   return (
-    <div style={{height: '40px'}}>
+    <div style={{height: tabsHeight}}>
       <DraggableTabsHover
         defaultActiveKey={location.pathname}
         activeKey={location.pathname}
@@ -101,7 +104,7 @@ const LayoutTabs = ({route, collapsed, sideMenuOpenKeys, setSideMenuOpenKeys}) =
         hideAdd
         tabBarGutter={0}
         tabBarStyle={{margin: 0}}
-        style={{position: 'fixed', top: '64px', left: collapsed ? '80px': '200px', right: 0, zIndex: 10, backgroundColor: colorBgLayout}}
+        style={{position: 'fixed', top: headerHeight, left: sideMenuWidth, right: 0, zIndex: 10, backgroundColor: colorBgLayout}}
       />
     </div>
   )

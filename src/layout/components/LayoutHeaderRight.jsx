@@ -47,7 +47,7 @@ const LayoutHeaderRight = ({userInfo}) => {
       </div>
     </Dropdown>}
     <ToggleFullscreen className='ml-4' />
-		<ToggleSetting className='ml-4' />
+		{config.isShowSettingTheme && <ToggleSetting className='ml-4' />}
     <DocsLink className='ml-4' />
   </>
 }

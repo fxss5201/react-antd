@@ -24,6 +24,8 @@ const config = {
   //   return [`${userInfo.name} ${userInfo.access.toString()}`]
   // },
 
+  // 是否显示设置主题
+  isShowSettingTheme: true,
   // 主题色配置，放开的话，必须配置，否则主题色有问题
   theme: {
     token: {

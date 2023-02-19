@@ -19,7 +19,7 @@ if (localeStorage) {
     localeStorage = defaultBrowserLang
     i18n.changeLanguage(localeStorage)
   } else {
-    localeStorage = config.locale
+    localeStorage = config.locale || 'zhCN'
   }
 }
 

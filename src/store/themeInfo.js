@@ -7,7 +7,7 @@ let localeStorage = window.localStorage.getItem(addPrefixName('theme')) || '';
 if (localeStorage) {
   localeStorage = JSON.parse(localeStorage)
 } else {
-  localeStorage = config.theme
+  localeStorage = config.theme || {}
 }
 
 export const themeSlice = createSlice({
