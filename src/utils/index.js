@@ -59,3 +59,30 @@ export const getBrowserLang = () => {
 export const getFinalValue = (t, val) => {
   return t(val) === val ? val : t(val)
 }
+
+/**
+ * 确定DOM元素是否在当前视野或者第二个参数值内
+ * @param {DOM} el DOM元素 
+ * @param {DOM} box DOM元素
+ * @returns boolean
+ */
+export const isElementInView = (el, box) => {
+  const rect = el.getBoundingClientRect();
+  const vWidth = window.innerWidth || document.documentElement.clientWidth;
+  const vHeight = window.innerHeight || document.documentElement.clientHeight;
+  let boxRect = {
+    left: 0,
+    top: 0,
+    right: vWidth,
+    bottom: vHeight,
+    width: vWidth,
+    height: vHeight,
+  }
+  if (box) {
+    boxRect = box.getBoundingClientRect();
+  }
+  if (rect.right < boxRect.left || rect.bottom < boxRect.top || rect.left > boxRect.right || rect.top > boxRect.bottom) {
+    return false;
+  }
+  return true;
+}

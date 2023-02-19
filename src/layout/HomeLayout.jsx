@@ -10,6 +10,7 @@ import LayoutTabs from './components/LayoutTabs';
 import LayoutBreadcrumb from './components/LayoutBreadcrumb';
 import LayoutSiderMenu from './components/LayoutSiderMenu';
 import LayoutHeaderRight from './components/LayoutHeaderRight';
+import { isElementInView } from '../utils';
 
 const { Header, Content, Sider } = Layout;
 const { useToken } = theme;
@@ -33,7 +34,10 @@ const HomeLayout = () => {
 	useEffect(() => {
 		timeOut.current && clearTimeout(timeOut.current);
 		timeOut.current = setTimeout(() => {
-			document.querySelector('.ant-menu-item-selected')?.scrollIntoView();
+			const antMenuItemSelected = document.querySelector('.ant-menu-item-selected');
+			if (antMenuItemSelected && !isElementInView(antMenuItemSelected, document.querySelector('#sideMenuBox'))) {
+				antMenuItemSelected?.scrollIntoView();
+			}
 		}, 88);
 	}, [location])
 
@@ -60,7 +64,7 @@ const HomeLayout = () => {
 					</div>
 				</Header>
 				<Layout>
-					<Sider collapsed={collapsed} width={200} style={{position: 'fixed',left: 0,top: headerHeight,bottom: 0,zIndex: 10, overflow: 'auto'}}>
+					<Sider collapsed={collapsed} width={200} style={{position: 'fixed',left: 0,top: headerHeight,bottom: 0,zIndex: 10, overflow: 'auto'}} id="sideMenuBox">
 						<LayoutSiderMenu 
 							userInfo={userInfo}
 							sideMenuDefaultOpenKeys={sideMenuDefaultOpenKeys}
