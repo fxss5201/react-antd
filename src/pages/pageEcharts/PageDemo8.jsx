@@ -65,7 +65,7 @@ const PageDemo = () => {
       <div>
         <Button onClick={changeDate}>{ isAddOn ? '移除' : '添加' }</Button>
       </div>
-      <div className="w-full h-80" style={{backgroundColor: colorBgContainer}}>
+      <div className="w-full h-80">
         <EchartsModule options={options} seriesData={seriesData} isAddOn={isAddOn}></EchartsModule>
       </div>
     </div>

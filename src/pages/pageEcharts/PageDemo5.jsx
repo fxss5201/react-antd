@@ -77,7 +77,7 @@ const PageDemo = () => {
       <div>
         <Button onClick={changeDate}>{ autoPlay ? '结束' : '开始' }动画</Button>
       </div>
-      <div className="w-full h-80" style={{backgroundColor: colorBgContainer}}>
+      <div className="w-full h-80">
         <EchartsModule options={options} seriesData={seriesData} autoPlay={autoPlay}></EchartsModule>
       </div>
     </div>

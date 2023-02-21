@@ -70,7 +70,7 @@ const PageDemo = () => {
         <Button className="ml-2" onClick={changeDate41}>切换高度</Button>
       </div>
       <div className="w-full h-80">
-        <div style={{width: boxWidth ? '100%' : '50%', height: boxHeight ? '100%' : '75%', backgroundColor: colorBgContainer}}>
+        <div style={{width: boxWidth ? '100%' : '50%', height: boxHeight ? '100%' : '75%'}}>
           <EchartsModule options={options} seriesData={seriesData}></EchartsModule>
         </div>
       </div>

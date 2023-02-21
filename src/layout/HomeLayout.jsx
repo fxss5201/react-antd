@@ -18,7 +18,7 @@ const { Text } = Typography;
 
 const HomeLayout = () => {
   const { token } = useToken();
-  const { colorBgLayout } = token;
+  const { colorBgContainer } = token;
   const [collapsed, setCollapsed] = useState(false);
 	const userInfo = useSelector(state => state.userInfo.value);
   const themeInfo = useSelector(state => state.themeInfo.value);
@@ -77,7 +77,7 @@ const HomeLayout = () => {
 							margin: `${headerHeight} 0 0 ${sideMenuWidth}`,
 							boxSizing: 'border-box',
 							minHeight: `calc(100vh - ${headerHeight})`,
-							backgroundColor: colorBgLayout,
+							backgroundColor: colorBgContainer,
 						}}
 					>
 						{isShowTabs && <LayoutTabs route={route} collapsed={collapsed} headerHeight={headerHeight} sideMenuWidth={sideMenuWidth} sideMenuOpenKeys={sideMenuOpenKeys} setSideMenuOpenKeys={setSideMenuOpenKeys} />}

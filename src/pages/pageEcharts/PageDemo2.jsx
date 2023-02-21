@@ -60,7 +60,7 @@ const PageDemo = () => {
       <div>
         <Button onClick={changeDate}>切换</Button>
       </div>
-      <div className="w-full h-72" style={{backgroundColor: colorBgContainer}}>
+      <div className="w-full h-72">
         {isShow && <EchartsModule options={options} seriesData={seriesData}></EchartsModule>}
       </div>
     </div>

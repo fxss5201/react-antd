@@ -87,7 +87,7 @@ const PageDemo = () => {
         <Button className="ml-2" onClick={changeDate1}>结束动画</Button>
         <Button className="ml-2" onClick={changeDate2}>获取实例，销毁echarts</Button>
       </div>
-      <div className="w-full h-80" style={{backgroundColor: colorBgContainer}}>
+      <div className="w-full h-80">
         <EchartsModule onRef={echartsRef} options={options} seriesData={seriesData}></EchartsModule>
       </div>
     </div>
