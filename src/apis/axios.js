@@ -1,14 +1,15 @@
 import axios from 'axios';
 import Cookies from 'js-cookie';
 import { addPrefixName } from './../utils';
+import config from '../config';
 
-let config = {
-  baseURL: process.env.NODE_ENV === 'development' ? '' : 'https://www.fastmock.site/mock/ca7c6a1ac02a88f8297b5f881f4583bf',
+let axiosconfig = {
+  baseURL: process.env.NODE_ENV === 'development' ? '' : config.axiosBaseURL,
   timeout: 60 * 1000, // Timeout
   // withCredentials: true, // Check cross-site Access-Control
 };
 
-const _axios = axios.create(config);
+const _axios = axios.create(axiosconfig);
 
 _axios.interceptors.request.use(
   config => {

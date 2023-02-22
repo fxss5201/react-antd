@@ -36,6 +36,9 @@ const config = {
 
   // 没权限时跳转的 path ，默认值为'/403'，'/403' 或者 '/404'
   noAccessPath: '/403',
+
+  // 配置线上的接口请求基本地址
+  axiosBaseURL: 'https://www.fastmock.site/mock/ca7c6a1ac02a88f8297b5f881f4583bf/react-antd'
 }
 
 export default config;
