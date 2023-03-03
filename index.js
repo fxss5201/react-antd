@@ -15,12 +15,12 @@ const app = new Koa();
 app.use(bodyParser());
 app.use(controllers());
 
-app.use((ctx, next) => {
+app.use(async (ctx, next) => {
+  await next();
   console.log(
     chalk.blue(`请求：${chalk.yellow(ctx.request.method)} ${ctx.request.url}${ctx.request.method === 'GET' ? '' : ` ${JSON.stringify(ctx.request.body)}`}`),
     dayjs().format("YYYY-MM-DD HH:mm:ss")
   );
-  next();
 });
 
 app.listen(port);

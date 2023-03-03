@@ -52,7 +52,8 @@ function addRoutes(router, routes) {
       }
     }
     let routeContent = routes[route];
-    router[routeMethod](routePath, (ctx, next) => {
+    router[routeMethod](routePath, async (ctx, next) => {
+      await next()
       return new Promise((resolve, reject) => {
         setTimeout(() => {
           if (Object.prototype.toString.call(routeContent).slice(8, -1).toLowerCase() !== 'function') {
@@ -60,7 +61,6 @@ function addRoutes(router, routes) {
           } else {
             routeContent(ctx, next)
           }
-          next()
           resolve()
         }, routeTimeout)
       })
